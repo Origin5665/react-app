@@ -1,15 +1,16 @@
 import React from 'react';
 import Message from './Message/Message';
-
 import MessagesBundle from '../Messages/Messages.module.css';
 
-const Messages = () => {
+
+const Messages = (props) => {
+  const message = props.message.map((item, i) => <Message key={i} message={item.message} like={item.count} />)
+
   return (
     <div className={MessagesBundle.message__container}>
       <div className="container">
         <div className={MessagesBundle.messages__wrapper}>
-          <Message message="This is my first React Project!" like='3' />
-          <Message message="I need to find my girlfriend!" like='2' />
+          {message}
         </div>
       </div>
     </div>

@@ -1,0 +1,9 @@
+.dialog__item {
+    font-size: 1.7rem;
+    max-width: 500px;
+    margin-bottom: 30px;
+    padding: 5px;
+    border-radius: 5px;
+    color: rgb(196, 196, 196);
+    background: rgb(33, 68, 167);
+}

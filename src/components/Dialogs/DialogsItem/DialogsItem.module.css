@@ -1,0 +1,13 @@
+.dialogs__item {
+    margin: 0;
+    text-decoration: none;
+    font-size: 1.8rem;
+    color: rgb(218, 216, 216);
+
+    width: 100px;
+
+}
+
+.dialogs__item_active {
+    color: teal
+}

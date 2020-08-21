@@ -1,12 +1,12 @@
 .header {
     display: block;
-    position: sticky;
-    background: rgb(53, 128, 163);
+    background: rgb(23, 73, 129);
 }
 
 .header__logo {
     width: 40px;
     height: 35px;
     padding-top: 15px;
+    padding-left: 15px;
 
 }

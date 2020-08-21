@@ -2,7 +2,6 @@ import React from 'react';
 import MessageBundle from './Message.module.css';
 
 const Message = (props) => {
-    console.log(props)
     return (
         <div className={MessageBundle.message}>
             <img className={MessageBundle.message__image} src="https://images.unsplash.com/photo-1533227268428-f9ed0900fb3b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1158&q=80"></img>

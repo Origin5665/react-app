@@ -4,19 +4,31 @@
     display: grid;
     grid-template-rows: repeat(1fr, 5);
     row-gap: 40px;
+
 }
 
 .navigate__link {
     text-decoration: none;
-    font-size: 18px;
-    color: rgb(182, 182, 182);
+    font-size: 24px;
+    color: rgb(172, 170, 170);
     transition: ease .1s;
 }
 
 .navigate__link:hover {
-    color: rgb(53, 128, 163);
+    color: rgb(20, 25, 41);
 }
 
 .navigate__item {
     list-style-type: none;
+}
+
+.navigate__active {
+    color: rgb(54, 209, 114);
+    text-decoration: solid;
+}
+
+.navigate {
+    background: rgb(28, 78, 136);
+    padding-bottom: 100vh;
+    text-align: center;
 }
