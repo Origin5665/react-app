@@ -1,0 +1,43 @@
+.message__image {
+    width: 100%;
+    border-radius: 50%;
+    align-self: center;
+    justify-self: start;
+}
+
+.message {
+    display: grid;
+    grid-template-columns: 50px 5fr auto;
+    column-gap: 15px;
+    color: rgb(182, 182, 182);
+}
+
+
+.message__text {
+    margin: 0;
+    font-size: 18px;
+    color: rgb(182, 182, 182);
+}
+
+.message__buttonLike {
+    outline: none;
+    width: 30px;
+    height: 20px;
+    background: rgb(59, 71, 175);
+    border: none;
+    border-radius: 5px;
+
+
+}
+
+.message__wrapperActiveBlock {
+
+    display: grid;
+    grid-template-columns: auto auto;
+    column-gap: 10px;
+}
+
+.message__state {
+    font-size: 18px;
+    color: #fff
+}

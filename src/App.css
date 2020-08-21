@@ -1,0 +1,33 @@
+@media screen and (max-width: 1440px) {
+  .container {
+    padding: 0 20px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    padding: 0 10px;
+  }
+}
+
+/* Wrapper*/
+
+.wrapper-block {
+  display: grid;
+  grid-template-columns: 1fr 10fr;
+  column-gap: 30px;
+}
+
+.wrapper-content {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  row-gap: 15px;
+}
+
+.wrapper {
+  display: grid;
+  grid-template-rows: 60px 1fr;
+  row-gap: 15px;
+  max-width: 1440px;
+  margin: 0 auto;
+}
