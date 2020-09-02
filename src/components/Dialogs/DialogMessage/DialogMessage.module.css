@@ -7,3 +7,15 @@
     color: rgb(196, 196, 196);
     background: rgb(33, 68, 167);
 }
+
+.dialog__image {
+    width: 40px;
+    border-radius: 50%;
+}
+
+.dialog__wrapper {
+    display: grid;
+    grid-template-columns: auto auto;
+    column-gap: 10px;
+
+}

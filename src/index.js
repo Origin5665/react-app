@@ -1,20 +1,21 @@
+
+import store from './redux/state';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import App from './App';
-import * as serviceWorker from './serviceWorker';
-import { state } from './redux/state';
+import './index.css';
 
 
 
-//  Диалоги:
+const renderer = (state) => {
+    console.log(state)
+    ReactDOM.render(
+        <React.StrictMode>
+            <App state={state} dispatch={store.dispatch.bind(store)} />
+        </React.StrictMode>,
+        document.getElementById('root')
+    )
+};
 
-
-ReactDOM.render(
-  <React.StrictMode>
-    <App state={state} />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
-
-serviceWorker.unregister();
+renderer(store.getState());
+store.subscribe(renderer);

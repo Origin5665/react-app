@@ -16,17 +16,21 @@ import Settings from './components/Settings/Settings';
 // Props
 // рендер массивов 
 // render component
+// Чистые функции 
+// React ref
+// FLUX
 
 const App = (props) => {
-
+  console.log(props)
   return (
     <BrowserRouter>
       <div className="wrapper">
         <Header />
         <div className="wrapper-block">
           <Navigate />
+
           <div className="wrapper-content">
-            <Route exact path="/profile" render={() => <Profile message={props.state.post} />} />
+            <Route exact path="/profile" render={() => <Profile message={props.state.post} postText={props.state.postText} dispatch={props.dispatch} />} />
             <Route path="/dialogs" render={() => <Dialogs dialogs={props.state.dialogs} />} />
             <Route path="/music" render={() => <Music />} />
             <Route path="/news" render={() => <News />} />
