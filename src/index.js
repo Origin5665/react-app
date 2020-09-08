@@ -1,5 +1,6 @@
 
-import store from './redux/state';
+import store from './redux/redux';
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
@@ -18,4 +19,7 @@ const renderer = (state) => {
 };
 
 renderer(store.getState());
-store.subscribe(renderer);
+store.subscribe(() => {
+    const state = store.getState()
+    renderer(state);
+})

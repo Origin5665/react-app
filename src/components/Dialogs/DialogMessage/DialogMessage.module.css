@@ -1,11 +1,12 @@
 .dialog__item {
-    font-size: 1.7rem;
-    max-width: 500px;
+    font-size: 1.5rem;
+    max-width: 450px;
     margin-bottom: 30px;
     padding: 5px;
     border-radius: 5px;
     color: rgb(196, 196, 196);
     background: rgb(33, 68, 167);
+
 }
 
 .dialog__image {
@@ -15,7 +16,7 @@
 
 .dialog__wrapper {
     display: grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: auto 1fr;
     column-gap: 10px;
 
 }

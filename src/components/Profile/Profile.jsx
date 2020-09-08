@@ -15,8 +15,8 @@ const Profile = (props) => {
     <div className={ProfileBundle.profile}>
       <MainBoard />
       <ProfileInfo />
-      <Form postText={props.postText} dispatch={props.dispatch} />
-      <Messages message={props.message} />
+      <Form dispatch={props.dispatch} />
+      <Messages message={props.profile.post} />
     </div>
 
   )

@@ -6,6 +6,7 @@
 }
 
 .message {
+    max-width: 1000px;
     display: grid;
     grid-template-columns: 50px 5fr auto;
     column-gap: 15px;
@@ -20,12 +21,17 @@
 }
 
 .message__buttonLike {
+    padding-top: 2px;
     outline: none;
-    width: 30px;
-    height: 20px;
-    background: rgb(59, 71, 175);
+    width: 15px;
+    height: 15px;
+    background: transparent;
     border: none;
-    border-radius: 5px;
+    fill: red;
+    background-image: url(../../../../images/heart.svg);
+    background-repeat: no-repeat;
+    display: flex;
+    align-self: baseline;
 
 
 }
@@ -39,5 +45,7 @@
 
 .message__state {
     font-size: 18px;
-    color: #fff
+    color: #fff;
+    display: flex;
+    align-self: baseline;
 }

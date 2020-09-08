@@ -8,7 +8,7 @@ const Message = (props) => {
             <p className={MessageBundle.message__text}>{props.message}</p>
             <div className={MessageBundle.message__wrapperActiveBlock}>
                 <span className={MessageBundle.message__state}>{props.like}</span>
-                <button className={MessageBundle.message__buttonLike}>like</button>
+                <button className={MessageBundle.message__buttonLike}></button>
             </div>
 
         </div>

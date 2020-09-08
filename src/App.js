@@ -11,14 +11,6 @@ import Music from './components/Music/Music';
 import News from './components/News/News';
 import Settings from './components/Settings/Settings';
 
-// Histiry Api
-// Route
-// Props
-// рендер массивов 
-// render component
-// Чистые функции 
-// React ref
-// FLUX
 
 const App = (props) => {
   console.log(props)
@@ -28,10 +20,9 @@ const App = (props) => {
         <Header />
         <div className="wrapper-block">
           <Navigate />
-
           <div className="wrapper-content">
-            <Route exact path="/profile" render={() => <Profile message={props.state.post} postText={props.state.postText} dispatch={props.dispatch} />} />
-            <Route path="/dialogs" render={() => <Dialogs dialogs={props.state.dialogs} />} />
+            <Route exact path="/profile" render={() => <Profile profile={props.state.profile} dispatch={props.dispatch} />} />
+            <Route path="/dialogs" render={() => <Dialogs user={props.state.user} dialogs={props.state.dialogs.message} dispatch={props.dispatch} />} />
             <Route path="/music" render={() => <Music />} />
             <Route path="/news" render={() => <News />} />
             <Route path="/settings" render={() => <Settings />} />
@@ -39,7 +30,7 @@ const App = (props) => {
         </div>
       </div>
     </BrowserRouter>
-  );
+  )
 };
 
 

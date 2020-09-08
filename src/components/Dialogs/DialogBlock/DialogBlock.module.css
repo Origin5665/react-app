@@ -1,17 +1,21 @@
 .dialogBlock__input {
     max-width: 300px;
-    height: 30px;
+    height: 50px;
+    font-size: 24px;
 }
 
 .dialogBlock__button {
-    width: 50px;
-    height: 40px;
+    width: 90px;
+    height: 55px;
     border: none;
-    background: rgb(127, 56, 194);
+    color: #fff;
+    font-size: 17px;
+    background: #578CB5;
 }
 
 .dialogBlock__form {
+    max-width: 400px;
     display: grid;
-    grid-template-columns: auto 50px 50px;
+    grid-template-columns: auto 50px;
     column-gap: 15px;
 }

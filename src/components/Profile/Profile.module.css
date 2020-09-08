@@ -13,5 +13,5 @@
 .profile {
     display: grid;
     grid-template-rows: 1fr auto auto auto;
-    row-gap: 20px;
+    row-gap: 30px;
 }

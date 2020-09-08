@@ -1,12 +1,32 @@
+@keyframes pulse {
+    from {
+        transform: scale(1);
+    }
+
+    to {
+        transform: scale(1.1);
+    }
+}
+
 .header {
     display: block;
-    background: rgb(23, 73, 129);
+    background: #2973B8
+}
+
+.header__wrapper {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 95%;
 }
 
 .header__logo {
-    width: 40px;
-    height: 35px;
-    padding-top: 15px;
-    padding-left: 15px;
+    width: 45px;
+    height: 45px;
+    padding-top: 10px;
+    padding-left: 20px;
+    padding-bottom: 10px;
+
 
 }

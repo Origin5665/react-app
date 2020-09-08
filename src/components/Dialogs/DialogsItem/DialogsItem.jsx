@@ -3,11 +3,13 @@ import DialogsItemBundle from '../DialogsItem/DialogsItem.module.css';
 import { NavLink } from 'react-router-dom';
 
 const DialogsItem = (props) => {
+
     const path = `/dialogs/${props.id}`
 
     return (
-        <li>
-            <NavLink activeClassName={DialogsItemBundle.dialogs__item_active} className={DialogsItemBundle.dialogs__item} to={path}>
+        <li className={DialogsItemBundle.dialogs__item}>
+            <img src={props.photo} alt="" width="30px" />
+            <NavLink activeClassName={DialogsItemBundle.dialogs__link_active} className={DialogsItemBundle.dialogs__link} to={path}>
                 {props.name}</NavLink>
         </li >
     )
