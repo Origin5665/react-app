@@ -1,0 +1,17 @@
+.profile__wrapper {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    column-gap: 10px;
+    padding-bottom: 30px;
+    padding-top: 30px;
+    border-top: 1px solid rgb(49, 114, 145);
+    border-bottom: 1px solid rgb(49, 114, 145);
+
+}
+
+
+.profile {
+    display: grid;
+    grid-template-rows: 1fr auto auto auto;
+    row-gap: 30px;
+}

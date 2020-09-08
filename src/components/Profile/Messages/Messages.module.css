@@ -1,0 +1,5 @@
+.messages__wrapper {
+    display: grid;
+    row-gap: 15px;
+    grid-auto-flow: row;
+}

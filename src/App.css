@@ -1,0 +1,39 @@
+.container {
+  padding: 0 20px;
+}
+
+@media screen and (max-width: 1440px) {
+  .container {
+    padding: 0 20px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    padding: 0 10px;
+  }
+}
+
+
+
+/* Wrappers*/
+
+.wrapper-block {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+}
+
+/* .wrapper-content {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  row-gap: 15px;
+} */
+
+/* Главная обертка App */
+
+.wrapper {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  max-width: 100%;
+  margin: 0 auto;
+}
