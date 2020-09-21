@@ -1,6 +1,6 @@
 import React from 'react';
 import FormBundle from '../Form/Form.module.css';
-import { actionCreatorPost, actionCreatorMessage } from '../../../redux/profileReducer';
+
 
 
 const Form = (props) => {
@@ -8,16 +8,15 @@ const Form = (props) => {
   const newMessage = React.createRef();
 
   const addPostMessage = (e) => {
-    e.preventDefault();
-    props.dispatch(actionCreatorPost());
+    e.preventDefault()
+    props.addPost()
     newMessage.current.value = ''
   }
 
-  const isChangeValue = (e) => {
+  const isChangeValue = () => {
 
     const text = newMessage.current.value;
-    const action = actionCreatorMessage(text)
-    props.dispatch(action);
+    props.inputText(text)
 
   }
 

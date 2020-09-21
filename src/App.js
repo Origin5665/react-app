@@ -11,31 +11,22 @@ import Music from './components/Music/Music';
 import News from './components/News/News';
 import Settings from './components/Settings/Settings';
 
+const App = () => {
 
-const App = (props) => {
-  console.log(props)
   return (
     <BrowserRouter>
       <div className="wrapper">
         <Header />
         <div className="wrapper-block">
           <Navigate />
-          <div className="wrapper-content">
-            <Route exact path="/profile" render={() => <Profile profile={props.state.profile} dispatch={props.dispatch} />} />
-            <Route path="/dialogs" render={() => <Dialogs user={props.state.user} dialogs={props.state.dialogs.message} dispatch={props.dispatch} />} />
-            <Route path="/music" render={() => <Music />} />
-            <Route path="/news" render={() => <News />} />
-            <Route path="/settings" render={() => <Settings />} />
-          </div>
+          <Route exact path="/profile" render={() => <Profile />} />
+          <Route path="/dialogs" render={() => <Dialogs />} />
+          <Route path="/music" render={() => <Music />} />
+          <Route path="/news" render={() => <News />} />
+          <Route path="/settings" render={() => <Settings />} />
         </div>
       </div>
     </BrowserRouter>
   )
 };
-
-
-
-
-
-
 export default App;
