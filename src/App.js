@@ -10,32 +10,26 @@ import Dialogs from './components/Dialogs/Dialogs';
 import Music from './components/Music/Music';
 import News from './components/News/News';
 import Settings from './components/Settings/Settings';
+import UsersContainer from './components/Users/UsersContainer';
 
 
-const App = (props) => {
-  console.log(props)
+const App = ({ state }) => {
+
   return (
     <BrowserRouter>
       <div className="wrapper">
         <Header />
         <div className="wrapper-block">
           <Navigate />
-          <div className="wrapper-content">
-            <Route exact path="/profile" render={() => <Profile profile={props.state.profile} dispatch={props.dispatch} />} />
-            <Route path="/dialogs" render={() => <Dialogs user={props.state.user} dialogs={props.state.dialogs.message} dispatch={props.dispatch} />} />
-            <Route path="/music" render={() => <Music />} />
-            <Route path="/news" render={() => <News />} />
-            <Route path="/settings" render={() => <Settings />} />
-          </div>
+          <Route exact path="/profile" render={() => <Profile state={state} />} />
+          <Route path="/users" render={() => <UsersContainer state={state} />} />
+          <Route path="/dialogs" render={() => <Dialogs state={state} />} />
+          <Route path="/music" render={() => <Music />} />
+          <Route path="/news" render={() => <News />} />
+          <Route path="/settings" render={() => <Settings />} />
         </div>
       </div>
     </BrowserRouter>
   )
 };
-
-
-
-
-
-
 export default App;

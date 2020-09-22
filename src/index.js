@@ -1,25 +1,26 @@
-
 import store from './redux/redux';
-
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import './index.css';
+import { BrowserRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
+
+// import { ContextStore, ProviderApp } from './ContextStore';
 
 
 
-const renderer = (state) => {
-    console.log(state)
-    ReactDOM.render(
-        <React.StrictMode>
-            <App state={state} dispatch={store.dispatch.bind(store)} />
-        </React.StrictMode>,
-        document.getElementById('root')
-    )
-};
 
-renderer(store.getState());
-store.subscribe(() => {
-    const state = store.getState()
-    renderer(state);
-})
+
+ReactDOM.render(
+    <BrowserRouter>
+        <Provider store={store}>
+            <App state={store} />
+        </Provider>
+    </BrowserRouter>,
+    document.getElementById('root')
+)
+
+
+
+

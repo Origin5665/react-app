@@ -1,26 +1,16 @@
 import React from 'react';
 import ProfileBundle from '../Profile/Profile.module.css';
-import MainBoard from '../Profile/MainBoard/MainBoard';
-import Form from '../Profile/Form/Form';
-import Messages from '../Profile/Messages/Messages';
+import FormBlockContainer from './ProfileBlock/ProfileBlockContainer';
 import ProfileInfo from '../Profile/ProfileInfo/ProfileInfo';
 
-
-
-
-
-const Profile = (props) => {
+const Profile = () => {
 
   return (
     <div className={ProfileBundle.profile}>
-      <MainBoard />
       <ProfileInfo />
-      <Form dispatch={props.dispatch} />
-      <Messages message={props.profile.post} />
-    </div>
+      <FormBlockContainer />
 
+    </div>
   )
 };
-
-
 export default Profile;

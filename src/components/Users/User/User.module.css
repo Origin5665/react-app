@@ -1,0 +1,65 @@
+.user__wrapper:last-child {
+    margin-bottom: 0;
+}
+
+.user__wrapper {
+    width: 450px;
+    padding: 10px;
+    border: 3px solid rgb(116, 116, 116);
+}
+
+.user__image {
+    width: 100px;
+}
+
+.users__list {
+    display: flex;
+    flex-direction: column;
+}
+
+.user__city {
+    margin: 0;
+
+    color: #fff;
+}
+
+.user__country {
+    margin: 0;
+    color: #fff;
+}
+
+.user__status {
+    margin: 0;
+    color: #fff;
+}
+
+.user__name {
+    margin: 0;
+    font-size: 24px;
+    letter-spacing: 0.5px;
+    color: rgb(177, 177, 177);
+}
+
+.user__photoContainer {}
+
+.user__button {
+    width: 150px;
+    height: 35px;
+    background: #1f7936;
+    color: #fff;
+    font-size: 18px;
+    border: none;
+    transition: ease-in .15s;
+}
+
+.user__button:focus {
+    outline: 2px solid rgb(212, 212, 212);
+}
+
+.user__button:hover {
+    background: #278d40;
+}
+
+.user__button:active {
+    transform: scale(0.97);
+}

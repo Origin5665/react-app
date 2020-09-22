@@ -1,21 +1,36 @@
 .dialogBlock__input {
-    max-width: 300px;
-    height: 50px;
+    max-width: 400px;
+    height: 60px;
     font-size: 24px;
+    border-radius: 3px;
 }
 
 .dialogBlock__button {
-    width: 90px;
-    height: 55px;
+    width: 100px;
+    height: 100%;
     border: none;
     color: #fff;
     font-size: 17px;
-    background: #578CB5;
+    background: #4379a1;
+    border-radius: 3px;
+    font-size: 18px;
+    transition: ease .1s;
+}
+
+.dialogBlock__button:hover {
+    background: #275477;
 }
 
 .dialogBlock__form {
-    max-width: 400px;
+    border: 1px solid gray;
+    max-width: 600px;
     display: grid;
-    grid-template-columns: auto 50px;
-    column-gap: 15px;
+    grid-template-columns: 1fr auto;
+    /* column-gap: 15px; */
+    align-items: center;
+}
+
+.dialogBlock__messageWrapper {
+    height: 70vh;
+    overflow-y: auto;
 }

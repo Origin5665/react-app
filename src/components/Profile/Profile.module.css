@@ -12,6 +12,9 @@
 
 .profile {
     display: grid;
-    grid-template-rows: 1fr auto auto auto;
+    grid-template-rows: auto 1fr;
     row-gap: 30px;
+    padding-left: 200px;
+    padding-top: 50px;
+    min-width: 900px;
 }

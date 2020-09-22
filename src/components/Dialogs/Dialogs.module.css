@@ -1,7 +1,18 @@
 .dialogs__wrapper {
     display: grid;
     grid-template-rows: auto 1fr;
+    padding-left: 200px;
+    padding-top: 50px;
+    min-width: 900px;
 
+}
+
+.dialogs__listTitle {
+    margin: 0;
+    font-size: 22px;
+    color: rgb(173, 173, 173);
+    padding-bottom: 10px;
+    padding-top: 10px;
 }
 
 .dialogs__block {

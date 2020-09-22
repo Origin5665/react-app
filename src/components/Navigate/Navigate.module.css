@@ -4,7 +4,6 @@
     display: grid;
     grid-template-rows: repeat(1fr, 5);
     row-gap: 40px;
-
 }
 
 .navigate__link {
@@ -15,7 +14,6 @@
     display: flex;
     justify-content: space-between;
     text-align: start;
-
 }
 
 .navigate__link:hover {
@@ -24,7 +22,6 @@
 
 .navigate__item {
     list-style-type: none;
-
 }
 
 .navigate__active {
@@ -34,6 +31,10 @@
 
 .navigate {
     background: #2973B8;
-    padding-bottom: 100vh;
+    height: 100%;
     text-align: center;
+    position: fixed;
+    top: 50px;
+    left: 0;
+    width: 190px;
 }

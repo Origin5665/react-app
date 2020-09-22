@@ -55,12 +55,6 @@ const store = {
     this._callSubscriber(this._state)
   },
 
-
-
-
-
-
-
 };
 
 

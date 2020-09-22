@@ -1,5 +1,3 @@
-import { ADD_POST, ADD_INPUT_TEXT } from '../constant.js';
-
 const ADD_MESSAGE = 'ADD_MESSAGE';
 const ADD_MESSAGE_TEXT = 'ADD_MESSAGE_TEXT';
 export const actionCreatorPost = () => ({ type: ADD_MESSAGE })
@@ -17,25 +15,22 @@ const initState = {
 }
 
 const dialogsReducer = (state = initState, action) => {
+
     switch (action.type) {
 
         case ADD_MESSAGE:
-            const message = { id: 5, message: state.messageTextInput, count: 2 };
-            if (message.message !== '') {
-                state.message.push(message);
-                state.messageTextInput = '';
-                return state
-            } else {
-                console.log('Введите сообщение')
+            return {
+                ...state,
+                messageTextInput: '',
+                message: [...state.message,
+                { id: 5, message: state.messageTextInput, count: 2 }]
             }
-        // state.message.push(message);
-        // state.messageTextInput = '';
-        // return state
 
         case ADD_MESSAGE_TEXT:
-            state.messageTextInput = action.value;
-
-            return state
+            return {
+                ...state,
+                messageTextInput: action.value,
+            }
 
         default:
             return state

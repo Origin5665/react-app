@@ -1,5 +1,5 @@
-import manImage from '../images/man.svg';
-import girlImage from '../images/girl.svg';
+import manImage from '../../images/man.svg';
+import girlImage from '../../images/girl.svg';
 const ADD_DIALOG = 'ADD_DIALOG'
 
 
@@ -15,8 +15,8 @@ const initState = {
 
 
 const userReducer = (state = initState, action) => {
-    switch (action.type) {
 
+    switch (action.type) {
         case ADD_DIALOG:
             const message = { id: 5, message: state.messageTextInput, count: 2 };
             state.push(message);

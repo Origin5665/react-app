@@ -1,32 +1,63 @@
-@keyframes pulse {
-    from {
-        transform: scale(1);
-    }
-
-    to {
-        transform: scale(1.1);
-    }
-}
-
 .header {
     display: block;
-    background: #2973B8
+
+    background: #2973B8;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+.header__logo:hover {
+    opacity: 0.95;
 }
 
 .header__wrapper {
     margin: 0 auto;
+    padding: 5px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
     width: 95%;
 }
 
 .header__logo {
-    width: 45px;
-    height: 45px;
-    padding-top: 10px;
-    padding-left: 20px;
-    padding-bottom: 10px;
+    width: 40px;
+    height: 40px;
 
+}
 
+.header__logo:hover {
+    opacity: 0.85;
+}
+
+.header__title {
+
+    margin: 0;
+    color: rgb(196, 193, 193);
+    font-size: 34px;
+
+}
+
+.header__author {
+    margin: 0;
+    font-size: 18px;
+}
+
+.header__link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.header__link:focus {
+    outline: 2px solid rgb(130, 131, 131);
+}
+
+.header__social {
+    display: grid;
+    grid-template-columns: auto auto;
+    column-gap: 10px;
 }
