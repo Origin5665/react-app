@@ -1,0 +1,11 @@
+.users__wrapper {
+    padding-left: 300px;
+    padding-top: 100px;
+}
+
+.users__list {
+    display: flex;
+    flex-direction: column;
+    list-style-type: none;
+    padding: 0;
+}

@@ -14,6 +14,8 @@ const Navigate = () => {
         <ul className={NavBundle.navigate__lists}>
           <li className={NavBundle.navigate__item}><NavLink to="/profile" activeClassName={NavBundle.navigate__active}
             className={NavBundle.navigate__link}>Профиль <img src={profilelogo} width='20px' alt="" /></NavLink></li>
+          <li className={NavBundle.navigate__item}><NavLink to="/users" activeClassName={NavBundle.navigate__active}
+            className={NavBundle.navigate__link}>Пользователи<img src={settinglogo} width='20px' alt="" /></NavLink></li>
           <li className={NavBundle.navigate__item}><NavLink to="/dialogs" activeClassName={NavBundle.navigate__active}
             className={NavBundle.navigate__link}>Сообщения <img src={messagelogo} width='20px' alt="" /></NavLink></li>
           <li className={NavBundle.navigate__item}><NavLink to="/news" activeClassName={NavBundle.navigate__active}

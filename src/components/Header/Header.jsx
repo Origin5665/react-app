@@ -9,9 +9,10 @@ const Header = () => {
     <header className={HeaderBundle.header}>
       <div className={HeaderBundle.header__wrapper}>
         <img alt="logo" className={HeaderBundle.header__logo} src={headerlogo} />
-        <div className="header__social">
-          <img alt="logo" className={HeaderBundle.header__logo} src={telegramlogo} />
-          <img alt="logo" className={HeaderBundle.header__logo} src={gitlogo} />
+        <h1 className={HeaderBundle.header__title}>React Social Club <span className={HeaderBundle.header__author}>by Origin56</span></h1>
+        <div className={HeaderBundle.header__social}>
+          <a className={HeaderBundle.header__link} href="https://t.me/origin56" target="blank"><img alt="Логотип месседжера Телеграм. Ссылка для перехода" className={HeaderBundle.header__logo} src={telegramlogo} /></a>
+          <a className={HeaderBundle.header__link} href="https://github.com/Origin5665" target="blank"> <img alt="Логотип Гитхаб. Ссылка для перехода" className={HeaderBundle.header__logo} src={gitlogo} /></a>
         </div>
       </div>
 

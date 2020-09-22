@@ -10,8 +10,10 @@ import Dialogs from './components/Dialogs/Dialogs';
 import Music from './components/Music/Music';
 import News from './components/News/News';
 import Settings from './components/Settings/Settings';
+import UsersContainer from './components/Users/UsersContainer';
 
-const App = () => {
+
+const App = ({ state }) => {
 
   return (
     <BrowserRouter>
@@ -19,8 +21,9 @@ const App = () => {
         <Header />
         <div className="wrapper-block">
           <Navigate />
-          <Route exact path="/profile" render={() => <Profile />} />
-          <Route path="/dialogs" render={() => <Dialogs />} />
+          <Route exact path="/profile" render={() => <Profile state={state} />} />
+          <Route path="/users" render={() => <UsersContainer state={state} />} />
+          <Route path="/dialogs" render={() => <Dialogs state={state} />} />
           <Route path="/music" render={() => <Music />} />
           <Route path="/news" render={() => <News />} />
           <Route path="/settings" render={() => <Settings />} />

@@ -2,9 +2,6 @@ import { ADD_POST, ADD_INPUT_TEXT } from '../../constant';
 export const actionCreatorPost = () => ({ type: 'ADD_POST' })
 export const actionCreatorMessage = (text) => ({ type: 'ADD_INPUT_TEXT', value: text })
 
-
-
-
 const initState = {
     post: [
         { id: 1, message: 'Новый альбом Хаски выйдет 25 сентября!', count: '5' },
@@ -19,16 +16,18 @@ const initState = {
 const profileReducer = (state = initState, action) => {
 
     switch (action.type) {
-
         case ADD_POST:
-            const text = { id: 5, message: state.postTextInput, count: 2 };
-            state.post.push(text);
-            state.postTextInput = '';
-            return state
+            return {
+                ...state,
+                postTextInput: '',
+                post: [{ id: 5, message: state.postTextInput, count: 2 }, ...state.post]
+            }
 
         case ADD_INPUT_TEXT:
-            state.postTextInput = action.value;
-            return state
+            return {
+                ...state,
+                postTextInput: action.value
+            }
 
         default:
             return state

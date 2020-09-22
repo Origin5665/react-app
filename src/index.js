@@ -4,27 +4,23 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import './index.css';
 import { BrowserRouter } from 'react-router-dom';
-import ContextStore from './ContextStore';
+import { Provider } from 'react-redux';
+
+// import { ContextStore, ProviderApp } from './ContextStore';
 
 
 
-const renderer = (state) => {
 
-    ReactDOM.render(
-        <BrowserRouter>
-            <ContextStore.Provider value={store}>
-                <React.StrictMode>
-                    <App />
-                </React.StrictMode>
-            </ContextStore.Provider>
-        </BrowserRouter>,
-        document.getElementById('root')
-    )
-};
 
-renderer(store.getState());
+ReactDOM.render(
+    <BrowserRouter>
+        <Provider store={store}>
+            <App state={store} />
+        </Provider>
+    </BrowserRouter>,
+    document.getElementById('root')
+)
 
-store.subscribe(() => {
-    const state = store.getState()
-    renderer(state);
-})
+
+
+

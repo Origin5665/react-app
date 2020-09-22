@@ -3,19 +3,19 @@ import DialogMessage from '../DialogMessage/DialogMessage';
 import DialogBlockBundle from '../DialogBlock/DialogBlock.module.css';
 
 
-const DialogBlock = (props) => {
-
+const DialogBlock = ({ state, sendMessage, isChangeValue, data }) => {
+   console.log(state)
    const newMessage = React.createRef();
-   const dialog = props.data.map((item, i) => <DialogMessage key={i} message={item.message} />);
-   const sendMessage = (e) => {
+   const dialog = data.map((item, i) => <DialogMessage key={i} message={item.message} />);
+   const sendNewMessage = (e) => {
       e.preventDefault();
-      props.addMessage()
+      sendMessage()
       newMessage.current.value = '';
    };
 
-   const isChangeValue = (e) => {
+   const isChangeTextValue = (e) => {
       const text = newMessage.current.value;
-      props.inputText(text)
+      isChangeValue(text)
    };
 
    return (
@@ -24,9 +24,9 @@ const DialogBlock = (props) => {
             {dialog}
          </div>
          <form id="message-form" className={DialogBlockBundle.dialogBlock__form}>
-            <textarea onChange={isChangeValue} required ref={newMessage} className={DialogBlockBundle.dialogBlock__input}
+            <input onChange={isChangeTextValue} required ref={newMessage} className={DialogBlockBundle.dialogBlock__input}
                placeholder="ваше сообщение..." type="text" />
-            <button form="message-form" type="submit" onClick={sendMessage}
+            <button form="message-form" type="submit" onClick={sendNewMessage}
                className={DialogBlockBundle.dialogBlock__button}>Отправить</button>
          </form>
       </div>

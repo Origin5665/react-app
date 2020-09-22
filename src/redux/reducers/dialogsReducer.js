@@ -15,18 +15,22 @@ const initState = {
 }
 
 const dialogsReducer = (state = initState, action) => {
+
     switch (action.type) {
 
         case ADD_MESSAGE:
-            const message = { id: 5, message: state.messageTextInput, count: 2 };
-            state.message.push(message);
-            state.messageTextInput = '';
-            return state
+            return {
+                ...state,
+                messageTextInput: '',
+                message: [...state.message,
+                { id: 5, message: state.messageTextInput, count: 2 }]
+            }
 
         case ADD_MESSAGE_TEXT:
-            state.messageTextInput = action.value;
-
-            return state
+            return {
+                ...state,
+                messageTextInput: action.value,
+            }
 
         default:
             return state
