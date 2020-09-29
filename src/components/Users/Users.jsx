@@ -1,51 +1,51 @@
 import React from 'react';
 import UsersBundle from './Users.module.css';
 import User from './User/User';
-import userIMG from '../../images/user/user-photo.png';
-const Users = ({ data, subscribe, unsubscribe, setUsers }) => {
-    console.log(data)
 
-    if (data.length === 0) setUsers(
-        [
-            {
-                name: 'Александр Бакуменко',
-                location: {
-                    city: 'Ухта',
-                    country: 'Россия'
-                },
-                status: 'Учу React',
-                image: userIMG,
-                add: false,
-                ID: 1
-            },
-            {
-                name: 'Максим Кац',
-                location: {
-                    city: 'Москва',
-                    country: 'Россия'
-                },
-                status: 'Записываю новое видио',
-                image: userIMG,
-                add: true,
-                ID: 2
-            },
-        ]
-    )
+const Users = ({
+   totalCount,
+   pageSize,
+   currentPage,
+   subscribe,
+   unsubscribe,
+   getCurrentPage,
+   data }) => {
 
-    const users = data.map((user, i) => <User key={i} state={user} subscribe={subscribe} unsubscribe={unsubscribe} />)
+   //Рассчет количества страниц: 
 
+   const numberPages = Math.ceil(totalCount / pageSize);
 
+   // Добавляем элементы в массив для вывода кол-ва страниц:
 
+   const arrayPages = [];
+   for (let page = 1; page <= 20; page++) {
+      arrayPages.push(page)
+   };
 
+   // Вывод пользователей:
 
+   const users = data.map((user, index) => <User key={index} data={user}
+      subscribe={subscribe} unsubscribe={unsubscribe} />);
 
+   // Вывод страниц пагинации:
 
-    return <div className={UsersBundle.users__wrapper}>
-        <ul className={UsersBundle.users__list}>
+   const pages = arrayPages.map((i, j) =>
+      <li onClick={() =>
+         getCurrentPage(i)} key={j}
+         className={currentPage === i ?
+            UsersBundle.users__page + ' ' + UsersBundle.users__page_active :
+            UsersBundle.users__page}>{i}</li>)
+
+   return (
+      <div className={UsersBundle.users__wrapper}>
+         <div className={UsersBundle.users__pagContainer}>
+            {pages}
+         </div>
+         <ul className={UsersBundle.users__list}>
             {users}
-        </ul>
-        <button className={UsersBundle.users__button}>Другие</button>
-    </div>
+         </ul>
+      </div>
+   )
 }
 
 export default Users;

@@ -9,3 +9,37 @@
     list-style-type: none;
     padding: 0;
 }
+
+.users__pagContainer {
+    padding: 0;
+    display: flex;
+    width: 300px;
+    list-style-type: none;
+    flex-wrap: wrap;
+
+
+}
+
+.users__page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+    padding: 2px;
+    width: 20px;
+    height: 20px;
+    border: 1px solid rgb(114, 113, 113);
+    color: rgb(209, 208, 208);
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.users__page_active {
+    border: 1px solid rgb(177, 66, 66);
+
+}
+
+.users__pagination {
+    display: flex;
+    color: #fff
+}
