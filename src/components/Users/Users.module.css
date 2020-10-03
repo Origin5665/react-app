@@ -5,7 +5,10 @@
 
 .users__list {
     display: flex;
-    flex-direction: column;
+    width: 600px;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    flex-direction: row;
     list-style-type: none;
     padding: 0;
 }
@@ -16,8 +19,6 @@
     width: 300px;
     list-style-type: none;
     flex-wrap: wrap;
-
-
 }
 
 .users__page {
@@ -42,4 +43,16 @@
 .users__pagination {
     display: flex;
     color: #fff
+}
+
+.users__title {
+    margin: 0;
+    color: rgb(224, 223, 223);
+    font-size: 26px;
+    width: 300px;
+}
+
+.users__headerWrapper {
+    display: flex;
+    min-width: 260px;
 }

@@ -1,6 +1,7 @@
 import React from 'react';
 import UsersBundle from './Users.module.css';
 import User from './User/User';
+import PreLoader from '../common/PreLoader/Preloader';
 
 const Users = ({
    totalCount,
@@ -9,7 +10,8 @@ const Users = ({
    subscribe,
    unsubscribe,
    getCurrentPage,
-   data }) => {
+   data,
+   currentState }) => {
 
    //Рассчет количества страниц: 
 
@@ -18,7 +20,7 @@ const Users = ({
    // Добавляем элементы в массив для вывода кол-ва страниц:
 
    const arrayPages = [];
-   for (let page = 1; page <= 20; page++) {
+   for (let page = 1; page <= 5; page++) {
       arrayPages.push(page)
    };
 
@@ -38,6 +40,10 @@ const Users = ({
 
    return (
       <div className={UsersBundle.users__wrapper}>
+         <div className={UsersBundle.users__headerWrapper}>
+            <h2 className={UsersBundle.users__title}>Участники проекта</h2>
+            {currentState ? <PreLoader /> : null}
+         </div>
          <div className={UsersBundle.users__pagContainer}>
             {pages}
          </div>
