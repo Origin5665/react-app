@@ -3,14 +3,17 @@ import { Route, BrowserRouter } from 'react-router-dom';
 import './App.css';
 
 // Components =>
-import Header from './components/Header/Header';
+
 import Navigate from './components/Navigate/Navigate';
-import Profile from './components/Profile/Profile';
+import ProfileContainer from './components/Profile/ProfileContainer';
 import Dialogs from './components/Dialogs/Dialogs';
 import Music from './components/Music/Music';
 import News from './components/News/News';
 import Settings from './components/Settings/Settings';
 import UsersContainer from './components/Users/UsersContainer';
+import EnterForm from './components/EnterForm/EnterForm';
+import HeaderContainer from './components/Header/HeaderContainer';
+
 
 
 const App = ({ state }) => {
@@ -18,15 +21,16 @@ const App = ({ state }) => {
   return (
     <BrowserRouter>
       <div className="wrapper">
-        <Header />
+        <HeaderContainer />
         <div className="wrapper-block">
           <Navigate />
-          <Route exact path="/profile" render={() => <Profile state={state} />} />
-          <Route path="/users" render={() => <UsersContainer state={state} />} />
+          <Route path="/profile/:userId?" render={() => <ProfileContainer />} />
+          <Route path="/users" render={() => <UsersContainer />} />
           <Route path="/dialogs" render={() => <Dialogs state={state} />} />
           <Route path="/music" render={() => <Music />} />
           <Route path="/news" render={() => <News />} />
           <Route path="/settings" render={() => <Settings />} />
+          <Route path="/login" render={() => <EnterForm state={state} />} />
         </div>
       </div>
     </BrowserRouter>

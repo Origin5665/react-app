@@ -3,9 +3,10 @@
 }
 
 .user__wrapper {
-    width: 450px;
+    width: 200px;
     padding: 10px;
-    border: 3px solid rgb(116, 116, 116);
+    border: 3px solid rgb(133, 132, 132);
+    margin-bottom: 5px;
 }
 
 .user__image {
@@ -39,8 +40,6 @@
     letter-spacing: 0.5px;
     color: rgb(177, 177, 177);
 }
-
-.user__photoContainer {}
 
 .user__button {
     width: 150px;

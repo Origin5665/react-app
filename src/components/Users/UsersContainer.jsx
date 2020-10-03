@@ -1,25 +1,83 @@
-import { connect } from 'react-redux';
+import React from 'react';
 import Users from './Users';
-import { subAC, unsubAC, setUsersAC } from '../../redux/reducers/usersReducer';
+import { userProfileAPI } from '../../API/userProfileAPI';
+import { connect } from 'react-redux';
+import {
+
+   subscribe,
+   unsubscribe,
+   setUsers,
+   setTotalCount,
+   setPageSize,
+   setCurrentPage,
+   setCurrentState
+
+} from '../../redux/reducers/usersReducer';
 
 const mapState = (state) => {
 
-    return {
-        data: state.users.users
-    }
+   return {
+      data: state.users.users,
+      totalCount: state.users.totalCount,
+      pageSize: state.users.pageSize,
+      currentPage: state.users.currentPage,
+      currentState: state.users.currentState
+   }
+}
+class UsersContainer extends React.Component {
+   constructor(props) {
+      super();
+      this.props = props;
+
+
+   };
+
+   componentDidMount = () => {
+      userProfileAPI.getUsers(this.props.currentPage, this.props.pageSize)
+         .then(res => {
+            if (this.props.data.length === 0) {
+               this.props.setUsers(res.items);
+               this.props.setTotalCount(res.totalCount);
+            }
+         })
+   };
+
+   getCurrentPage = (page) => {
+      this.props.setCurrentState(true)
+      this.props.setCurrentPage(page)
+      userProfileAPI.getUsers(page, this.props.pageSize)
+         .then(res => {
+            this.props.setUsers(res.items);
+            this.props.setCurrentState(false)
+         })
+   };
+
+   render = () => <Users
+
+      totalCount={this.props.totalCount}
+      pageSize={this.props.pageSize}
+      currentPage={this.props.currentPage}
+      subscribe={this.props.subscribe}
+      unsubscribe={this.props.unsubscribe}
+      getCurrentPage={this.getCurrentPage}
+      data={this.props.data}
+      currentState={this.props.currentState}
+
+
+   />
 }
 
+export default connect(mapState, {
 
-const mapDispatch = (dispatch) => {
-    return {
-        subscribe: (userID) => { dispatch(subAC(userID)) },
-        unsubscribe: (userID) => { dispatch(unsubAC(userID)) },
-        setUsers: (users) => { dispatch(setUsersAC(users)) }
-    }
-}
+   subscribe,
+   unsubscribe,
+   setUsers,
+   setTotalCount,
+   setPageSize,
+   setCurrentPage,
+   setCurrentState
 
+})(UsersContainer);
 
-const UsersContainer = connect(mapState, mapDispatch)(Users);
-export default UsersContainer;
 
 

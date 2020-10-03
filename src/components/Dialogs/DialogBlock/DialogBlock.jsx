@@ -3,17 +3,19 @@ import DialogMessage from '../DialogMessage/DialogMessage';
 import DialogBlockBundle from '../DialogBlock/DialogBlock.module.css';
 
 
-const DialogBlock = ({ state, sendMessage, isChangeValue, data }) => {
-   console.log(state)
+const DialogBlock = ({ sendMessage, isChangeValue, data }) => {
+
    const newMessage = React.createRef();
+
    const dialog = data.map((item, i) => <DialogMessage key={i} message={item.message} />);
+
    const sendNewMessage = (e) => {
       e.preventDefault();
       sendMessage()
       newMessage.current.value = '';
    };
 
-   const isChangeTextValue = (e) => {
+   const isChangeTextValue = () => {
       const text = newMessage.current.value;
       isChangeValue(text)
    };

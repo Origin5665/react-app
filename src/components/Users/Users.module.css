@@ -5,7 +5,54 @@
 
 .users__list {
     display: flex;
-    flex-direction: column;
+    width: 600px;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    flex-direction: row;
     list-style-type: none;
     padding: 0;
+}
+
+.users__pagContainer {
+    padding: 0;
+    display: flex;
+    width: 300px;
+    list-style-type: none;
+    flex-wrap: wrap;
+}
+
+.users__page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+    padding: 2px;
+    width: 20px;
+    height: 20px;
+    border: 1px solid rgb(114, 113, 113);
+    color: rgb(209, 208, 208);
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.users__page_active {
+    border: 1px solid rgb(177, 66, 66);
+
+}
+
+.users__pagination {
+    display: flex;
+    color: #fff
+}
+
+.users__title {
+    margin: 0;
+    color: rgb(224, 223, 223);
+    font-size: 26px;
+    width: 300px;
+}
+
+.users__headerWrapper {
+    display: flex;
+    min-width: 260px;
 }

@@ -3,7 +3,7 @@ import ProfileBlockBundle from './ProfileBlock.module.css';
 import ProfilePost from './ProfilePost/ProfilePost';
 
 const ProfileBlock = ({ addPost, inputText, data }) => {
-  console.log(data)
+
   const newMessage = React.createRef();
 
   const message = data.map((item, i) =>
