@@ -5,17 +5,28 @@ import UserBundle from './User.module.css';
 import userIMG from '../../../images/user/user-photo.png';
 
 
-const User = ({ data, subscribe, unsubscribe }) => {
+const User = ({ data, subscribe, unsubscribe, followingProgress, setFollowingState }) => {
 
   const getFollowF = (id) => {
+    setFollowingState(true, id)
     followAPI.getFollow(id)
       .then(res => { if (res.resultCode === 0) subscribe(id) })
+      .then(() => setFollowingState(false, id))
+
   };
 
   const outFollowF = (id) => {
+    setFollowingState(true, id)
     followAPI.outFollow(id)
-      .then(res => { if (res.resultCode === 0) unsubscribe(id) })
+      .then(res => {
+        if (res.resultCode === 0) {
+          unsubscribe(id)
+        }
+      })
+      .then(() => setFollowingState(false, id))
   };
+
+
 
   return (
     <li className={UserBundle.user__wrapper}>
@@ -30,8 +41,12 @@ const User = ({ data, subscribe, unsubscribe }) => {
         <p className={UserBundle.user__status}>{data.status}</p>
       </div>
       {data.followed ?
-        <button onClick={() => outFollowF(data.id)} className={UserBundle.user__button}>Удалить</button> :
-        <button onClick={() => getFollowF(data.id)} className={UserBundle.user__button}>Добавить</button>}
+        <button disabled={followingProgress.some(id => id === data.id)}
+          onClick={() => outFollowF(data.id)} className={followingProgress.some(id => id === data.id) ?
+            UserBundle.user__buttonDis : UserBundle.user__button}>Удалить</button> :
+        <button disabled={followingProgress.some(id => id === data.id)}
+          onClick={() => getFollowF(data.id)} className={followingProgress.some(id => id === data.id) ?
+            UserBundle.user__buttonDis : UserBundle.user__button}>Добавить</button>}
     </li >
   )
 };

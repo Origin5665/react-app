@@ -11,7 +11,9 @@ const Users = ({
    unsubscribe,
    getCurrentPage,
    data,
-   currentState }) => {
+   currentState,
+   followingProgress,
+   setFollowingState }) => {
 
    //Рассчет количества страниц: 
 
@@ -27,7 +29,7 @@ const Users = ({
    // Вывод пользователей:
 
    const users = data.map((user, index) => <User key={index} data={user}
-      subscribe={subscribe} unsubscribe={unsubscribe} />);
+      subscribe={subscribe} unsubscribe={unsubscribe} followingProgress={followingProgress} setFollowingState={setFollowingState} />);
 
    // Вывод страниц пагинации:
 

@@ -3,13 +3,11 @@ import FrofileInfo from '../ProfileInfo/ProfileInfo.module.css'
 import Preloader from '../../common/PreLoader/Preloader';
 
 const ProfileInfo = (props) => {
-   console.log(props)
+
    if (!props.data) {
       return <Preloader />
    } else {
-
       return (
-
          <div className="container">
             <div className={FrofileInfo.profile__wrapper}>
                <img alt="profile photo" className={FrofileInfo.profile__image} src={props.data.photos.large}></img>
@@ -26,7 +24,6 @@ const ProfileInfo = (props) => {
          </div>
       )
    }
-
 };
 
 
