@@ -7,6 +7,7 @@ const SET_TOTAL_COUNT = 'SET_TOTAL_COUNT';
 const PAGE_SIZE = 'PAGE_SIZE';
 const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
 const IS_LOADING = 'IS_LOADING';
+const FOLLOWING_PROGRESS = 'FOLLOWING_PROGRESS';
 
 // Action Creators:
 
@@ -17,7 +18,7 @@ export const setTotalCount = (totalCount) => ({ type: SET_TOTAL_COUNT, count: to
 export const setPageSize = (pageSize) => ({ type: PAGE_SIZE, size: pageSize })
 export const setCurrentPage = (currentPage) => ({ type: SET_CURRENT_PAGE, currentPage: currentPage })
 export const setCurrentState = (state) => ({ type: IS_LOADING, currentState: state })
-
+export const setFollowingState = (state, userId) => ({ type: FOLLOWING_PROGRESS, state, userId })
 // Начальный стейт:
 
 const initalState = {
@@ -25,11 +26,12 @@ const initalState = {
    totalCount: 0,
    pageSize: 10,
    currentPage: 1,
-   currentState: false
+   currentState: false,
+   followingProgress: []
 }
 
 const usersReducer = (state = initalState, action) => {
-   console.log(action)
+
    switch (action.type) {
 
       case SUBSCRIBE:
@@ -78,6 +80,13 @@ const usersReducer = (state = initalState, action) => {
             currentState: action.currentState
          };
 
+      case FOLLOWING_PROGRESS:
+         return {
+            ...state,
+            followingProgress: action.state
+               ? [...state.followingProgress, action.userId]
+               : state.followingProgress.filter((id => id != action.userId))
+         }
       default:
          return state
    }

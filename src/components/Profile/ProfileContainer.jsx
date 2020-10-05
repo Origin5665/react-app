@@ -17,7 +17,6 @@ class ProfileContainer extends React.Component {
     let userId = this.props.match.params.userId;
 
     if (!userId) {
-      console.log(userId)
       userId = 11622
     }
     Axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`)
@@ -27,16 +26,9 @@ class ProfileContainer extends React.Component {
   }
 
   render = () => {
-    console.log(this.props)
     return <Profile {...this.props} data={this.props.data} />
-
-
-
   }
-
-
 };
-
 
 const ProfileContainerRouter = withRouter(ProfileContainer)
 export default connect(mapState, { setUserProfile })(ProfileContainerRouter);

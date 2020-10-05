@@ -4,7 +4,7 @@ import { BASE_URL } from "../constant";
 const instance = Axios.create({
     withCredentials: true,
     headers: {
-        "API-KEY": ""
+        "API-KEY": "c7396936-96da-47b7-b8e8-a78259e1e0e5"
     },
     baseURL: BASE_URL
 });

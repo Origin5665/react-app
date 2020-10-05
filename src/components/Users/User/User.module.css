@@ -51,6 +51,16 @@
     transition: ease-in .15s;
 }
 
+.user__buttonDis {
+    width: 150px;
+    height: 35px;
+    background: #888888;
+    color: #fff;
+    font-size: 18px;
+    border: none;
+    transition: ease-in .15s;
+}
+
 .user__button:focus {
     outline: 2px solid rgb(212, 212, 212);
 }

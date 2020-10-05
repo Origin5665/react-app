@@ -10,7 +10,8 @@ import {
    setTotalCount,
    setPageSize,
    setCurrentPage,
-   setCurrentState
+   setCurrentState,
+   setFollowingState
 
 } from '../../redux/reducers/usersReducer';
 
@@ -21,14 +22,15 @@ const mapState = (state) => {
       totalCount: state.users.totalCount,
       pageSize: state.users.pageSize,
       currentPage: state.users.currentPage,
-      currentState: state.users.currentState
+      currentState: state.users.currentState,
+      followingProgress: state.users.followingProgress
    }
 }
 class UsersContainer extends React.Component {
    constructor(props) {
       super();
       this.props = props;
-
+      console.log(this.props)
 
    };
 
@@ -62,6 +64,8 @@ class UsersContainer extends React.Component {
       getCurrentPage={this.getCurrentPage}
       data={this.props.data}
       currentState={this.props.currentState}
+      followingProgress={this.props.followingProgress}
+      setFollowingState={this.props.setFollowingState}
 
 
    />
@@ -75,7 +79,8 @@ export default connect(mapState, {
    setTotalCount,
    setPageSize,
    setCurrentPage,
-   setCurrentState
+   setCurrentState,
+   setFollowingState
 
 })(UsersContainer);
 
