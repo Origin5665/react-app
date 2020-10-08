@@ -1,17 +1,16 @@
 import React from 'react';
 import Users from './Users';
-import { userProfileAPI } from '../../API/userProfileAPI';
 import { connect } from 'react-redux';
+
 import {
 
    subscribe,
    unsubscribe,
-   setUsers,
-   setTotalCount,
-   setPageSize,
    setCurrentPage,
-   setCurrentState,
-   setFollowingState
+   setFollowingState,
+   getUsersThunkCreator,
+   followingCreator,
+   outFollowingCreator
 
 } from '../../redux/reducers/usersReducer';
 
@@ -30,32 +29,23 @@ class UsersContainer extends React.Component {
    constructor(props) {
       super();
       this.props = props;
-      console.log(this.props)
+
 
    };
 
    componentDidMount = () => {
-      userProfileAPI.getUsers(this.props.currentPage, this.props.pageSize)
-         .then(res => {
-            if (this.props.data.length === 0) {
-               this.props.setUsers(res.items);
-               this.props.setTotalCount(res.totalCount);
-            }
-         })
+      this.props.getUsersThunkCreator(this.props.currentPage, this.props.pageSize)
+
    };
 
    getCurrentPage = (page) => {
-      this.props.setCurrentState(true)
+
       this.props.setCurrentPage(page)
-      userProfileAPI.getUsers(page, this.props.pageSize)
-         .then(res => {
-            this.props.setUsers(res.items);
-            this.props.setCurrentState(false)
-         })
+      this.props.getUsersThunkCreator(page, this.props.pageSize)
    };
 
    render = () => <Users
-
+      followingCreator={this.props.followingCreator}
       totalCount={this.props.totalCount}
       pageSize={this.props.pageSize}
       currentPage={this.props.currentPage}
@@ -66,21 +56,20 @@ class UsersContainer extends React.Component {
       currentState={this.props.currentState}
       followingProgress={this.props.followingProgress}
       setFollowingState={this.props.setFollowingState}
+      outFollowingCreator={this.props.outFollowingCreator}
 
 
    />
 }
 
 export default connect(mapState, {
-
+   followingCreator,
    subscribe,
    unsubscribe,
-   setUsers,
-   setTotalCount,
-   setPageSize,
    setCurrentPage,
-   setCurrentState,
-   setFollowingState
+   setFollowingState,
+   getUsersThunkCreator,
+   outFollowingCreator
 
 })(UsersContainer);
 

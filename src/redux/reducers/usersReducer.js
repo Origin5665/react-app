@@ -1,3 +1,5 @@
+import { userProfileAPI } from '../../API/userProfileAPI';
+import { followAPI } from '../../API/followAPI';
 // Action types:
 
 const SUBSCRIBE = 'SUBSCRIBE';
@@ -91,5 +93,37 @@ const usersReducer = (state = initalState, action) => {
          return state
    }
 };
+
+export const getUsersThunkCreator = (currentPage, pageSize) => {
+   return (dispatch) => {
+      dispatch(setCurrentState(true))
+      userProfileAPI.getUsers(currentPage, pageSize)
+         .then(res => {
+            dispatch(setUsers(res.items));
+            dispatch(setCurrentState(false));
+            dispatch(setTotalCount(res.totalCount));
+         });
+   }
+};
+
+export const followingCreator = (id) => (dispatch) => {
+   dispatch(setFollowingState(true, id))
+   followAPI.getFollow(id)
+      .then(res => { if (res.resultCode === 0) dispatch(subscribe(id)) })
+      .then(() => dispatch(setFollowingState(false, id)))
+};
+
+export const outFollowingCreator = (id) => (dispatch) => {
+   dispatch(setFollowingState(true, id))
+   followAPI.outFollow(id)
+      .then(res => {
+         if (res.resultCode === 0) {
+            dispatch(unsubscribe(id))
+         }
+      })
+      .then(() => dispatch(setFollowingState(false, id)))
+};
+
+
 
 export default usersReducer;
