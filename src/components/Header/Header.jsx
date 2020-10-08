@@ -13,14 +13,15 @@ const Header = (props) => {
         <img alt="logo" className={HeaderBundle.header__logo} src={headerlogo} />
         <h1 className={HeaderBundle.header__title}>React Social Club <span className={HeaderBundle.header__author}>by Origin56</span></h1>
         <div className={HeaderBundle.header__social}>
-          {props.data ? <NavLink to="/login"><p className={HeaderBundle.header__loginName}>{props.login}</p></NavLink> : <NavLink className={HeaderBundle.header__login} to='/login'><p >Войти</p ></NavLink>}
-
+          {props.data
+            ? <NavLink to="/login"><p className={HeaderBundle.header__loginName}>{props.login}</p></NavLink>
+            : <NavLink className={HeaderBundle.header__login} to='/login'><p >Войти</p ></NavLink>}
           <a className={HeaderBundle.header__link} href="https://t.me/origin56" target="blank"><img alt="Логотип месседжера Телеграм. Ссылка для перехода" className={HeaderBundle.header__logo} src={telegramlogo} /></a>
           <a className={HeaderBundle.header__link} href="https://github.com/Origin5665" target="blank"> <img alt="Логотип Гитхаб. Ссылка для перехода" className={HeaderBundle.header__logo} src={gitlogo} /></a>
         </div>
       </div>
     </header>
   )
-}
+};
 
 export default Header;

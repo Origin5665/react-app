@@ -3,17 +3,18 @@ import UsersBundle from './Users.module.css';
 import User from './User/User';
 import PreLoader from '../common/PreLoader/Preloader';
 
+
 const Users = ({
+   followingCreator,
+   outFollowingCreator,
    totalCount,
    pageSize,
    currentPage,
-   subscribe,
-   unsubscribe,
    getCurrentPage,
    data,
    currentState,
    followingProgress,
-   setFollowingState }) => {
+}) => {
 
    //Рассчет количества страниц: 
 
@@ -28,23 +29,30 @@ const Users = ({
 
    // Вывод пользователей:
 
-   const users = data.map((user, index) => <User key={index} data={user}
-      subscribe={subscribe} unsubscribe={unsubscribe} followingProgress={followingProgress} setFollowingState={setFollowingState} />);
+   const users = data.map((user, index) =>
+      <User
+         key={index}
+         data={user}
+         followingCreator={followingCreator}
+         outFollowingCreator={outFollowingCreator}
+         followingProgress={followingProgress} />);
 
    // Вывод страниц пагинации:
 
    const pages = arrayPages.map((i, j) =>
-      <li onClick={() =>
+      <button onClick={() =>
          getCurrentPage(i)} key={j}
-         className={currentPage === i ?
-            UsersBundle.users__page + ' ' + UsersBundle.users__page_active :
-            UsersBundle.users__page}>{i}</li>)
+         className={currentPage === i
+            ? UsersBundle.users__page + ' ' + UsersBundle.users__page_active
+            : UsersBundle.users__page}>{i}</button>)
 
    return (
       <div className={UsersBundle.users__wrapper}>
          <div className={UsersBundle.users__headerWrapper}>
             <h2 className={UsersBundle.users__title}>Участники проекта</h2>
-            {currentState ? <PreLoader /> : null}
+            {currentState
+               ? <PreLoader />
+               : null}
          </div>
          <div className={UsersBundle.users__pagContainer}>
             {pages}
