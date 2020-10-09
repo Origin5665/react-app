@@ -1,27 +1,12 @@
-
 import DialogBlock from './DialogBlock';
-import { actionCreatorPost, actionCreatorMessage } from '../../../redux/reducers/dialogsReducer';
-
+import { actionCreatorPost, actionCreatorMessage } from '../../../redux/actions/actionDialogs';
 import { connect } from 'react-redux';
 
-
-
-
-const mapStateToProps = (state) => {
-
+const mapState = (state) => {
    return {
       data: state.dialogs.message
    }
-}
+};
 
-const mapDispatchToProps = (dispatch) => {
-   return {
-      isChangeValue: (text) => { dispatch(actionCreatorMessage(text)) },
-      sendMessage: () => { dispatch(actionCreatorPost()) }
-   }
-
-}
-
-const DialogBlockContainer = connect(mapStateToProps, mapDispatchToProps)(DialogBlock)
-
+const DialogBlockContainer = connect(mapState, { actionCreatorMessage, actionCreatorPost })(DialogBlock)
 export default DialogBlockContainer;

@@ -1,18 +1,19 @@
 import React from 'react';
 import FrofileInfo from '../ProfileInfo/ProfileInfo.module.css'
 import Preloader from '../../common/PreLoader/Preloader';
+import userIMG from '../../../images/user/user-photo.png';
 
-const ProfileInfo = (props) => {
+const ProfileInfo = ({ data }) => {
 
-   if (!props.data) {
+   if (!data) {
       return <Preloader />
    } else {
       return (
          <div className="container">
             <div className={FrofileInfo.profile__wrapper}>
-               <img alt="profile photo" className={FrofileInfo.profile__image} src={props.data.photos.large}></img>
+               <img alt="profile photo" className={FrofileInfo.profile__image} src={!data.photos.large ? userIMG : data.photos.large}></img>
                <div className={FrofileInfo.profile__dataWrapper}>
-                  <h2 className={FrofileInfo.profile__text}>{props.data.fullName}</h2>
+                  <h2 className={FrofileInfo.profile__text}>{data.fullName}</h2>
                   <div className={FrofileInfo.profile__wrapperInfo}>
                      <p className={FrofileInfo.profile__text}>День Рождения: 2 ноября</p>
                      <p className={FrofileInfo.profile__text}>Город: Ухта, Республика Коми</p>

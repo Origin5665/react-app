@@ -1,5 +1,5 @@
 import ProfileBlock from './ProfileBlock'
-import { actionCreatorPost, actionCreatorMessage } from '../../../redux/reducers/profileReducer';
+import { actionCreatorPost, actionCreatorMessage } from '../../../redux/actions/actionProfile';
 import { connect } from 'react-redux';
 
 const mapDispatchToProps = (dispatch) => {
