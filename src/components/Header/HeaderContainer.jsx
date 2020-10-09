@@ -1,17 +1,14 @@
 import React from 'react';
 import Header from "./Header";
 import { connect } from "react-redux";
-import { getUserProfileCreator } from '../../redux/reducers/authReducer'
-
+import { getAuthUserProfileCreator } from '../../redux/thunk/getAuthUserProfileCreator';
 class HeaderContainer extends React.Component {
 
   componentDidMount = () => {
-    this.props.getUserProfileCreator()
+    this.props.getAuthUserProfileCreator()
   };
 
-  render = () => {
-    return <Header {...this.props} />
-  };
+  render = () => <Header {...this.props} />
 }
 
 const mapState = (state) => ({
@@ -19,4 +16,4 @@ const mapState = (state) => ({
   login: state.auth.login
 })
 
-export default connect(mapState, { getUserProfileCreator })(HeaderContainer)
+export default connect(mapState, { getAuthUserProfileCreator })(HeaderContainer)

@@ -1,10 +1,7 @@
-import { ADD_POST, ADD_INPUT_TEXT } from '../../constant';
-const SET_USER = 'SET_USER'
-export const actionCreatorPost = () => ({ type: ADD_POST })
-export const actionCreatorMessage = (text) => ({ type: ADD_INPUT_TEXT, value: text })
-export const setUserProfile = (profile) => ({ type: SET_USER, profile: profile })
+import { ADD_POST, ADD_INPUT_TEXT, SET_USER } from '../../constant';
 
-const initState = {
+const initialState = {
+
    post: [
       { id: 1, message: 'Вышел новый альбом Хаски!', count: '10' },
       { id: 2, message: 'Пытаюсь разобраться в React и Redux', count: '96' },
@@ -16,7 +13,7 @@ const initState = {
 
 };
 
-const profileReducer = (state = initState, action) => {
+const profileReducer = (state = initialState, action) => {
 
    switch (action.type) {
       case ADD_POST:
@@ -33,7 +30,6 @@ const profileReducer = (state = initState, action) => {
          };
 
       case SET_USER: {
-
          return {
             ...state,
             profileUser: action.profile
@@ -41,8 +37,7 @@ const profileReducer = (state = initState, action) => {
       }
       default:
          return state
-   }
+   };
 };
-
 
 export default profileReducer;

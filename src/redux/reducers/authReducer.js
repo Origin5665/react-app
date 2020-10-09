@@ -1,16 +1,4 @@
-import { userProfileAPI } from '../../API/userProfileAPI';
-
-// Переменные:
-
-const SET_USER_AUTH = 'SET_USER_AUTH';
-
-// Action types:
-
-export const setUserAuth = (login, userId, email) =>
-   ({
-      type: SET_USER_AUTH,
-      data: { login, userId, email }
-   });
+import { SET_USER_AUTH } from '../../constant';
 
 const initialState = {
    login: null,
@@ -34,13 +22,5 @@ const authReducer = (state = initialState, action) => {
 }
 
 
-export const getUserProfileCreator = () => (dispatch) => {
-   userProfileAPI.getUserAuth()
-      .then(res => {
-         if (res.resultCode === 0) {
-            const { login, id, email } = res.data;
-            dispatch(setUserAuth(login, id, email))
-         }
-      });
-};
+
 export default authReducer;

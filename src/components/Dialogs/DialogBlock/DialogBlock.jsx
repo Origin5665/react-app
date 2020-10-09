@@ -3,7 +3,7 @@ import DialogMessage from '../DialogMessage/DialogMessage';
 import DialogBlockBundle from '../DialogBlock/DialogBlock.module.css';
 
 
-const DialogBlock = ({ sendMessage, isChangeValue, data }) => {
+const DialogBlock = ({ actionCreatorMessage, actionCreatorPost, data }) => {
 
    const newMessage = React.createRef();
 
@@ -11,13 +11,13 @@ const DialogBlock = ({ sendMessage, isChangeValue, data }) => {
 
    const sendNewMessage = (e) => {
       e.preventDefault();
-      sendMessage()
+      actionCreatorPost()
       newMessage.current.value = '';
    };
 
    const isChangeTextValue = () => {
       const text = newMessage.current.value;
-      isChangeValue(text)
+      actionCreatorMessage(text)
    };
 
    return (
