@@ -1,0 +1,45 @@
+.profileStatus__text {
+   margin: 0;
+   width: 250px;
+   color: rgb(216, 214, 214)
+}
+
+.profileStatus__inputWrapper {
+   display: flex;
+
+}
+
+.profileStatus__input {
+   width: 250px;
+   height: 12px;
+   font-size: 15px;
+   background: transparent;
+   color: rgb(200, 200, 200);
+   border: none;
+   padding: 5px;
+   border-bottom: 1 px solid rgb(163, 163, 163);
+}
+
+.profileStatus__input:focus {
+   outline: none;
+
+}
+
+.profileStatus__button {
+   border: none;
+   width: 20px;
+   height: 20px;
+   background: transparent;
+   background-repeat: no-repeat;
+   background-position: center;
+}
+
+.profileStatus__buttonDel {
+   background-image: url('../../../images/delete.svg');
+
+}
+
+.profileStatus__buttonOn {
+   background-image: url('../../../images/done.svg');
+
+}

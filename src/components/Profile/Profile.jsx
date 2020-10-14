@@ -7,7 +7,7 @@ const Profile = (props) => {
 
   return (
     <div className={ProfileBundle.profile}>
-      <ProfileInfo data={props.data} />
+      <ProfileInfo status={props.status} data={props.data} setStatus={props.setNewUserStatusCreator} />
       <FormBlockContainer />
 
     </div>

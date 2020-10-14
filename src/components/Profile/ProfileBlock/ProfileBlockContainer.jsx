@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    inputText: (text) => { dispatch(actionCreatorMessage(text)) },
-    addPost: () => { dispatch(actionCreatorPost()) }
+
+    addPost: text => { dispatch(actionCreatorPost(text)) }
   }
 }
 

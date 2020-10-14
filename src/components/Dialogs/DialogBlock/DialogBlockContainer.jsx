@@ -1,12 +1,21 @@
 import DialogBlock from './DialogBlock';
-import { actionCreatorPost, actionCreatorMessage } from '../../../redux/actions/actionDialogs';
+import { withAuthRedirect } from '../../../HOC/withAuthRedirect';
+import { actionCreatorPost, } from '../../../redux/actions/actionDialogs';
 import { connect } from 'react-redux';
+import { compose } from 'redux';
 
 const mapState = (state) => {
    return {
-      data: state.dialogs.message
+      data: state.dialogs.message,
+      isAuth: state.auth.isAuth
    }
 };
 
-const DialogBlockContainer = connect(mapState, { actionCreatorMessage, actionCreatorPost })(DialogBlock)
-export default DialogBlockContainer;
+const dialogBlockCompose = compose(
+   connect(mapState, { actionCreatorPost }),
+   withAuthRedirect
+)(DialogBlock)
+
+// const AuthRedirectComponent = withAuthRedirect(DialogBlock)
+// const DialogBlockContainer = connect(mapState, { actionCreatorMessage, actionCreatorPost })(AuthRedirectComponent)
+export default dialogBlockCompose;    

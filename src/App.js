@@ -30,7 +30,7 @@ const App = ({ state }) => {
           <Route path="/music" render={() => <Music />} />
           <Route path="/news" render={() => <News />} />
           <Route path="/settings" render={() => <Settings />} />
-          <Route path="/login" render={() => <EnterForm state={state} />} />
+          <Route path="/login" render={() => <EnterForm />} />
         </div>
       </div>
     </BrowserRouter>

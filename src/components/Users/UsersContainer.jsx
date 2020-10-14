@@ -5,6 +5,8 @@ import { outFollowingCreator, followingCreator } from '../../redux/thunk/followC
 import { getUsersThunkCreator } from '../../redux/thunk/getUsersCreator';
 import { subscribe, unsubscribe, setCurrentPage, setFollowingState } from '../../redux/actions/actionUsers';
 
+import { withAuthRedirect } from '../../HOC/withAuthRedirect';
+import { compose } from 'redux';
 class UsersContainer extends React.Component {
 
    componentDidMount = () => {
@@ -45,7 +47,7 @@ const mapState = (state) => {
    }
 };
 
-export default connect(mapState, {
+const usersContainerCompose = compose(connect(mapState, {
    followingCreator,
    subscribe,
    unsubscribe,
@@ -54,7 +56,19 @@ export default connect(mapState, {
    getUsersThunkCreator,
    outFollowingCreator
 
-})(UsersContainer);
+}), withAuthRedirect)(UsersContainer)
+
+export default usersContainerCompose;
+// export default connect(mapState, {
+//    followingCreator,
+//    subscribe,
+//    unsubscribe,
+//    setCurrentPage,
+//    setFollowingState,
+//    getUsersThunkCreator,
+//    outFollowingCreator
+
+// })(UsersContainer);
 
 
 

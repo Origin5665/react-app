@@ -1,36 +1,39 @@
 import React from 'react';
 import DialogMessage from '../DialogMessage/DialogMessage';
 import DialogBlockBundle from '../DialogBlock/DialogBlock.module.css';
+import { Field, reduxForm } from 'redux-form';
+import { ComponentInput } from '../../common/FormControls/FormControls';
+import { maxLengthCreator, requaredField } from '../../../utils/validation';
+const maxLength30 = maxLengthCreator(50)
 
+const DialogForm = ({ handleSubmit }) => {
 
-const DialogBlock = ({ actionCreatorMessage, actionCreatorPost, data }) => {
+   return (
+      <form onSubmit={handleSubmit} className={DialogBlockBundle.dialogBlock__form}>
+         <Field component={ComponentInput} validate={[requaredField, maxLength30]} typeField='textarea' name={'dialogMessage'} className={DialogBlockBundle.dialogBlock__input}
+            placeholder="ваше сообщение..." type="text" />
+         <button className={DialogBlockBundle.dialogBlock__button}>Отправить</button>
+      </form>
+   )
+};
 
-   const newMessage = React.createRef();
+const DialogFormContainer = reduxForm({ form: 'dialogForm' })(DialogForm)
+
+const DialogBlock = ({ actionCreatorPost, data }) => {
 
    const dialog = data.map((item, i) => <DialogMessage key={i} message={item.message} />);
 
-   const sendNewMessage = (e) => {
-      e.preventDefault();
-      actionCreatorPost()
-      newMessage.current.value = '';
-   };
-
-   const isChangeTextValue = () => {
-      const text = newMessage.current.value;
-      actionCreatorMessage(text)
-   };
+   const sendNewMessage = message => {
+      console.log(message)
+      actionCreatorPost(message.dialogMessage)
+   }
 
    return (
       <div className="DialogBlock.wrapper">
          <div className={DialogBlockBundle.dialogBlock__messageWrapper}>
             {dialog}
          </div>
-         <form id="message-form" className={DialogBlockBundle.dialogBlock__form}>
-            <input onChange={isChangeTextValue} required ref={newMessage} className={DialogBlockBundle.dialogBlock__input}
-               placeholder="ваше сообщение..." type="text" />
-            <button form="message-form" type="submit" onClick={sendNewMessage}
-               className={DialogBlockBundle.dialogBlock__button}>Отправить</button>
-         </form>
+         <DialogFormContainer onSubmit={sendNewMessage} />
       </div>
    )
 };

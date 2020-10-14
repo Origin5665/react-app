@@ -23,7 +23,7 @@ const Users = ({
    // Добавляем элементы в массив для вывода кол-ва страниц:
 
    const arrayPages = [];
-   for (let page = 1; page <= 5; page++) {
+   for (let page = 1; page <= numberPages; page++) {
       arrayPages.push(page)
    };
 

@@ -1,15 +1,15 @@
-import { ADD_POST, ADD_INPUT_TEXT, SET_USER } from '../../constant';
+
+import { ADD_POST, ADD_INPUT_TEXT, SET_USER, GET_CURRENT_STATUS } from '../../constant';
 
 const initialState = {
 
    post: [
       { id: 1, message: 'Вышел новый альбом Хаски!', count: '10' },
-      { id: 2, message: 'Пытаюсь разобраться в React и Redux', count: '96' },
-      { id: 3, message: '18 декабря Хаски выступит в Санкт-Петербурге', count: '-1' }
+
 
    ],
-   postTextInput: '',
-   profileUser: null
+   profileUser: null,
+   status: ''
 
 };
 
@@ -19,15 +19,10 @@ const profileReducer = (state = initialState, action) => {
       case ADD_POST:
          return {
             ...state,
-            postTextInput: '',
-            post: [{ id: 5, message: state.postTextInput, count: 2 }, ...state.post]
+            post: [{ id: 5, message: action.value, count: 2 }, ...state.post]
          };
 
-      case ADD_INPUT_TEXT:
-         return {
-            ...state,
-            postTextInput: action.value
-         };
+
 
       case SET_USER: {
          return {
@@ -35,6 +30,15 @@ const profileReducer = (state = initialState, action) => {
             profileUser: action.profile
          };
       }
+
+      case GET_CURRENT_STATUS: {
+         return {
+            ...state,
+            status: action.status
+         }
+      }
+
+
       default:
          return state
    };
