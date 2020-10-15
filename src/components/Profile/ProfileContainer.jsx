@@ -31,11 +31,13 @@ class ProfileContainer extends React.Component {
 };
 
 const profileCompose = compose(connect(mapState, {
+
   getUserProfileCreator,
   getCurrentUserStatusCreator,
-  setNewUserStatusCreator
+  setNewUserStatusCreator,
+
 }),
-  withRouter)(ProfileContainer);
+  withRouter, withAuthRedirect)(ProfileContainer);
 
 export default profileCompose;
 

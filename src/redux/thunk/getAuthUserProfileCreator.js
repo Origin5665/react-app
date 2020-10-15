@@ -6,7 +6,7 @@ export const getAuthUserProfileCreator = () => (dispatch) => {
       .then(res => {
          if (res.resultCode === 0) {
             const { login, id, email } = res.data;
-            dispatch(setUserAuth(login, id, email))
+            dispatch(setUserAuth(login, id, email, true))
          }
       });
 };
