@@ -5,7 +5,7 @@ class ProfileStatus extends React.Component {
    constructor(props) {
       super()
       this.props = props;
-      console.log(this.props)
+
       this.state = {
          status: this.props.status,
          editMode: false,

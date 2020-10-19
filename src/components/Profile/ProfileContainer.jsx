@@ -12,30 +12,31 @@ import { compose } from 'redux';
 
 const mapState = (state) => ({
   data: state.profile.profileUser,
-  status: state.profile.status
-})
+  status: state.profile.status,
+  loginId: state.auth.userId,
+  isAuth: state.auth.isAuth
+});
 
 
 class ProfileContainer extends React.Component {
 
   componentDidMount = () => {
     let userId = this.props.match.params.userId;
-    if (!userId) userId = USER_ID
+    if (!userId) userId = this.props.loginId
     this.props.getUserProfileCreator(userId);
     this.props.getCurrentUserStatusCreator(userId)
   };
 
   render = () => {
+
     return <Profile {...this.props} data={this.props.data} />
   };
 };
 
 const profileCompose = compose(connect(mapState, {
-
   getUserProfileCreator,
   getCurrentUserStatusCreator,
   setNewUserStatusCreator,
-
 }),
   withRouter, withAuthRedirect)(ProfileContainer);
 
@@ -43,7 +44,3 @@ export default profileCompose;
 
 
 
-//ProfileContainer => withAuthRedirect (происходит обработка и возвращается другой компонент) => withRouter => connect();
-// const AuthRedirectComponent = withAuthRedirect(ProfileContainer)
-// const ProfileContainerRouter = withRouter(AuthRedirectComponent)
-// export default connect(mapState, { getUserProfileCreator })(ProfileContainerRouter);

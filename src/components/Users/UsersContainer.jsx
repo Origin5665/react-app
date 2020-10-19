@@ -4,12 +4,25 @@ import { connect } from 'react-redux';
 import { outFollowingCreator, followingCreator } from '../../redux/thunk/followCreators';
 import { getUsersThunkCreator } from '../../redux/thunk/getUsersCreator';
 import { subscribe, unsubscribe, setCurrentPage, setFollowingState } from '../../redux/actions/actionUsers';
-
 import { withAuthRedirect } from '../../HOC/withAuthRedirect';
 import { compose } from 'redux';
+
+//Selectors => 
+import {
+   getUsersSuperSelector,
+   getPageSize,
+   getTotalCount,
+   getCurrentPage,
+   getCurrentState,
+   getFollowingProgress
+} from '../../redux/selectors/users-selectors'
+
+
+
 class UsersContainer extends React.Component {
 
    componentDidMount = () => {
+      console.log('render');
       this.props.getUsersThunkCreator(this.props.currentPage, this.props.pageSize)
    };
 
@@ -37,13 +50,14 @@ class UsersContainer extends React.Component {
 }
 
 const mapState = (state) => {
+   console.log('mapState')
    return {
-      data: state.users.users,
-      totalCount: state.users.totalCount,
-      pageSize: state.users.pageSize,
-      currentPage: state.users.currentPage,
-      currentState: state.users.currentState,
-      followingProgress: state.users.followingProgress
+      data: getUsersSuperSelector(state),
+      totalCount: getTotalCount(state),
+      pageSize: getPageSize(state),
+      currentPage: getCurrentPage(state),
+      currentState: getCurrentState(state),
+      followingProgress: getFollowingProgress(state)
    }
 };
 
@@ -59,16 +73,7 @@ const usersContainerCompose = compose(connect(mapState, {
 }), withAuthRedirect)(UsersContainer)
 
 export default usersContainerCompose;
-// export default connect(mapState, {
-//    followingCreator,
-//    subscribe,
-//    unsubscribe,
-//    setCurrentPage,
-//    setFollowingState,
-//    getUsersThunkCreator,
-//    outFollowingCreator
 
-// })(UsersContainer);
 
 
 

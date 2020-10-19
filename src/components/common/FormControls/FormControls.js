@@ -3,22 +3,22 @@ import FormTextaria from './FormTextaria.module.css';
 
 
 const FormContructor = (props) => {
-   // console.log(props)
+
    const { input, meta, typeField, child, ...restProps } = props;
    return (
       <div>
          { props.children}
-         {meta.submitFailed ? <span className={FormTextaria.form__error}>{meta.error}</span> : ''}
+         <span className={FormTextaria.form__error}>
+            {meta.touched && meta.error ? meta.error : ''}
+         </span>
       </div>
    )
-};
+}
 
 
 export const ComponentInput = (props) => {
 
    const { input, meta, typeField, child, ...restProps } = props;
-   console.log(typeField);
-
    return (
       <FormContructor {...props} >{typeField === 'input'
          ? <input{...restProps}  {...input} />

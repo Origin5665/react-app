@@ -1,11 +1,8 @@
 export const requaredField = (value) => {
 
    if (value) {
-
       return undefined
-
    } else {
-
       return 'Обязательное поле!'
    }
 }

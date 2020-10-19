@@ -24,6 +24,7 @@
 .form__error {
    color: rgb(202, 39, 39);
    font-size: 24px;
+   transition: ease 3s;
 }
 
 /* .form__input:focus {
