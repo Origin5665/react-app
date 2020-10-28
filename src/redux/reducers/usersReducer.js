@@ -13,8 +13,9 @@ import {
 const initalState = {
    users: [],
    totalCount: 0,
-   pageSize: 10,
+   pageSize: 20,
    currentPage: 1,
+   portionSize: 5,
    currentState: false,
    followingProgress: []
 };
@@ -74,7 +75,7 @@ const usersReducer = (state = initalState, action) => {
             ...state,
             followingProgress: action.state
                ? [...state.followingProgress, action.userId]
-               : state.followingProgress.filter((id => id != action.userId))
+               : state.followingProgress.filter((id => id !== action.userId))
          }
       default:
          return state
@@ -82,3 +83,4 @@ const usersReducer = (state = initalState, action) => {
 };
 
 export default usersReducer;
+// зарефакторить редюсер

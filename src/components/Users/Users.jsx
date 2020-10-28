@@ -2,6 +2,7 @@ import React from 'react';
 import UsersBundle from './Users.module.css';
 import User from './User/User';
 import PreLoader from '../common/PreLoader/Preloader';
+import Pagination from '../common/paginator/pagination';
 
 
 const Users = ({
@@ -14,20 +15,8 @@ const Users = ({
    data,
    currentState,
    followingProgress,
+   portionSize
 }) => {
-
-   //Рассчет количества страниц: 
-
-   const numberPages = Math.ceil(totalCount / pageSize);
-
-   // Добавляем элементы в массив для вывода кол-ва страниц:
-
-   const arrayPages = [];
-   for (let page = 1; page <= 5; page++) {
-      arrayPages.push(page)
-   };
-
-   // Вывод пользователей:
 
    const users = data.map((user, index) =>
       <User
@@ -35,16 +24,8 @@ const Users = ({
          data={user}
          followingCreator={followingCreator}
          outFollowingCreator={outFollowingCreator}
-         followingProgress={followingProgress} />);
-
-   // Вывод страниц пагинации:
-
-   const pages = arrayPages.map((i, j) =>
-      <button onClick={() =>
-         getCurrentPage(i)} key={j}
-         className={currentPage === i
-            ? UsersBundle.users__page + ' ' + UsersBundle.users__page_active
-            : UsersBundle.users__page}>{i}</button>)
+         followingProgress={followingProgress}
+      />);
 
    return (
       <div className={UsersBundle.users__wrapper}>
@@ -54,8 +35,15 @@ const Users = ({
                ? <PreLoader />
                : null}
          </div>
+
          <div className={UsersBundle.users__pagContainer}>
-            {pages}
+            <Pagination
+               totalCount={totalCount}
+               getCurrentPage={getCurrentPage}
+               pageSize={pageSize}
+               currentPage={currentPage}
+               portionSize={portionSize}
+            />
          </div>
          <ul className={UsersBundle.users__list}>
             {users}

@@ -51,6 +51,10 @@
 
 }
 
+.header__login:hover {
+    color: #15181a;
+}
+
 .header__link:focus {
     outline: 2px solid rgb(130, 131, 131);
 }

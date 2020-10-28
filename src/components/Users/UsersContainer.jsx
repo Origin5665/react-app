@@ -4,16 +4,32 @@ import { connect } from 'react-redux';
 import { outFollowingCreator, followingCreator } from '../../redux/thunk/followCreators';
 import { getUsersThunkCreator } from '../../redux/thunk/getUsersCreator';
 import { subscribe, unsubscribe, setCurrentPage, setFollowingState } from '../../redux/actions/actionUsers';
+import { withAuthRedirect } from '../../HOC/withAuthRedirect';
+import { compose } from 'redux';
+
+//Selectors => 
+import {
+   getUsersSuperSelector,
+   getPageSize,
+   getTotalCount,
+   getCurrentPage,
+   getCurrentState,
+   getFollowingProgress
+} from '../../redux/selectors/users-selectors'
+
+
 
 class UsersContainer extends React.Component {
 
    componentDidMount = () => {
-      this.props.getUsersThunkCreator(this.props.currentPage, this.props.pageSize)
+      const { currentPage, pageSize } = this.props
+      this.props.getUsersThunkCreator(currentPage, pageSize)
    };
 
    getCurrentPage = (page) => {
+      const { pageSize } = this.props;
       this.props.setCurrentPage(page)
-      this.props.getUsersThunkCreator(page, this.props.pageSize)
+      this.props.getUsersThunkCreator(page, pageSize)
    };
 
    render = () => <Users
@@ -30,22 +46,25 @@ class UsersContainer extends React.Component {
       followingProgress={this.props.followingProgress}
       setFollowingState={this.props.setFollowingState}
       outFollowingCreator={this.props.outFollowingCreator}
+      portionSize={this.props.portionSize}
 
    />
 }
 
 const mapState = (state) => {
    return {
-      data: state.users.users,
-      totalCount: state.users.totalCount,
-      pageSize: state.users.pageSize,
-      currentPage: state.users.currentPage,
-      currentState: state.users.currentState,
-      followingProgress: state.users.followingProgress
+      data: getUsersSuperSelector(state),
+      totalCount: getTotalCount(state),
+      pageSize: getPageSize(state),
+      currentPage: getCurrentPage(state),
+      currentState: getCurrentState(state),
+      followingProgress: getFollowingProgress(state),
+      portionSize: state.users.portionSize
+
    }
 };
 
-export default connect(mapState, {
+const usersContainerCompose = compose(connect(mapState, {
    followingCreator,
    subscribe,
    unsubscribe,
@@ -54,7 +73,10 @@ export default connect(mapState, {
    getUsersThunkCreator,
    outFollowingCreator
 
-})(UsersContainer);
+}), withAuthRedirect)(UsersContainer)
+
+export default usersContainerCompose;
+
 
 
 

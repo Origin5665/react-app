@@ -1,8 +1,10 @@
 # react-social network
+
 Проект социальной сети на React
-В разработке
 
-#Для запуска:
+В разработке...
 
-npm install =>
+# Для запуска:
+
+npm install 
 npm start

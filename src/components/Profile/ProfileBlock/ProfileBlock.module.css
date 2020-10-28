@@ -31,15 +31,8 @@
     height: 60px;
 }
 
-.form__input:focus {
-    outline-width: 2px;
-    outline-color: #2973B8;
-}
 
-.form__input::placeholder {
-    font-size: 24px;
-    opacity: 0.4;
-}
+
 
 /* BUTTON */
 

@@ -22,3 +22,8 @@ export const ADD_MESSAGE_TEXT = 'ADD_MESSAGE_TEXT';
 
 //AuthReducer:
 export const SET_USER_AUTH = 'SET_USER_AUTH';
+
+// ProfileReducer:
+
+export const GET_CURRENT_STATUS = 'GET_CURRENT_STATUS';
+export const SET_NEW_STATUS = 'SET_NEW_STATUS';

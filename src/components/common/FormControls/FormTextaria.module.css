@@ -1,0 +1,34 @@
+.form__input {
+   border: none;
+   border-radius: 5px;
+   padding-left: 10px;
+   font-size: 20px;
+   background: rgba(230, 230, 230, 0.856);
+   width: 95%;
+   height: 60px;
+   color: rgb(44, 44, 44);
+
+}
+
+.form__input::placeholder {
+   font-size: 24px;
+   opacity: 0.6;
+   color: rgb(199, 199, 199)
+}
+
+.form__input_error {
+   border: 2px solid rgb(199, 51, 51);
+
+}
+
+.form__error {
+   color: rgb(202, 39, 39);
+   font-size: 24px;
+   transition: ease 3s;
+}
+
+/* .form__input:focus {
+   outline-width: 3px;
+   outline-color: #2973B8;
+   background: rgb(202, 201, 201);
+} */
