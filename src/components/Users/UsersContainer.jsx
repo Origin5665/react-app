@@ -22,13 +22,14 @@ import {
 class UsersContainer extends React.Component {
 
    componentDidMount = () => {
-      console.log('render');
-      this.props.getUsersThunkCreator(this.props.currentPage, this.props.pageSize)
+      const { currentPage, pageSize } = this.props
+      this.props.getUsersThunkCreator(currentPage, pageSize)
    };
 
    getCurrentPage = (page) => {
+      const { pageSize } = this.props;
       this.props.setCurrentPage(page)
-      this.props.getUsersThunkCreator(page, this.props.pageSize)
+      this.props.getUsersThunkCreator(page, pageSize)
    };
 
    render = () => <Users
@@ -45,19 +46,21 @@ class UsersContainer extends React.Component {
       followingProgress={this.props.followingProgress}
       setFollowingState={this.props.setFollowingState}
       outFollowingCreator={this.props.outFollowingCreator}
+      portionSize={this.props.portionSize}
 
    />
 }
 
 const mapState = (state) => {
-   console.log('mapState')
    return {
       data: getUsersSuperSelector(state),
       totalCount: getTotalCount(state),
       pageSize: getPageSize(state),
       currentPage: getCurrentPage(state),
       currentState: getCurrentState(state),
-      followingProgress: getFollowingProgress(state)
+      followingProgress: getFollowingProgress(state),
+      portionSize: state.users.portionSize
+
    }
 };
 

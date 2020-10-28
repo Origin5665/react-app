@@ -3,8 +3,8 @@ import { actionCreatorPost, actionCreatorMessage } from '../../../redux/actions/
 import { connect } from 'react-redux';
 
 const mapDispatchToProps = (dispatch) => {
-  return {
 
+  return {
     addPost: text => { dispatch(actionCreatorPost(text)) }
   }
 }
@@ -17,4 +17,4 @@ const mapStateToProps = (state) => {
 
 const FormContainer = connect(mapStateToProps, mapDispatchToProps)(ProfileBlock)
 
-export default FormContainer;
+export default FormContainer; 

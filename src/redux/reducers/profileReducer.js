@@ -5,8 +5,6 @@ const initialState = {
 
    post: [
       { id: 1, message: 'Вышел новый альбом Хаски!', count: '10' },
-
-
    ],
    profileUser: null,
    status: ''

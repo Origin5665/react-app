@@ -1,8 +1,8 @@
 import React from 'react';
-import { Route, BrowserRouter, withRouter } from 'react-router-dom';
+import { Route, withRouter } from 'react-router-dom';
 import './App.css';
 import { appInitCreator } from './redux/reducers/appReducer';
-// Components =>
+
 
 import Navigate from './components/Navigate/Navigate';
 import ProfileContainer from './components/Profile/ProfileContainer';
@@ -31,22 +31,20 @@ class App extends React.Component {
     }
 
     return (
+      <div className="wrapper">
 
-      <BrowserRouter>
-        <div className="wrapper">
-          <HeaderContainer />
-          <div className="wrapper-block">
-            <Navigate />
-            <Route path="/profile/:userId?" render={() => <ProfileContainer />} />
-            <Route path="/users" render={() => <UsersContainer />} />
-            <Route path="/dialogs" render={() => <Dialogs state={this.props.state} />} />
-            <Route path="/music" render={() => <Music />} />
-            <Route path="/news" render={() => <News />} />
-            <Route path="/settings" render={() => <Settings />} />
-            <Route path="/login" render={() => <EnterForm />} />
-          </div>
+        <HeaderContainer />
+        <div className="wrapper-block">
+          <Navigate />
+          <Route path="/profile/:userId?" render={() => <ProfileContainer />} />
+          <Route path="/users" render={() => <UsersContainer />} />
+          <Route path="/dialogs" render={() => <Dialogs state={this.props.state} />} />
+          {/* <Route path="/music" render={() => <Music />} />
+          <Route path="/news" render={() => <News />} />
+          <Route path="/settings" render={() => <Settings />} /> */}
+          <Route path="/login" render={() => <EnterForm />} />
         </div>
-      </BrowserRouter>
+      </div>
     )
   }
 };

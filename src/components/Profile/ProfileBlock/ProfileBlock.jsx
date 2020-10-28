@@ -24,6 +24,10 @@ const ProfileForm = ({ handleSubmit }) => {
 }
 
 const ProfileFormContainer = reduxForm({ form: 'profileForm' })(ProfileForm)
+console.log('Render')
+
+
+
 
 const ProfileBlock = ({ data, addPost }) => {
   const onSubmit = (data) => {

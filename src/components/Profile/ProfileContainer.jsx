@@ -5,7 +5,6 @@ import { getUserProfileCreator } from '../../redux/thunk/getUserProfileCreator';
 import { getCurrentUserStatusCreator } from '../../redux/thunk/getCurrentUserStatusCreator';
 import { setNewUserStatusCreator } from '../../redux/thunk/setNewUserStatusCreator';
 import { withRouter } from 'react-router-dom';
-import { USER_ID } from '../../constant';
 import { withAuthRedirect } from '../../HOC/withAuthRedirect';
 import { compose } from 'redux';
 

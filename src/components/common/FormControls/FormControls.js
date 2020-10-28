@@ -2,14 +2,12 @@ import React from 'react';
 import FormTextaria from './FormTextaria.module.css';
 
 
-const FormContructor = (props) => {
-
-   const { input, meta, typeField, child, ...restProps } = props;
+const FormContructor = ({ meta: { error, touched }, children }) => {
    return (
       <div>
-         { props.children}
+         { children}
          <span className={FormTextaria.form__error}>
-            {meta.touched && meta.error ? meta.error : ''}
+            {error && touched ? error : ''}
          </span>
       </div>
    )
@@ -17,8 +15,7 @@ const FormContructor = (props) => {
 
 
 export const ComponentInput = (props) => {
-
-   const { input, meta, typeField, child, ...restProps } = props;
+   const { input, meta, typeField, ...restProps } = props;
    return (
       <FormContructor {...props} >{typeField === 'input'
          ? <input{...restProps}  {...input} />
@@ -27,10 +24,3 @@ export const ComponentInput = (props) => {
    )
 
 };
-
-// export const Input = (props) => {
-//    const { input, meta, child, ...restProps } = props;
-//    return (
-//       <FormContructor{...props}><input {...restProps} {...input} /></FormContructor>
-//    )
-// };

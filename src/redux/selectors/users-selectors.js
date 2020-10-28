@@ -1,12 +1,11 @@
 import { createSelector } from 'reselect';
 
 export const getUsers = (state) => {
-   console.log('awdw')
    return state.users.users
 }
 
 export const getUsersSuperSelector = createSelector(getUsers, (users) => {
-   console.log('super')
+
    return users.filter(user => true)
 
 })

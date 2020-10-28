@@ -1,7 +1,7 @@
 import React from 'react';
 import '../Settings/Settings.module.css';
 
-const Settings = (props) => {
+const Settings = () => {
     return (
         <h2>Settings</h2>
     )
