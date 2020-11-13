@@ -1,13 +1,14 @@
 
-import { ADD_POST, ADD_INPUT_TEXT, SET_USER, GET_CURRENT_STATUS } from '../../constant';
+import { ADD_POST, SET_NEW_PHOTO, SET_USER, GET_CURRENT_STATUS } from '../../constant';
+import { UPDATE_PROFILE_DATA } from '../../constant';
 
 const initialState = {
 
    post: [
-      { id: 1, message: 'Вышел новый альбом Хаски!', count: '10' },
+      // { id: 1, message: 'Вышел новый альбом Хаски!', count: '10' },
    ],
    profileUser: null,
-   status: ''
+   status: '',
 
 };
 
@@ -35,6 +36,19 @@ const profileReducer = (state = initialState, action) => {
             status: action.status
          }
       }
+
+      case SET_NEW_PHOTO:
+
+         return {
+            ...state, profileUser: { ...state.profileUser, photos: action.image }
+
+         }
+
+      // case UPDATE_PROFILE_DATA:
+      //    return {
+      //       ...state,
+      //       profileUser: { ...state.profileUser, ...action.body }
+      //    }
 
 
       default:

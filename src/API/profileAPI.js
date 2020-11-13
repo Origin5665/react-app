@@ -22,10 +22,22 @@ export const getProfileAPI = {
    },
 
    sendNewUserStatus(string) {
-      console.log(string)
       return instance.put('profile/status', { status: string })
          .then(res => res)
+   },
+   updateProfilePhoto(file) {
+      const formData = new FormData();
+      formData.append('image', file)
+      return instance.put('/profile/photo', formData)
+         .then(res => res.data.data.photos)
+   },
+
+   updateProfileData(body) {
+
+      return instance.put('/profile', body)
+         .then(res => res.data)
    }
+
 
 }
 

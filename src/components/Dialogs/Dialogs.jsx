@@ -3,10 +3,10 @@ import DialogsBundle from '../Dialogs/Dialogs.module.css';
 import DialogsItem from '../Dialogs/DialogsItem/DialogsItem';
 import DialogBlockContainer from './DialogBlock/DialogBlockContainer';
 
-const Dialogs = ({ state }) => {
+const Dialogs = ({ data }) => {
 
 
-  const users = state.getState().user.dialog.map((item, i) =>
+  const users = data.map((item, i) =>
     <DialogsItem key={i} name={item.name} id={item.id} photo={item.image} />)
 
   return (

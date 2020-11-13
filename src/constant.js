@@ -27,3 +27,5 @@ export const SET_USER_AUTH = 'SET_USER_AUTH';
 
 export const GET_CURRENT_STATUS = 'GET_CURRENT_STATUS';
 export const SET_NEW_STATUS = 'SET_NEW_STATUS';
+export const SET_NEW_PHOTO = 'SET_NEW_PHOTO';
+export const UPDATE_PROFILE_DATA = 'GET_PROFILE_DATA';

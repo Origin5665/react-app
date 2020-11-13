@@ -1,4 +1,3 @@
-import React from 'react';
 import profileReducer from './profileReducer';
 import { actionCreatorPost } from '../actions/actionProfile';
 

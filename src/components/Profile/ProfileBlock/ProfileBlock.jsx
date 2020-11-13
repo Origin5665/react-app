@@ -24,7 +24,7 @@ const ProfileForm = ({ handleSubmit }) => {
 }
 
 const ProfileFormContainer = reduxForm({ form: 'profileForm' })(ProfileForm)
-console.log('Render')
+
 
 
 

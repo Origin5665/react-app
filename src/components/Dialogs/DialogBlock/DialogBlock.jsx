@@ -10,7 +10,7 @@ const DialogForm = ({ handleSubmit }) => {
 
    return (
       <form onSubmit={handleSubmit} className={DialogBlockBundle.dialogBlock__form}>
-         <Field component={ComponentInput} validate={[requaredField, maxLength30]} typeField='textarea' name={'dialogMessage'} className={DialogBlockBundle.dialogBlock__input}
+         <Field component={ComponentInput} typeField='textarea' name={'dialogMessage'} className={DialogBlockBundle.dialogBlock__input}
             placeholder="ваше сообщение..." type="text" />
          <button className={DialogBlockBundle.dialogBlock__button}>Отправить</button>
       </form>

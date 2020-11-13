@@ -3,7 +3,7 @@ import style from './pagination.module.css';
 import { Icon } from 'react-icons-kit'
 import { arrowRightThick } from 'react-icons-kit/typicons/arrowRightThick'
 import { arrowLeftThick } from 'react-icons-kit/typicons/arrowLeftThick'
-import { Button, ButtonGroup } from '@material-ui/core';
+import { Button } from '@material-ui/core';
 
 
 
