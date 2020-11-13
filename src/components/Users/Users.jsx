@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import UsersBundle from './Users.module.css';
 import User from './User/User';
 import PreLoader from '../common/PreLoader/Preloader';
@@ -18,7 +18,18 @@ const Users = ({
    portionSize
 }) => {
 
-   const users = data.map((user, index) =>
+   const [search, setSearch] = useState('');
+   const [filteredUsers, setFilteredUsers] = useState([])
+
+   useEffect(() => {
+      return setFilteredUsers(data.filter(user => user.name.toLowerCase().includes(search.toLowerCase())))
+   }, [search, data])
+
+
+
+
+
+   const users = filteredUsers.map((user, index) =>
       <User
          key={index}
          data={user}
@@ -35,7 +46,8 @@ const Users = ({
                ? <PreLoader />
                : null}
          </div>
-
+         {/* Input Search */}
+         <input value={search} onChange={e => setSearch(e.target.value)} placeholder={'Поиск'} />
          <div className={UsersBundle.users__pagContainer}>
             <Pagination
                totalCount={totalCount}

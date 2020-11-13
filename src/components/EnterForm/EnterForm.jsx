@@ -50,6 +50,7 @@ const EnterForm = (props) => {
 const EnterFormContainer = reduxForm({ form: 'enterForm' })(EnterForm);
 
 const Login = ({ loginCreator, isAuth }) => {
+
    const onSubmit = (formData) => {
       loginCreator(
          formData.email,

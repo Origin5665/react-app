@@ -17,7 +17,9 @@ const ProfileStatusHooks = ({ status, data, setStatus }) => {
    }
 
    const submitStatement = (e) => {
+
       e.preventDefault()
+      debugger
       setStatus(value)
       editStateOff()
    }
