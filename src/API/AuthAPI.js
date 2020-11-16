@@ -10,13 +10,20 @@ const instance = Axios.create({
 });
 
 export const AuthAPI = {
-   enterApp(email, password, rememberMe = false) {
-      return instance.post('/auth/login', { email, password, rememberMe })
+   enterApp(email, password, rememberMe = false, captcha = null) {
+      return instance.post('/auth/login', { email, password, rememberMe, captcha })
          .then(res => res)
    },
 
    outApp() {
       return instance.delete('/auth/login')
          .then(res => res)
+   },
+
+   getCaptchaVerification() {
+      return instance.get('/security/get-captcha-url')
+         .then(res => res)
+
    }
+
 };

@@ -1,15 +1,22 @@
 import React from 'react';
-import Header from "./Header";
+import Navbar from "./Header";
+import { getUserProfileCreator } from '../../redux/thunk/getUserProfileCreator';
 import { connect } from "react-redux";
 import { logoutCreator } from '../../redux/thunk/logoutCreator';
-class HeaderContainer extends React.Component {
+class NavbarContainer extends React.Component {
 
-  render = () => <Header {...this.props} />
+  render = () => <Navbar {...this.props} />
 }
 
 const mapState = (state) => ({
   isAuth: state.auth.isAuth,
-  login: state.auth.login
+
+  data: state.profile.profileUser,
+  loginId: state.auth.userId,
 })
 
-export default connect(mapState, { logoutCreator })(HeaderContainer)
+export default connect(mapState,
+  {
+    logoutCreator,
+    getUserProfileCreator
+  })(NavbarContainer)

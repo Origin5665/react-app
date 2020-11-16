@@ -1,77 +1,46 @@
-.header {
-    display: block;
-    background: #2973B8;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-}
 
-.header__logo:hover {
-    opacity: 0.95;
+.header{
+   width: 100%;
+
 }
 
 .header__wrapper {
-    margin: 0 auto;
-    padding: 5px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    width: 95%;
-}
+   height: 70px;
+   background: rgb(175, 168, 87);
+   display: grid;
+   grid-template-columns: auto 1fr 30px 30px;
+   justify-content: space-around;
+   align-items: center;
+   padding-left: 20px;
+   padding-right: 20px;
+   transition: ease .4s;
+   z-index: 2;
+} 
 
-.header__logo {
-    width: 40px;
-    height: 40px;
+.header__button_menu {
+   width: 25px;
+   padding: 0;
+   display: flex;
+   place-items: center;
+   height: 15px;
+   background: transparent;
+   border: none;
+   transition: ease .2s;
 
-}
-
-.header__logo:hover {
-    opacity: 0.85;
 }
 
 .header__title {
-
-    margin: 0;
-    color: rgb(196, 193, 193);
-    font-size: 34px;
-
+   color: rgb(25, 25, 25);
+   font-size: 32px;
+   margin: 0;
+   justify-self: center;
 }
 
-.header__author {
-    margin: 0;
-    font-size: 18px;
-}
+@media screen and (max-width:478px) {
+ 
+   .header__title{
+      font-size: 22px;
+   }
 
-.header__link {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-}
-
-.header__login:hover {
-    color: #15181a;
-}
-
-.header__link:focus {
-    outline: 2px solid rgb(130, 131, 131);
-}
-
-.header__social {
-    display: grid;
-    grid-template-columns: auto auto auto;
-    column-gap: 10px;
-}
-
-.header__login {
-    font-size: 16px;
-    color: rgb(196, 193, 193);
-    text-decoration: none;
-}
-
-.header__loginName {
-    color: rgb(196, 193, 193);
-    font-size: 18px;
+ 
 }

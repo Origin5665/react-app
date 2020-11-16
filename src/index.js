@@ -3,7 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import './index.css';
-import { HashRouter } from 'react-router-dom';
+import { BrowserRouter, HashRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
 // import { ContextStore, ProviderApp } from './ContextStore';
@@ -14,11 +14,11 @@ import { Provider } from 'react-redux';
 
 ReactDOM.render(
     // <React.StrictMode>
-    <HashRouter>
+    <BrowserRouter>
         <Provider store={store}>
-            <App state={store} />
+            <App />
         </Provider>
-    </HashRouter>,
+    </BrowserRouter>,
     // </React.StrictMode>,
     document.getElementById('root')
 

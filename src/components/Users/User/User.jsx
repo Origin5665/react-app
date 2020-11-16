@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import UserBundle from './User.module.css';
+
 import userIMG from '../../../images/user/user-photo.png';
 
 const User = ({
@@ -12,28 +12,24 @@ const User = ({
 }) => {
 
   return (
-    <li className={UserBundle.user__wrapper}>
+    <li>
       <NavLink to={/profile/ + data.id} >
-        <div className={UserBundle.user__photoContainer}>
-          <img className={UserBundle.user__image}
+        <div >
+          <img
             src={data.photos.small
               ? data.photos.large
               : userIMG} alt="Автор" />
         </div>
       </NavLink>
-      <div className={UserBundle.users__wrapperInfo}>
-        <h3 className={UserBundle.user__name}>{data.name}</h3>
-        <p className={UserBundle.user__status}>{data.status}</p>
+      <div >
+        <h3 >{data.name}</h3>
+        <p >{data.status}</p>
       </div>
       {data.followed
         ? <button disabled={followingProgress.some(id => id === data.id)}
-          onClick={() => outFollowingCreator(data.id)} className={followingProgress.some(id => id === data.id)
-            ? UserBundle.user__buttonDis
-            : UserBundle.user__button}>Удалить</button>
+          onClick={() => outFollowingCreator(data.id)} >Удалить</button>
         : <button disabled={followingProgress.some(id => id === data.id)}
-          onClick={() => followingCreator(data.id)} className={followingProgress.some(id => id === data.id)
-            ? UserBundle.user__buttonDis
-            : UserBundle.user__button}>Добавить</button>}
+          onClick={() => followingCreator(data.id)} >Добавить</button>}
     </li >
   )
 };

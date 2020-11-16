@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import UsersBundle from './Users.module.css';
+
 import User from './User/User';
 import PreLoader from '../common/PreLoader/Preloader';
 import Pagination from '../common/paginator/pagination';
@@ -39,16 +39,16 @@ const Users = ({
       />);
 
    return (
-      <div className={UsersBundle.users__wrapper}>
-         <div className={UsersBundle.users__headerWrapper}>
-            <h2 className={UsersBundle.users__title}>Участники проекта</h2>
+      <div className="container">
+         <div >
+            <h2 >Участники проекта</h2>
             {currentState
                ? <PreLoader />
                : null}
          </div>
          {/* Input Search */}
          <input value={search} onChange={e => setSearch(e.target.value)} placeholder={'Поиск'} />
-         <div className={UsersBundle.users__pagContainer}>
+         <div >
             <Pagination
                totalCount={totalCount}
                getCurrentPage={getCurrentPage}
@@ -57,7 +57,7 @@ const Users = ({
                portionSize={portionSize}
             />
          </div>
-         <ul className={UsersBundle.users__list}>
+         <ul >
             {users}
          </ul>
       </div>

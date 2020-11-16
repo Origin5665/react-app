@@ -10,7 +10,7 @@ import { Redirect } from 'react-router-dom';
 // const maxLength10 = maxLengthCreator(10)
 
 const EnterForm = (props) => {
-
+   console.log(props)
    return (
       <div>
          <form onSubmit={props.handleSubmit} className={LoginForm.formWrapper}>
@@ -32,13 +32,30 @@ const EnterForm = (props) => {
                placeholder="Пароль" />
             <div>
                <Field component={ComponentInput} typeField='input'
-                  name={'remember'} type={"checkbox"}
-                  name="rememberMe" id="remember" />
+                  type={"checkbox"}
+                  name="rememberMe"
+                  id="remember" />
                <label style={{ color: '#ffffff', fontSize: 18 }}
                   htmlFor="remember">Запомнить</label>
             </div>
+            {
+               props.captcha
+                  ? <div>
+                     <img src={props.captcha} alt="Искаженные символы на изображении" />
+                     <Field
+                        validate={[requaredField]}
+                        typeField={'input'}
+                        type="text"
+                        name={'captcha'}
+                        placeholder={'Введите символы'}
+                        component={ComponentInput}
+                        className={LoginForm.input} />
+                  </div>
+                  : null
+            }
+
             <button className={LoginForm.button} >Войти</button>
-            <span className={LoginForm.error}>{props.error ? props.error : ''}</span>
+            <p className={LoginForm.error}>{props.error ? props.error : ''}</p>
          </form>
       </div>
    )
@@ -49,13 +66,15 @@ const EnterForm = (props) => {
 
 const EnterFormContainer = reduxForm({ form: 'enterForm' })(EnterForm);
 
-const Login = ({ loginCreator, isAuth }) => {
+const Login = ({ loginCreator, isAuth, captcha }) => {
 
    const onSubmit = (formData) => {
       loginCreator(
          formData.email,
          formData.password,
-         formData.remeberMe
+         formData.remeberMe,
+         formData.captcha
+
       )
    }
 
@@ -66,7 +85,7 @@ const Login = ({ loginCreator, isAuth }) => {
    return (
       <div>
          <h2 className={LoginForm.formTitle}>Добро пожаловать!</h2>
-         <EnterFormContainer onSubmit={onSubmit} />
+         <EnterFormContainer captcha={captcha} onSubmit={onSubmit} />
       </div>
    )
 
@@ -74,7 +93,8 @@ const Login = ({ loginCreator, isAuth }) => {
 };
 const mapState = state => {
    return {
-      isAuth: state.auth.isAuth
+      isAuth: state.auth.isAuth,
+      captcha: state.auth.captchaUrl
    }
 }
 
