@@ -1,7 +1,7 @@
 import React from 'react'
 
 export const ProfileContacts = ({ data }) => {
-   console.log(data);
+
    return (
       <div>
          <h3>Контакты:</h3>

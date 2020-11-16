@@ -53,8 +53,9 @@
 }
 
 .error {
-    font-size: 24px;
-    color: rgb(124, 17, 44);
+    font-size: 18px;
+    color: rgb(149, 38, 66);
     transition: .2s ease;
+    
 
 }

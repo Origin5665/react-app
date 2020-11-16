@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import style from './ProfileStatus.module.css';
+
 
 const ProfileStatusHooks = ({ status, data, setStatus }) => {
 
@@ -26,21 +26,21 @@ const ProfileStatusHooks = ({ status, data, setStatus }) => {
 
    return (
       <div>
-         { !editMode ? <p className={style.profileStatus__text} onDoubleClick={editStateOn}>{status}</p> : null}
-         {editMode ? <form className={style.profileStatus__inputWrapper}>
+         { !editMode ? <p onDoubleClick={editStateOn}>{status}</p> : null}
+         {editMode ? <form >
             <input autoFocus={true}
 
                maxLength={30}
-               className={style.profileStatus__input}
+
                value={value}
 
                onChange={e => setValue(e.target.value)}
             >
 
             </input>
-            <button className={style.profileStatus__button + ' ' + style.profileStatus__buttonOn} onClick={submitStatement}></button>
+            <button onClick={submitStatement}></button>
             <button
-               className={style.profileStatus__button + ' ' + style.profileStatus__buttonDel} onClick={editStateOff}></button>
+               onClick={editStateOff}></button>
          </form> : null}
       </div>
    )

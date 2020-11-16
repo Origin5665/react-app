@@ -1,45 +1,52 @@
 import React from 'react';
-import NavBundle from '../Navigate/Navigate.module.css';
+import styles from '../Navigate/Navigate.module.css';
 import { NavLink } from 'react-router-dom';
-import newslogo from '../../images/newspaper.svg';
-import musiclogo from '../../images/song.svg';
-import profilelogo from '../../images/user.svg';
-import messagelogo from '../../images/email.svg';
-import settinglogo from '../../images/settings.svg';
-import { Icon } from 'react-icons-kit'
-import { home } from 'react-icons-kit/fa/home'
-import { ic_textsms } from 'react-icons-kit/md/ic_textsms'
-import { Paper } from '@material-ui/core'
-
-
-
-
+import { user } from 'react-icons-kit/icomoon/user'
+import { ic_supervisor_account } from 'react-icons-kit/md/ic_supervisor_account'
+import { ic_chat } from 'react-icons-kit/md/ic_chat'
+import { ic_wc } from 'react-icons-kit/md/ic_wc'
+import { ic_music_note } from 'react-icons-kit/md/ic_music_note'
+import Icon from 'react-icons-kit';
+import { ContextStore } from '../../ContextStore';
 
 
 const Navigate = () => {
 
-
+  const { sideBarState } = React.useContext(ContextStore)
 
   return (
-    <nav className={NavBundle.navigate}>
-      <div className="container">
-        <ul className={NavBundle.navigate__lists}>
-          <li className={NavBundle.navigate__item}><NavLink to="/profile" activeClassName={NavBundle.navigate__active}
-            className={NavBundle.navigate__link}><Icon icon={home} size={64} />Профиль</NavLink></li>
-          <li className={NavBundle.navigate__item}><NavLink to="/users" activeClassName={NavBundle.navigate__active}
-            className={NavBundle.navigate__link}>Пользователи<img src={settinglogo} width='20px' alt="Пользователь" /></NavLink></li>
-          <li className={NavBundle.navigate__item}><NavLink to="/dialogs" activeClassName={NavBundle.navigate__active}
-            className={NavBundle.navigate__link}><Icon icon={ic_textsms} size={32} />Сообщения</NavLink></li>
-          <li className={NavBundle.navigate__item}><NavLink to="/news" activeClassName={NavBundle.navigate__active}
-            className={NavBundle.navigate__link}>Новости <img src={newslogo} width='20px' alt="Новости" /></NavLink></li>
-          <li className={NavBundle.navigate__item}><NavLink to="/music" activeClassName={NavBundle.navigate__active}
-            className={NavBundle.navigate__link}>Музыка<img src={musiclogo} width='20px' alt="Музыка" /></NavLink></li>
+    <nav className={sideBarState ? styles.navigate + ' ' + styles.navigate_active : styles.navigate}>
+      <ul className={sideBarState
+        ? styles.navigate__list + ' ' + styles.navigate__list_active
+        : styles.navigate__list}>
 
-        </ul>
-      </div>
+        <NavLink className={styles.navigate__link} activeClassName={styles.navigate__active}
+          to="/profile">
+          <Icon icon={user} size={32} />
+          <li>Профиль</li>
+        </NavLink>
+        <NavLink className={styles.navigate__link} activeClassName={styles.navigate__active}
+          to="/users">
+          <Icon icon={ic_supervisor_account} size={32} />
+          <li>Пользователи</li>
+        </NavLink>
+        <NavLink className={styles.navigate__link} activeClassName={styles.navigate__active}
+          to="/dialogs">
+          <Icon icon={ic_chat} size={32} />
+          <li>Диалоги</li>
+        </NavLink>
+        <NavLink className={styles.navigate__link} activeClassName={styles.navigate__active}
+          to="/music">
+          <Icon icon={ic_music_note} size={32} />
+          <li>Музыка</li>
+        </NavLink>
+        <NavLink className={styles.navigate__link} activeClassName={styles.navigate__active}
+          to="/friends">
+          <Icon icon={ic_wc} size={32} />
+          <li>Друзья</li>
+        </NavLink>
+      </ul>
     </nav>
-
-
   );
 }
 

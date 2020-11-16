@@ -1,7 +1,6 @@
 export const ADD_POST = 'ADD_POST';
 export const ADD_INPUT_TEXT = 'ADD_INPUT_TEXT';
 export const BASE_URL = 'https://social-network.samuraijs.com/api/1.0/';
-export const USER_ID = 11622;
 export const SET_USER = 'SET_USER'
 
 // UsersReducer:
@@ -22,6 +21,8 @@ export const ADD_MESSAGE_TEXT = 'ADD_MESSAGE_TEXT';
 
 //AuthReducer:
 export const SET_USER_AUTH = 'SET_USER_AUTH';
+export const GET_CAPTCHA_URL = 'GET_CAPTCHA_URL';
+export const REMOVE_CAPTCHA_URL = 'REMOVE_CAPTCHA_URL'
 
 // ProfileReducer:
 

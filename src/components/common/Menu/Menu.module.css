@@ -1,0 +1,27 @@
+.header__button_logo {
+   width: 40px;
+   height: 40px;
+   padding: 0;
+   display: flex;
+   place-items: center;
+   background: transparent;
+   border: none;
+}
+
+
+.header__login {
+   width: 40px;
+   height: 40px;
+   border-radius: 50%;
+   z-index: 1;
+
+}
+
+
+
+@media screen and (max-width:478px) {
+    .header__login{
+      width:30px;
+      height: 30px;
+   }
+}

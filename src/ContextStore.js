@@ -1,10 +1,20 @@
 import React from 'react';
 
-export const ContextStore = React.createContext(null)
-export const ProviderApp = (props) => {
+
+
+
+export const ContextStore = React.createContext()
+
+export const ProviderApp = ({ children }) => {
+    const [sideBarState, setSideBarState] = React.useState(false);
+
+
+
+
+
     return (
-        <ContextStore.Provider value={props.store}>
-            {props.children}
+        <ContextStore.Provider value={{ setSideBarState, sideBarState }} >
+            {children}
         </ContextStore.Provider>
 
     )

@@ -1,12 +1,31 @@
 body {
   margin: 0;
-  font-family: 'Roboto Condensed', sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background: #030303b6
+  font-family: 'Montserrat', sans-serif;
+
+  background: #dbdbdb
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.container{
+  height: calc(100vh - 80px);
+  overflow: auto;
+  width: calc(100vw - 320px);
+
+  margin-left: 320px;
+  margin-top: 10px;
+
+}
+
+
+
+
+@media screen and (max-width:768px){
+  .container{
+    width: calc(100vw - 65px);
+    margin-left: 65px;
+  }
 }

@@ -1,6 +1,6 @@
 
 import { ADD_POST, SET_NEW_PHOTO, SET_USER, GET_CURRENT_STATUS } from '../../constant';
-import { UPDATE_PROFILE_DATA } from '../../constant';
+
 
 const initialState = {
 
@@ -44,11 +44,7 @@ const profileReducer = (state = initialState, action) => {
 
          }
 
-      // case UPDATE_PROFILE_DATA:
-      //    return {
-      //       ...state,
-      //       profileUser: { ...state.profileUser, ...action.body }
-      //    }
+
 
 
       default:
