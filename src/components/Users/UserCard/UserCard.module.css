@@ -1,0 +1,22 @@
+.usercard__image{
+   height: 60px;
+}
+
+.usercard{
+
+   width: 300px;
+   background-color: rgba(199, 199, 199, 0.788);
+   border-radius: 3px;
+}
+
+.usercard__button{
+   box-sizing: border-box;
+
+   font-size: 18px;
+   font-weight: 600;
+   color: rgb(56, 56, 56);
+   background: transparent;
+   border: 3px solid rgb(31, 31, 31);
+   height: 40px;
+   border-radius: 5px;
+}

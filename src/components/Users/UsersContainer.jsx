@@ -1,5 +1,5 @@
 import React from 'react';
-import Users from './Users';
+import Users from './Users/Users';
 import { connect } from 'react-redux';
 import { outFollowingCreator, followingCreator } from '../../redux/thunk/followCreators';
 import { getUsersThunkCreator } from '../../redux/thunk/getUsersCreator';

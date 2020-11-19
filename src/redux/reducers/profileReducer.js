@@ -5,7 +5,7 @@ import { ADD_POST, SET_NEW_PHOTO, SET_USER, GET_CURRENT_STATUS } from '../../con
 const initialState = {
 
    post: [
-      // { id: 1, message: 'Вышел новый альбом Хаски!', count: '10' },
+      { id: 1, message: 'Вышел новый альбом Хаски!', count: '10', date: '07.10.20' },
    ],
    profileUser: null,
    status: '',
@@ -18,7 +18,7 @@ const profileReducer = (state = initialState, action) => {
       case ADD_POST:
          return {
             ...state,
-            post: [{ id: 5, message: action.value, count: 2 }, ...state.post]
+            post: [{ id: 5, message: action.value, date: new Date().toLocaleDateString() }, ...state.post]
          };
 
 

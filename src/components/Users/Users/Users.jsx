@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
-
-import User from './User/User';
-import PreLoader from '../common/PreLoader/Preloader';
-import Pagination from '../common/paginator/pagination';
-
+import UserCard from '../UserCard/UserCard';
+import PreLoader from '../../common/PreLoader/Preloader';
+import Pagination from '../../common/paginator/pagination';
+import styles from './Users.module.css'
 
 const Users = ({
    followingCreator,
@@ -29,8 +28,8 @@ const Users = ({
 
 
 
-   const users = filteredUsers.map((user, index) =>
-      <User
+   const usersList = filteredUsers.map((user, index) =>
+      <UserCard
          key={index}
          data={user}
          followingCreator={followingCreator}
@@ -48,7 +47,7 @@ const Users = ({
          </div>
          {/* Input Search */}
          <input value={search} onChange={e => setSearch(e.target.value)} placeholder={'Поиск'} />
-         <div >
+         <div>
             <Pagination
                totalCount={totalCount}
                getCurrentPage={getCurrentPage}
@@ -57,8 +56,8 @@ const Users = ({
                portionSize={portionSize}
             />
          </div>
-         <ul >
-            {users}
+         <ul className={styles.users__list} >
+            {usersList}
          </ul>
       </div>
    )

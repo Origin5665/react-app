@@ -1,5 +1,5 @@
 import React from 'react'
-import style from './Menu.module.css'
+import styles from './Menu.module.css'
 // MaterialUI
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -22,7 +22,7 @@ const MenuBar = ({ data }) => {
             <img
                src={data.photos.small}
                alt={'фотография пользователя страницы'}
-               className={style.header__login}></img>
+               className={styles.header__login}></img>
          </Button>
          <Menu
             id="user-menu"

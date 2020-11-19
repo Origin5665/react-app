@@ -1,20 +1,22 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import FormTextaria from './FormTextaria.module.css';
 
 
-const FormContructor = ({ meta: { error, touched }, children }) => {
+const FormContructor = (props) => {
+
    return (
-      <div>
-         { children}
+      <Fragment>
+         {props.children}
          <span className={FormTextaria.form__error}>
-            {error && touched ? error : ''}
+            {props.meta.submitFailed ? props.meta.error : ''}
          </span>
-      </div>
+      </Fragment>
    )
 }
 
 
 export const ComponentInput = (props) => {
+
    const { input, meta, typeField, ...restProps } = props;
    return (
       <FormContructor {...props} >{typeField === 'input'

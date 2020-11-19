@@ -1,5 +1,8 @@
 import { setUserAuth } from '../actions/actionAuth'
 import { getAuthUserProfileCreator } from '../thunk/getAuthUserProfileCreator'
+import { getUserProfileCreator } from '../thunk/getUserProfileCreator'
+
+
 const SET_INIT = 'SET_INIT';
 
 const setInitializedAC = () => ({ type: SET_INIT })
@@ -25,6 +28,7 @@ const appReducer = (state = initialState, action) => {
 export const appInitCreator = () => (dispatch) => {
 
    const promise = dispatch(getAuthUserProfileCreator())
+
    promise.then(() => {
       dispatch(setInitializedAC())
    })

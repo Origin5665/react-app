@@ -8,12 +8,13 @@ import { Button } from '@material-ui/core';
 
 
 const Pagination = ({ totalCount, pageSize, currentPage, getCurrentPage, portionSize }) => {
-   console.log(portionSize);
+   const a = 'home world';
+
    const numberPages = Math.ceil(totalCount / pageSize);
    const arrayPages = [];
    for (let page = 1; page <= numberPages; page++) {
       arrayPages.push(page)
-   };
+   }
 
    const portionCount = Math.ceil(numberPages / portionSize);
    const [portionNumber, setPortionNumber] = useState(Math.ceil(currentPage / portionSize))

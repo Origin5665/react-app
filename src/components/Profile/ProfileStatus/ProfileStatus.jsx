@@ -1,77 +1,34 @@
-import React from 'react';
-import status from './ProfileStatus.module.css';
+import React, { useState, useEffect, Fragment } from 'react';
+import InputStatus from '../../common/InputStatus/InputStatus';
+import styles from './../Profile.module.css';
 
-class ProfileStatus extends React.Component {
-   constructor(props) {
-      super()
-      this.props = props;
+const ProfileStatus = ({ status, data, setNewUserStatus }) => {
 
-      this.state = {
-         status: this.props.status,
-         editMode: false,
-
-      };
-   };
-
-   componentDidUpdate = (prevProps) => {
-      if (prevProps.status !== this.props.status) {
-         this.setState({
-            status: this.props.status
-         })
-      }
-      console.log('update')
-
-   };
-
-   editStateOn = () => {
-      this.setState({
-         editMode: true
-      })
-   };
-
-   editStateOff = () => {
-      this.setState({
-         editMode: false
-      })
-   };
-
-   submitStatement = (e) => {
-      e.preventDefault()
-      this.props.setStatus(this.state.status)
-      this.editStateOff()
+   const [edit, setEdit] = useState(false);
 
 
-   };
+   const statusEditToggle = () => setEdit(!edit)
 
-   stateValue = (event) => {
-      this.setState({ status: event.target.value })
 
-   };
 
-   render = () => {
-      return (
-         <div>
-            {!this.state.editMode &&
-               <p onDoubleClick={this.editStateOn}
-                  className={status.profileStatus__text}>{this.state.status}
-               </p>}
-            { this.state.editMode &&
-               <form className={status.profileStatus__inputWrapper}>
-                  <input autoFocus={true}
-                     maxLength={30}
-                     className={status.profileStatus__input}
-                     value={this.state.status}
-                     onChange={e => this.stateValue(e)}>
-                  </input>
-                  <button onClick={this.submitStatement}
-                     className={status.profileStatus__button + ' ' + status.profileStatus__buttonOn}></button>
-                  <button onClick={this.editStateOff}
-                     className={status.profileStatus__button + ' ' + status.profileStatus__buttonDel}></button>
-               </form>
-            }
-         </div>
-      )
-   }
+
+
+
+
+   return (
+      <Fragment>
+         { !edit
+            ? <p
+               className={styles.profileStatus__text}
+               onDoubleClick={statusEditToggle}>
+               <b>Cтатус:</b> {status}</p>
+            : <InputStatus
+               statusEditToggle={statusEditToggle}
+               status={status}
+               setNewUserStatus={setNewUserStatus} />}
+      </Fragment>
+   )
+
 };
 
 export default ProfileStatus;

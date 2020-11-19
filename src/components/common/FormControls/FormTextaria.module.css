@@ -22,9 +22,10 @@
 }
 
 .form__error {
+   margin: 0;
    color: rgb(202, 39, 39);
-   font-size: 24px;
-   transition: ease 3s;
+   font-size: 10px;
+
 }
 
 /* .form__input:focus {

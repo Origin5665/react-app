@@ -1,20 +1,17 @@
 import ProfileBlock from './ProfileBlock'
-import { actionCreatorPost, actionCreatorMessage } from '../../../redux/actions/actionProfile';
+import { actionCreatorPost } from '../../../redux/actions/actionProfile';
 import { connect } from 'react-redux';
 
-const mapDispatchToProps = (dispatch) => {
 
-  return {
-    addPost: text => { dispatch(actionCreatorPost(text)) }
-  }
-}
 
 const mapStateToProps = (state) => {
   return {
-    data: state.profile.post
+    post: state.profile.post,
+    user: state.profile.profileUser
+
   }
 }
 
-const FormContainer = connect(mapStateToProps, mapDispatchToProps)(ProfileBlock)
+const FormContainer = connect(mapStateToProps, { actionCreatorPost })(ProfileBlock)
 
 export default FormContainer; 

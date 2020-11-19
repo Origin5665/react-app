@@ -1,9 +1,9 @@
 export const requaredField = (value) => {
 
-   if (value) {
+   if (!(/^\s*$/).test(value) && value) {
       return undefined
    } else {
-      return 'Обязательное поле!'
+      return 'Пустое сообщение...'
    }
 }
 

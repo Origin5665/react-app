@@ -19,7 +19,7 @@ const UsersContainer = lazy(() => import('./components/Users/UsersContainer'))
 class App extends React.Component {
 
   componentDidMount = () => {
-    this.props.appInitCreator()
+    this.props.appInitCreator(this.props.id)
   };
 
   render = () => {
@@ -37,10 +37,10 @@ class App extends React.Component {
             <Route path='/' exact><Redirect to='/profile' /></Route>
             <Route path="/profile/:userId?" component={ProfileContainer} />
             <Route path="/users" render={withSuspense(UsersContainer)} />
-            {/* <Route path="/dialogs" render={withSuspense(DialogsContainer)} />
-          <Route path="/settings" render={() => <Settings />} />
-          <Route path="/login" component={EnterForm} />
-          <Route render={() => <div>404 not found</div>} /> */}
+            <Route path="/dialogs" render={withSuspense(DialogsContainer)} />
+            <Route path="/settings" render={() => <Settings />} />
+            <Route path="/login" component={EnterForm} />
+            <Route render={() => <div>404 not found</div>} />
           </Switch >
 
 
@@ -53,7 +53,8 @@ class App extends React.Component {
 
 const mapState = (state) => {
   return {
-    initialized: state.app.initialized
+    initialized: state.app.initialized,
+    id: state.auth.userId
   }
 }
 

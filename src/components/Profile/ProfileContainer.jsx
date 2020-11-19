@@ -41,7 +41,11 @@ class ProfileContainer extends React.Component {
 
   render = () => {
 
-    return <Profile owner={this.props.match.params.userId} uploadImageProfile={this.props.uploadImageProfile} {...this.props} data={this.props.data} />
+    return <Profile
+      owner={this.props.match.params.userId}
+      uploadImageProfile={this.props.uploadImageProfile}
+      {...this.props}
+      data={this.props.data} />
   };
 };
 

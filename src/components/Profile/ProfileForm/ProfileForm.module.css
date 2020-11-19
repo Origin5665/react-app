@@ -1,0 +1,34 @@
+.profileForm__textAria{
+   width: 100%;
+   height: 55px;
+   font-size: 18px;
+   resize: vertical;
+   box-sizing: border-box;
+   border:none;
+   border-top-left-radius:  3px;
+   border-top-right-radius:  3px;
+}
+
+
+.profileForm{
+   border-radius: 5px;
+
+   display: grid;
+   grid-template-rows: 1fr 10px auto;
+   background-color: rgba(189, 187, 187, 0.829);
+   width: 100%;
+   display: grid;
+   box-sizing: border-box;
+   gap: 3px;
+
+}
+
+.profileForm__button{
+   color: rgb(228, 228, 228);
+   height: 30px;
+   justify-self: end;
+   border-radius: 3px;
+   border:none;
+   font-size: 16px;
+   background-color: rgb(52, 134, 59);
+}

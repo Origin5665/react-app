@@ -1,63 +1,45 @@
-import React from 'react';
-import { Field, reduxForm } from 'redux-form';
-import { maxLengthCreator, maxLengthRequared30, requaredField } from '../../../utils/validation';
-import { ComponentInput } from '../../common/FormControls/FormControls';
+import React, { Fragment } from 'react';
+import { reduxForm, reset } from 'redux-form';
 
+import ProfileForm from './../ProfileForm/ProfileForm';
 import ProfilePost from './ProfilePost/ProfilePost';
 
-const maxLength10 = maxLengthCreator(10)
-
-
-const ProfileForm = ({ handleSubmit }) => {
-
-
-  return (
-    <form onSubmit={handleSubmit} >
-      <Field component={ComponentInput} name={'message'} typeField="textarea" validate={[requaredField, maxLength10]} placeholder="ваше сообщение..."
-      ></Field>
-
-      <button
-        type="submit">Отправить</button>
-
-    </form>
-  )
-}
-
-const ProfileFormContainer = reduxForm({ form: 'profileForm' })(ProfileForm)
 
 
 
 
+const ProfileBlock = (props) => {
+  console.log(props)
 
-const ProfileBlock = ({ data, addPost }) => {
   const onSubmit = (data) => {
 
-    addPost(data.message)
+    props.actionCreatorPost(data.message)
   }
 
-  const message = data.map((item, i) =>
-    < ProfilePost key={i} message={item.message} like={item.count} />)
+  const postList = props.post.map((item, i) =>
+
+    < ProfilePost key={i} image={props.user ? props.user.photos.small : null} date={item.date} message={item.message} like={item.count} />)
 
 
   return (
-    <div >
-      <div id="message-form">
-        <div >
-          <div >
-            <h2>My post</h2>
-            <ProfileFormContainer onSubmit={onSubmit} />
-          </div>
-        </div>
-      </div>
+    <Fragment>
+      <ProfileFormContainer onSubmit={onSubmit} />
       <div>
-        {message}
+        {postList}
       </div>
-    </div>
+
+    </Fragment>
 
 
   );
 };
 
+
+const afterSubmit = (result, dispatch) =>
+  dispatch(reset('profileForm'));
+
+
+const ProfileFormContainer = reduxForm({ form: 'profileForm', onSubmitSuccess: afterSubmit })(ProfileForm)
 
 
 

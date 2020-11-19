@@ -13,7 +13,7 @@ const Navbar = (props) => {
   const { setSideBarState, sideBarState } = React.useContext(ContextStore)
   const [load, setLoad] = React.useState(false) // загрузка изображения
 
-  const isTabletOrMobile = useMediaQuery({ query: '(max-width: 478px)' }) // Медиа выражение
+  const isTabletOrMobile = useMediaQuery({ query: '(max-width: 574px)' }) // Медиа выражение
 
   React.useEffect(() => {
     const fetchData = async () => {
@@ -28,7 +28,8 @@ const Navbar = (props) => {
   return (
     <header className={style.header}>
       <div className={style.header__wrapper}>
-        <button onClick={() => setSideBarState(!sideBarState)} className={style.header__button_menu}>
+        <button onClick={() => setSideBarState(!sideBarState)}
+          className={style.header__button_menu}>
           <Icon icon={navicon} size={
             isTabletOrMobile
               ? 16
@@ -38,11 +39,11 @@ const Navbar = (props) => {
         </button>
         <h2 className={style.header__title}>React Social Club</h2>
 
-        {
+        {/* {
           load ? <MenuBar data={props.data} />
 
             : <PreLoader />
-        }
+        } */}
 
 
 
