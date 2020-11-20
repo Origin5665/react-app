@@ -1,22 +1,33 @@
-.usercard__image{
-   height: 60px;
-}
-
 .usercard{
-
-   width: 300px;
+   width: 400px;
    background-color: rgba(199, 199, 199, 0.788);
    border-radius: 3px;
 }
 
-.usercard__button{
-   box-sizing: border-box;
+.usercard__image{
+   height: 50px;
+   margin: 5px;
+}
 
-   font-size: 18px;
-   font-weight: 600;
-   color: rgb(56, 56, 56);
-   background: transparent;
-   border: 3px solid rgb(31, 31, 31);
-   height: 40px;
-   border-radius: 5px;
+.usercard__header{
+   padding: 5px;
+  display: flex;
+  justify-content: space-between;
+   align-items: center;
+   background-color: rgba(63, 63, 63, 0.877);
+}
+.usercard__name{
+   font-size: 20px;
+   color: #d8d8d8;
+}
+
+.usercard__link{
+   text-decoration: none;
+}
+
+.usercard__text{
+   margin: 0;
+   margin-top: 10px;
+   margin-bottom: 10px;
+   font-size: 17px;
 }

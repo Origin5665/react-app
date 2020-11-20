@@ -40,22 +40,22 @@ const Users = ({
    return (
       <div className="container">
          <div >
-            <h2 >Участники проекта</h2>
+            <h2 className={styles.users__title}>Участники проекта</h2>
             {currentState
                ? <PreLoader />
                : null}
          </div>
-         {/* Input Search */}
-         <input value={search} onChange={e => setSearch(e.target.value)} placeholder={'Поиск'} />
-         <div>
-            <Pagination
-               totalCount={totalCount}
-               getCurrentPage={getCurrentPage}
-               pageSize={pageSize}
-               currentPage={currentPage}
-               portionSize={portionSize}
-            />
-         </div>
+         <input className={styles.users__searchInput}
+            value={search}
+            onChange={e => setSearch(e.target.value)}
+            placeholder={'Поиск участников'} />
+         <Pagination
+            totalCount={totalCount}
+            getCurrentPage={getCurrentPage}
+            pageSize={pageSize}
+            currentPage={currentPage}
+            portionSize={portionSize}
+         />
          <ul className={styles.users__list} >
             {usersList}
          </ul>
