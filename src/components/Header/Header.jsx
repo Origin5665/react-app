@@ -3,7 +3,7 @@ import style from '../Header/Header.module.css';
 import { navicon } from 'react-icons-kit/fa/navicon'
 import Icon from 'react-icons-kit';
 import { useMediaQuery } from 'react-responsive'
-import PreLoader from '../common/PreLoader/Preloader';
+
 
 import MenuBar from './../common/Menu/Menu'
 import { ContextStore } from '../../ContextStore';

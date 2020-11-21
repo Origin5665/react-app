@@ -1,32 +1,23 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import UserCard from '../UserCard/UserCard';
 import PreLoader from '../../common/PreLoader/Preloader';
-import Pagination from '../../common/paginator/pagination';
+import Pagination from '../../common/paginator/pagination.jsx';
+import InputSearch from '../../common/InputSearch/InputSearch';
 import styles from './Users.module.css'
+
 
 const Users = ({
    followingCreator,
    outFollowingCreator,
    totalCount,
    pageSize,
-   currentPage,
    getCurrentPage,
    data,
    currentState,
    followingProgress,
-   portionSize
 }) => {
 
-   const [search, setSearch] = useState('');
-   const [filteredUsers, setFilteredUsers] = useState([])
-
-   useEffect(() => {
-      return setFilteredUsers(data.filter(user => user.name.toLowerCase().includes(search.toLowerCase())))
-   }, [search, data])
-
-
-
-
+   const [filteredUsers, setFilteredUsers] = React.useState([]);
 
    const usersList = filteredUsers.map((user, index) =>
       <UserCard
@@ -39,28 +30,23 @@ const Users = ({
 
    return (
       <div className="container">
-         <div >
+         <div className={styles.users__header}>
             <h2 className={styles.users__title}>Участники проекта</h2>
-            {currentState
-               ? <PreLoader />
-               : null}
+            <InputSearch data={data} setFilteredUsers={setFilteredUsers} />
+            <Pagination
+               totalCount={totalCount}
+               getCurrentPage={getCurrentPage}
+               pageSize={pageSize}
+            />
          </div>
-         <input className={styles.users__searchInput}
-            value={search}
-            onChange={e => setSearch(e.target.value)}
-            placeholder={'Поиск участников'} />
-         <Pagination
-            totalCount={totalCount}
-            getCurrentPage={getCurrentPage}
-            pageSize={pageSize}
-            currentPage={currentPage}
-            portionSize={portionSize}
-         />
+         {currentState
+            ? <PreLoader />
+            : null}
          <ul className={styles.users__list} >
             {usersList}
          </ul>
       </div>
-   )
-}
+   );
+};
 
 export default Users;

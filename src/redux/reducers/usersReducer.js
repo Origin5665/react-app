@@ -13,7 +13,7 @@ import {
 const initalState = {
    users: [],
    totalCount: 0,
-   pageSize: 100,
+   pageSize: 50,
    currentPage: 1,
    portionSize: 5,
    currentState: false,

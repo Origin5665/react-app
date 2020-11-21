@@ -6,7 +6,7 @@
 
 .header__wrapper {
    height: 70px;
-   background: rgb(175, 168, 87);
+   background: rgb(36, 119, 175);
    display: grid;
    grid-template-columns: 1fr auto;
    justify-content: space-between;

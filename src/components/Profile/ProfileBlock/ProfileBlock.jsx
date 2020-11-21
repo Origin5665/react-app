@@ -9,7 +9,7 @@ import ProfilePost from './ProfilePost/ProfilePost';
 
 
 const ProfileBlock = (props) => {
-  console.log(props)
+
 
   const onSubmit = (data) => {
 
@@ -18,7 +18,12 @@ const ProfileBlock = (props) => {
 
   const postList = props.post.map((item, i) =>
 
-    < ProfilePost key={i} image={props.user ? props.user.photos.small : null} date={item.date} message={item.message} like={item.count} />)
+    < ProfilePost
+      key={i}
+      image={props.user ? props.user.photos.small : null}
+      date={item.date}
+      message={item.message}
+      like={item.count} />)
 
 
   return (
@@ -27,13 +32,11 @@ const ProfileBlock = (props) => {
       <div>
         {postList}
       </div>
-
     </Fragment>
 
 
   );
 };
-
 
 const afterSubmit = (result, dispatch) =>
   dispatch(reset('profileForm'));
