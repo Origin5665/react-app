@@ -1,55 +1,27 @@
-.message__image {
-    width: 100%;
-    border-radius: 50%;
-    align-self: center;
-    justify-self: start;
+.post {
+   width: 100%;
+   border-radius: 3px;
+   margin-bottom: 20px;
+   background-color: rgba(189, 189, 189, 0.644);
 }
 
-.message {
-    box-sizing: border-box;
-    max-width: 900px;
-    min-height: 100px;
-    display: grid;
-    grid-template-columns: 90px 5fr auto;
-    column-gap: 15px;
-    color: rgb(182, 182, 182);
-    margin-bottom: 10px;
-    border: 2px solid gray;
+.post__header {
+   padding: 5px;
+   background-color: rgba(53, 53, 53, 0.836);
+   display: flex;
+   justify-content: space-between;
+   border-top-left-radius: 3px;
+   border-top-right-radius: 3px;
+}
+
+.post__authorImage {
+   height: 60px;
+   border-radius: 5px;
 }
 
 
-.message__text {
-    margin: 0;
-    font-size: 18px;
-    color: rgb(182, 182, 182);
-}
 
-.message__buttonLike {
-    padding-top: 2px;
-    outline: none;
-    width: 15px;
-    height: 15px;
-    background: transparent;
-    border: none;
-    fill: red;
-    background-image: url(../../../../images/heart.svg);
-    background-repeat: no-repeat;
-    display: flex;
-    align-self: baseline;
-
-
-}
-
-.message__wrapperActiveBlock {
-
-    display: grid;
-    grid-template-columns: auto auto;
-    column-gap: 10px;
-}
-
-.message__state {
-    font-size: 18px;
-    color: #fff;
-    display: flex;
-    align-self: baseline;
+.post__body {
+   padding: 10px;
+   font-size: 18px;
 }

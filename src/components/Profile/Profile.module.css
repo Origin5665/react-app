@@ -1,17 +1,13 @@
-.profile__wrapper{
-  height: calc(100vh - 80px);
-  overflow: auto;
-  width: calc(100vw - 330px);
-
-  margin-left: 370px;
-  margin-top: 10px;
-
+.profile__wrapper {
+  display: grid;
+  grid-template-rows: 2fr auto 1fr;
+  gap: 20px;
+  position: relative;
 }
 
 
-@media screen and (max-width:768px){
-  .profile__wrapper{
-    width: calc(100vw - 65px);
-    margin-left: 65px;
-  }
-}
+/* Profile Status */
+
+
+
+/* Media */

@@ -1,5 +1,5 @@
 import React, { Suspense } from 'react';
-import PreLoader from '../components/common/PreLoader/Preloader';
+import Preloader from '../components/common/Preloader/Preloader';
 // import { Redirect } from 'react-router-dom';
 // import { connect } from 'react-redux';
 
@@ -7,6 +7,6 @@ import PreLoader from '../components/common/PreLoader/Preloader';
 
 export const withSuspense = (Component) => {
 
-   return (props) => <Suspense fallback={<PreLoader />}><Component {...props} /> </Suspense>
+   return (props) => <Suspense fallback={<Preloader />}><Component {...props} /> </Suspense>
 
 };

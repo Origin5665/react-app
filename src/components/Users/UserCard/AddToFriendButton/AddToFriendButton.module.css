@@ -1,0 +1,18 @@
+.usercard__button{
+   box-sizing: border-box;
+   font-size: 18px;
+   font-weight: 600;
+   color: rgb(56, 56, 56);
+   background: transparent;
+   border: 3px solid rgb(31, 31, 31);
+   height: 40px;
+   border-radius: 5px;
+   transition: .2s ease-in-out;
+}  
+
+.usercard__button:focus{
+   background-color: whitesmoke  ;
+}
+.usercard__button:hover{
+   background-color: whitesmoke  ;
+}

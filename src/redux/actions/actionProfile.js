@@ -1,14 +1,14 @@
-import { ADD_POST, SET_NEW_PHOTO, SET_USER, GET_CURRENT_STATUS, UPDATE_PROFILE_DATA } from '../../constant';
+import { ADD_POST, SET_NEW_PHOTO, SET_USER, GET_CURRENT_STATUS } from '../../constant';
 
-// profile message =>
+// Отправка Поста =>
 export const actionCreatorPost = (text) => ({ type: ADD_POST, value: text })
 
-// profile user =>
+// Получение профиля =>
 export const setUserProfile = (profile) => ({ type: SET_USER, profile: profile })
 
-// profile status =>
+// Новый статус =>
 export const getCurrentStatus = (statusText) => ({ type: GET_CURRENT_STATUS, status: statusText })
 
-// profile update photo user
+// Обновление фотографии
 export const newPhotoSucces = (image) => ({ type: SET_NEW_PHOTO, image })
 

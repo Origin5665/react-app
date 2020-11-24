@@ -1,0 +1,8 @@
+.users__searchInput{
+   border:2px solid rgb(92, 92, 92);
+   margin: 0 auto;
+   height: 40px;
+   width: 90%;
+   font-size: 22px;
+   padding-left: 10px;
+}

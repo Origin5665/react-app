@@ -1,0 +1,26 @@
+.settings__form {
+   display: flex;
+   flex-direction: column;
+   gap: 5px;
+
+}
+
+.form__textAria {
+   resize: none;
+   font-size: 20px;
+
+
+}
+
+.form__label {
+   margin-bottom: 5px;
+}
+
+.form__wrapperContacts {
+   display: grid;
+}
+
+.form__input {
+   height: 30px;
+   font-size: 20px;
+}

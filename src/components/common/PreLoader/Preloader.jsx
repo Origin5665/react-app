@@ -1,12 +1,13 @@
 import React from 'react';
-import loaderIMG from '../../../images/spinner.svg';
-import Styles from '../../common/PreLoader/PreLoader.module.css';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import classnames from 'classnames'
+import styles from './Preloader.module.css'
 
-const PreLoader = () => {
-
-    return <div className={Styles.preloader__wrapper}>
-        <img className={Styles.preloader__image} src={loaderIMG} alt="Изображение статуса загруки" />
-    </div>
-
-};
-export default PreLoader;
+const Preloader = () => {
+    return (
+        <div className={classnames("container", styles.preloader__wrapper)} >
+            <CircularProgress color={"primary"} />
+        </div>
+    );
+}
+export default Preloader;

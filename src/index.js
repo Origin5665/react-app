@@ -1,28 +1,21 @@
 import store from './redux/redux';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
 import './index.css';
 import { BrowserRouter, HashRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
-
-// import { ContextStore, ProviderApp } from './ContextStore';
-
-
-
-
+import AppContainer from './components/containers/AppContainer';
 
 ReactDOM.render(
-    // <React.StrictMode>
-    <BrowserRouter>
-        <Provider store={store}>
-            <App />
-        </Provider>
-    </BrowserRouter>,
-    // </React.StrictMode>,
+    <React.StrictMode>
+        <HashRouter>
+            <Provider store={store}>
+                <AppContainer />
+            </Provider>
+        </HashRouter>,
+     </React.StrictMode>,
     document.getElementById('root')
-
-)
+);
 
 
 

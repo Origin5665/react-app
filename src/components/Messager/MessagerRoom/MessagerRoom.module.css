@@ -1,0 +1,16 @@
+.messagerRoom {
+   font-size: 18px;
+   margin-left: 10px;
+   margin-top: 5px;
+   padding-bottom: 5px;
+   border-bottom: 1px solid rgba(43, 43, 43, 0.842);
+}
+
+.messagerRoom__link {
+   text-decoration: none;
+   color: rgb(0, 0, 0)
+}
+
+.messagerRoom__link_active {
+   color: rgb(196, 196, 196)
+}

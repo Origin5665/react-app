@@ -1,12 +1,3 @@
-.header__button_logo {
-   width: 40px;
-   height: 40px;
-   padding: 0;
-   display: flex;
-   place-items: center;
-   background: transparent;
-   border: none;
-}
 
 
 .header__login {
@@ -19,7 +10,7 @@
 
 
 
-@media screen and (max-width:478px) {
+@media screen and (max-width:574px) {
     .header__login{
       width:30px;
       height: 30px;

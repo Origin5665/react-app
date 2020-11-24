@@ -23,7 +23,5 @@ export const AuthAPI = {
    getCaptchaVerification() {
       return instance.get('/security/get-captcha-url')
          .then(res => res)
-
    }
-
 };

@@ -20,27 +20,27 @@ const Navigate = () => {
         ? styles.navigate__list + ' ' + styles.navigate__list_active
         : styles.navigate__list}>
 
-        <NavLink className={styles.navigate__link} activeClassName={styles.navigate__active}
+        <NavLink className={styles.navigate__link} activeClassName={styles.navigate__link_active}
           to="/profile">
           <Icon icon={user} size={32} />
           <li>Профиль</li>
         </NavLink>
-        <NavLink className={styles.navigate__link} activeClassName={styles.navigate__active}
+        <NavLink className={styles.navigate__link} activeClassName={styles.navigate__link_active}
           to="/users">
           <Icon icon={ic_supervisor_account} size={32} />
           <li>Пользователи</li>
         </NavLink>
-        <NavLink className={styles.navigate__link} activeClassName={styles.navigate__active}
+        <NavLink className={styles.navigate__link} activeClassName={styles.navigate__link_active}
           to="/dialogs">
           <Icon icon={ic_chat} size={32} />
           <li>Диалоги</li>
         </NavLink>
-        <NavLink className={styles.navigate__link} activeClassName={styles.navigate__active}
+        <NavLink className={styles.navigate__link} activeClassName={styles.navigate__link_active}
           to="/music">
           <Icon icon={ic_music_note} size={32} />
           <li>Музыка</li>
         </NavLink>
-        <NavLink className={styles.navigate__link} activeClassName={styles.navigate__active}
+        <NavLink className={styles.navigate__link} activeClassName={styles.navigate__link_active}
           to="/friends">
           <Icon icon={ic_wc} size={32} />
           <li>Друзья</li>

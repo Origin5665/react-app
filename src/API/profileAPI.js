@@ -37,7 +37,5 @@ export const getProfileAPI = {
       return instance.put('/profile', body)
          .then(res => res.data)
    }
-
-
-}
+};
 

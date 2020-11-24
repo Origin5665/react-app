@@ -17,7 +17,6 @@ const authReducer = (state = initialState, action) => {
          return {
             ...state,
             ...action.payload,
-
          };
 
       case GET_CAPTCHA_URL:

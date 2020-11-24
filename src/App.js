@@ -1,63 +1,46 @@
-import React, { Fragment, lazy } from 'react';
-import { Redirect, Switch, Route, withRouter } from 'react-router-dom';
-import './App.css';
-import { appInitCreator } from './redux/reducers/appReducer';
-import Navigate from './components/Navigate/Navigate';
-import ProfileContainer from './components/Profile/ProfileContainer';
-import { ProviderApp } from './ContextStore'
-import Settings from './components/Settings/Settings'
-import EnterForm from './components/EnterForm/EnterForm';
-import NavbarContainer from './components/Header/HeaderContainer';
-import { connect } from 'react-redux';
-import { compose } from 'redux';
-import PreLoader from './components/common/PreLoader/Preloader';
+import React from 'react';
+import { Redirect, Switch, Route } from 'react-router-dom';
+
 import { withSuspense } from './HOC/withSuspense';
+import { ProviderApp } from './ContextStore';
 
-const DialogsContainer = lazy(() => import('./components/Dialogs/DialogsContainer'))
-const UsersContainer = lazy(() => import('./components/Users/UsersContainer'))
+// Style:
+import './App.css';
 
-class App extends React.Component {
+// Components: 
+import Navigate from './components/Navigate/Navigate';
+import Settings from './components/Settings/Settings';
+import EnterForm from './components/EnterForm/EnterForm';
+import HeaderContainer from './components/containers/HeaderContainer';
+import ProfileContainer from './components/Profile/ProfileContainer';
 
-  componentDidMount = () => {
-    this.props.appInitCreator()
-  };
+import Music from './components/Music/Music';
 
-  render = () => {
-    if (!this.props.initialized) {
-      return <PreLoader />
-    }
+// Lazy Components:
+const MessagerContainer = React.lazy(() => import('./components/containers/MessagerContainer'));
+const UsersContainer = React.lazy(() => import('./components/containers/UsersContainer'));
 
-    return (
+
+const App = () => {
+
+   return (
       <ProviderApp>
-        <Fragment>
-          <NavbarContainer />
-
-          <Navigate />
-          <Switch>
-            <Route path='/' exact><Redirect to='/profile' /></Route>
-            <Route path="/profile/:userId?" component={ProfileContainer} />
-            <Route path="/users" render={withSuspense(UsersContainer)} />
-            {/* <Route path="/dialogs" render={withSuspense(DialogsContainer)} />
-          <Route path="/settings" render={() => <Settings />} />
-          <Route path="/login" component={EnterForm} />
-          <Route render={() => <div>404 not found</div>} /> */}
-          </Switch >
-
-
-
-        </Fragment>
+         <React.Fragment>
+            <HeaderContainer />
+            <Navigate />
+            <Switch>
+               <Route path='/' exact><Redirect to='/profile' /></Route>
+               <Route path="/profile/:userId?" component={ProfileContainer} />
+               <Route path="/users" component={withSuspense(UsersContainer)} />
+               <Route path="/dialogs" component={withSuspense(MessagerContainer)} />
+               <Route path="/settings" component={Settings} />
+               <Route path="/login" component={EnterForm} />
+               <Route path="/login" component={Music} />
+               <Route render={() => <div className="container">404 not found</div>} />
+            </Switch >
+         </React.Fragment>
       </ProviderApp>
-    )
-  }
+   )
 };
 
-const mapState = (state) => {
-  return {
-    initialized: state.app.initialized
-  }
-}
-
-export default compose(
-  withRouter,
-  connect(mapState, { appInitCreator }))
-  (App);
+export default App;

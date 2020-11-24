@@ -1,0 +1,6 @@
+.messagerChat {
+   background-color: rgb(219, 219, 219);
+   height: calc(100vh - 260px);
+   overflow: auto;
+   padding: 15px;
+}

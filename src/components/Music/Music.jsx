@@ -1,9 +1,11 @@
 import React from 'react';
-
 import '../Music/Music.module.css';
-const Music = (props) => {
+const Music = () => {
     return (
-        <h2>Music</h2>
+        <div className="container">
+            <h2>Music</h2>
+        </div>
+
     )
 };
 
