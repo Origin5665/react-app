@@ -9,16 +9,17 @@ import { requaredField } from '../../../utils/validation';
 const MessagerForm = ({ handleSubmit }) => {
 
    return (
-      <form onSubmit={handleSubmit}>
+      <form className={styles.form} onSubmit={handleSubmit}>
          <Field
+            className={styles.form__textAria}
             component={ComponentInput}
             typeField='textarea'
             name={'message'}
-            placeholder="ваше сообщение..." type="text"
+            placeholder="Ваше сообщение..." type="text"
             validate={requaredField} />
-         <button>Отправить</button>
+         <button className={styles.form__button}>Отправить</button>
       </form>
    )
 };
-export default MessagerForm;
+export default React.memo(MessagerForm);
 

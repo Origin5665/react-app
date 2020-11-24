@@ -1,29 +1,19 @@
 import React from 'react';
 import style from '../Header/Header.module.css';
-import { navicon } from 'react-icons-kit/fa/navicon'
 import Icon from 'react-icons-kit';
-import { useMediaQuery } from 'react-responsive'
+import MenuBar from './../common/Menu/Menu';
 
-
-import MenuBar from './../common/Menu/Menu'
+import { useMediaQuery } from 'react-responsive';
 import { ContextStore } from '../../ContextStore';
+import { navicon } from 'react-icons-kit/fa/navicon';
 
-const Navbar = (props) => {
 
-  const { setSideBarState, sideBarState } = React.useContext(ContextStore)
-  const [load, setLoad] = React.useState(false) // загрузка изображения
+const Navbar = ({ isAuth, loginId, logoutProfile }) => {
 
-  const isTabletOrMobile = useMediaQuery({ query: '(max-width: 574px)' }) // Медиа выражение
+  const { setSideBarState, sideBarState } = React.useContext(ContextStore);
 
-  React.useEffect(() => {
-    const fetchData = async () => {
-      await props.getUserProfileCreator(props.loginId)
-      setLoad(true)
-    }
-    fetchData()
 
-  }, []); // получение данных с сервера
-
+  const isTabletOrMobile = useMediaQuery({ query: '(max-width: 574px)' });
 
   return (
     <header className={style.header}>
@@ -38,16 +28,7 @@ const Navbar = (props) => {
           />
         </button>
         <h2 className={style.header__title}>React Social Club</h2>
-
-        {/* {
-          load ? <MenuBar data={props.data} />
-
-            : <PreLoader />
-        } */}
-
-
-
-
+        {isAuth && <MenuBar loginId={loginId} logoutProfile={logoutProfile} />}
       </div>
     </header >
 

@@ -1,22 +1,14 @@
-import React, { useState, useEffect, Fragment } from 'react';
+import React from 'react';
 import InputStatus from '../../common/InputStatus/InputStatus';
-import styles from './../Profile.module.css';
+import styles from './ProfileStatus.module.css';
 
-const ProfileStatus = ({ status, data, setNewUserStatus }) => {
+const ProfileStatus = ({ status, setNewUserStatus }) => {
 
-   const [edit, setEdit] = useState(false);
-
-
+   const [edit, setEdit] = React.useState(false);
    const statusEditToggle = () => setEdit(!edit)
 
-
-
-
-
-
-
    return (
-      <Fragment>
+      <React.Fragment>
          { !edit
             ? <p
                className={styles.profileStatus__text}
@@ -26,9 +18,8 @@ const ProfileStatus = ({ status, data, setNewUserStatus }) => {
                statusEditToggle={statusEditToggle}
                status={status}
                setNewUserStatus={setNewUserStatus} />}
-      </Fragment>
-   )
-
+      </React.Fragment>
+   );
 };
 
 export default ProfileStatus;

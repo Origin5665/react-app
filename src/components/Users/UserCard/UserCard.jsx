@@ -7,9 +7,8 @@ import AddToFriendButton from './AddToFriendButton/AddToFriendButton';
 const User = ({
    data,
    followingProgress,
-   followingCreator,
-   outFollowingCreator
-
+   subscribeUser,
+   unsubscribeUser
 }) => {
 
    return (
@@ -27,10 +26,11 @@ const User = ({
          <AddToFriendButton
             data={data}
             followingProgress={followingProgress}
-            followingCreator={followingCreator}
-            outFollowingCreator={outFollowingCreator} />
+            subscribeUser={subscribeUser}
+            unsubscribeUser={unsubscribeUser} />
       </li >
    );
 };
 
 export default User;
+

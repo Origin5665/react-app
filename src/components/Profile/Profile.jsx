@@ -3,12 +3,13 @@ import classnames from 'classnames'
 import FormBlockContainer from './ProfileBlock/ProfileBlockContainer';
 import ProfileInfo from '../Profile/ProfileInfo/ProfileInfo';
 import styles from './Profile.module.css'
-import PreLoader from '../common/PreLoader/Preloader';
+import Preloader from '../common/Preloader/Preloader';
 
 
 const Profile = (props) => {
+
    if (!props.data) {
-      return <PreLoader />
+      return <Preloader />
    }
    return (
       <div className={classnames("container", styles.profile__wrapper)}>
@@ -17,7 +18,7 @@ const Profile = (props) => {
             owner={props.owner}
             status={props.status}
             data={props.data}
-            setNewUserStatus={props.setNewUserStatusCreator} />
+            setNewUserStatus={props.setNewUserStatus} />
          <FormBlockContainer data={props.data} />
       </div>
    )

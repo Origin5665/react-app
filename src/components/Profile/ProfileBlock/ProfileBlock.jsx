@@ -1,49 +1,39 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { reduxForm, reset } from 'redux-form';
-
 import ProfileForm from './../ProfileForm/ProfileForm';
 import ProfilePost from './ProfilePost/ProfilePost';
 
+const ProfileBlock = ({ actionCreatorPost, post, user }) => {
 
+  const onSubmit = React.useCallback(
+    (data) => {
+      actionCreatorPost(data.message)
+    },
+    [actionCreatorPost],
+  );
 
-
-
-const ProfileBlock = (props) => {
-
-
-  const onSubmit = (data) => {
-
-    props.actionCreatorPost(data.message)
-  }
-
-  const postList = props.post.map((item, i) =>
+  const postList = post.map((item, i) =>
 
     < ProfilePost
       key={i}
-      image={props.user ? props.user.photos.small : null}
+      image={user ? user.photos.small : null}
       date={item.date}
       message={item.message}
       like={item.count} />)
 
-
   return (
-    <Fragment>
+    <React.Fragment>
       <ProfileFormContainer onSubmit={onSubmit} />
       <div>
         {postList}
       </div>
-    </Fragment>
-
-
+    </React.Fragment>
   );
 };
 
 const afterSubmit = (result, dispatch) =>
-  dispatch(reset('profileForm'));
+  dispatch(reset('profile-form'));
 
-
-const ProfileFormContainer = reduxForm({ form: 'profileForm', onSubmitSuccess: afterSubmit })(ProfileForm)
-
-
+const ProfileFormContainer = reduxForm({ form: 'profile-form', onSubmitSuccess: afterSubmit })(ProfileForm)
 
 export default ProfileBlock;

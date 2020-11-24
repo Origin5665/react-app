@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './MessagerChat.module.css';
 import Message from '../Message/Message';
 import { useSelector } from 'react-redux';
-const MessagerChat = ({ data }) => {
+const MessagerChat = () => {
 
    const messageState = useSelector(state => state.dialogs.message)
 
@@ -11,10 +11,13 @@ const MessagerChat = ({ data }) => {
 
 
    return (
-      <div>
+      <div className={styles.messagerChat}>
+         <div>
+            <h3>Собеседник</h3>
+         </div>
          {messages}
       </div>
    );
 };
 
-export default MessagerChat;
+export default (MessagerChat);

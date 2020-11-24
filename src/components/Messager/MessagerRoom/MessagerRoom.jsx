@@ -1,16 +1,17 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-
+import styles from './MessagerRoom.module.css'
 
 const MessagerRoom = ({ roomName, roomID }) => {
-   console.log(roomName);
+
    const path = `/dialogs/${roomID}`;
 
    return (
-      <li>
+      <li className={styles.messagerRoom}>
          <NavLink
-            to={path}>
-            {roomName}</NavLink>
+            activeClassName={styles.messagerRoom__link_active}
+            className={styles.messagerRoom__link}
+            to={path}>{roomName}</NavLink>
       </li >
    )
 }

@@ -9,6 +9,7 @@ import {
    FOLLOWING_PROGRESS
 
 } from '../../constant';
+import { updateObject } from '../../utils/objects-helper';
 
 const initalState = {
    users: [],
@@ -27,23 +28,15 @@ const usersReducer = (state = initalState, action) => {
       case SUBSCRIBE:
          return {
             ...state,
-            users: state.users.map(user => {
-               if (user.id === action.userID) {
-                  return { ...user, followed: true }
-               }
-               return user;
-            })
+            users: updateObject(state.users, action.userID, "id", { followed: true })
+
          };
 
       case UNSUBSCRIBE:
          return {
             ...state,
-            users: state.users.map(user => {
-               if (user.id === action.userID) {
-                  return { ...user, followed: false }
-               }
-               return user;
-            })
+            users: updateObject(state.users, action.userID, "id", { followed: false })
+
          };
 
       case SET_USERS:
@@ -83,4 +76,3 @@ const usersReducer = (state = initalState, action) => {
 };
 
 export default usersReducer;
-// зарефакторить редюсер

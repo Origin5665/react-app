@@ -1,22 +1,21 @@
 import React from 'react';
 import Header from "../Header/Header";
-
+import { compose } from 'redux';
 import { connect } from "react-redux";
-import { logoutCreator } from '../../redux/thunk/logoutCreator';
-import { getUserProfileCreator } from '../../redux/thunk/getUserProfileCreator';
-class NavbarContainer extends React.Component {
+import { logoutProfile } from '../../redux/thunk/logoutProfile';
+import { withRouter } from 'react-router-dom';
+
+class HeaderContainer extends React.Component {
 
   render = () => <Header {...this.props} />
 };
 
 const mapState = (state) => ({
   isAuth: state.auth.isAuth,
-  data: state.profile.profileUser,
   loginId: state.auth.userId,
+
+
 });
 
-export default connect(mapState,
-  {
-    logoutCreator,
-    getUserProfileCreator
-  })(NavbarContainer);
+export default compose(connect(mapState,
+  { logoutProfile }), withRouter)(HeaderContainer);

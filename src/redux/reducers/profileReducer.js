@@ -21,31 +21,22 @@ const profileReducer = (state = initialState, action) => {
             post: [{ id: 5, message: action.value, date: new Date().toLocaleDateString() }, ...state.post]
          };
 
-
-
-      case SET_USER: {
+      case SET_USER:
          return {
             ...state,
             profileUser: action.profile
          };
-      }
 
-      case GET_CURRENT_STATUS: {
+      case GET_CURRENT_STATUS:
          return {
             ...state,
             status: action.status
-         }
-      }
+         };
 
       case SET_NEW_PHOTO:
-
          return {
             ...state, profileUser: { ...state.profileUser, photos: action.image }
-
-         }
-
-
-
+         };
 
       default:
          return state

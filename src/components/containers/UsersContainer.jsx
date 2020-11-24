@@ -3,22 +3,37 @@ import Users from '../Users/Users/Users';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { withAuthRedirect } from '../../HOC/withAuthRedirect';
-import { getUsersSuperSelector, getPageSize, getTotalCount, getCurrentPage, getFollowingProgress } from '../../redux/selectors/users-selectors'
-import { getUsersThunkCreator } from '../../redux/thunk/getUsersCreator';
-import { outFollowingCreator, followingCreator } from '../../redux/thunk/followCreators';
-import { subscribe, unsubscribe, setCurrentPage, setFollowingState } from '../../redux/actions/actionUsers';
+
+import { getUsersProfile } from '../../redux/thunk/getUsersProfile';
+import { unsubscribeUser, subscribeUser } from '../../redux/thunk/followUser';
+import { setCurrentPage, setFollowingState } from '../../redux/actions/actionUsers';
+import {
+   getUsersSuperSelector,
+   getPageSize,
+   getTotalCount,
+   getCurrentPage,
+   getFollowingProgress
+} from '../../redux/selectors/users-selectors';
 
 const UsersContainer = (props) => {
 
+   const [loader, setLoader] = React.useState(false);
+
    React.useEffect(() => {
-      const { currentPage, pageSize } = props;
-      props.getUsersThunkCreator(currentPage, pageSize)
+      const fetchData = async () => {
+         setLoader(true);
+         const { currentPage, pageSize } = props;
+         await props.getUsersProfile(currentPage, pageSize);
+         setLoader(false);
+      };
+      fetchData();
+
    }, []);
 
    const getCurrentPage = (page) => {
       const { pageSize } = props;
       props.setCurrentPage(page)
-      props.getUsersThunkCreator(page, pageSize)
+      props.getUsersProfile(page, pageSize)
    };
 
    return <Users
@@ -26,13 +41,12 @@ const UsersContainer = (props) => {
       totalCount={props.totalCount}
       pageSize={props.pageSize}
       currentPage={props.currentPage}
-      subscribe={props.subscribe}
-      unsubscribe={props.unsubscribe}
       getCurrentPage={getCurrentPage}
       data={props.data}
       followingProgress={props.followingProgress}
-      setFollowingState={props.setFollowingState}
-      outFollowingCreator={props.outFollowingCreator}
+      subscribeUser={props.subscribeUser}
+      unsubscribeUser={props.unsubscribeUser}
+      loader={loader}
    />
 };
 
@@ -44,21 +58,19 @@ const mapState = (state) => {
       currentPage: getCurrentPage(state),
       followingProgress: getFollowingProgress(state),
       portionSize: state.users.portionSize
-   }
+   };
 };
 
 const mapDispatch = {
 
-   followingCreator,
-   subscribe,
-   unsubscribe,
+   subscribeUser,
    setCurrentPage,
    setFollowingState,
-   getUsersThunkCreator,
-   outFollowingCreator,
+   getUsersProfile,
+   unsubscribeUser,
 };
 
-const usersContainerCompose = compose(connect(mapState, mapDispatch), withAuthRedirect)(UsersContainer)
+const usersContainerCompose = compose(connect(mapState, mapDispatch), withAuthRedirect)(UsersContainer);
 
 export default usersContainerCompose;
 

@@ -1,13 +1,17 @@
 import React from 'react'
-import styles from './Menu.module.css'
+
 // MaterialUI
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
+import MoreVertIcon from '@material-ui/icons/MoreVert';
 
-const MenuBar = ({ data }) => {
+
+
+
+const MenuBar = ({ logoutProfile }) => {
+
    const [anchorEl, setAnchorEl] = React.useState(null);
-
    const handleClick = (event) => {
       setAnchorEl(event.currentTarget);
    };
@@ -18,12 +22,14 @@ const MenuBar = ({ data }) => {
 
    return (
       <div>
-         <Button aria-controls="user-menu" aria-haspopup="true" onClick={handleClick}>
-            <img
-               src={data.photos.small}
-               alt={'фотография пользователя страницы'}
-               className={styles.header__login}></img>
-         </Button>
+         <IconButton
+            aria-label="more"
+            aria-controls="long-menu"
+            aria-haspopup="true"
+            onClick={handleClick}
+         >
+            <MoreVertIcon />
+         </IconButton>
          <Menu
             id="user-menu"
             anchorEl={anchorEl}
@@ -31,8 +37,7 @@ const MenuBar = ({ data }) => {
             open={Boolean(anchorEl)}
             onClose={handleClose}
          >
-            <MenuItem onClick={handleClose}>Настройки</MenuItem>
-            <MenuItem onClick={handleClose}>Выход</MenuItem>
+            <MenuItem onClick={logoutProfile}>Выход</MenuItem>
 
          </Menu>
       </div>

@@ -1,34 +1,20 @@
-import React, { Fragment } from 'react';
-import Preloader from '../../common/PreLoader/Preloader';
+import React from 'react';
+// import Preloader from '../../common/PreLoader/Preloader';
 import userIMG from '../../../images/user/user-photo.png';
 import ProfileStatus from '../ProfileStatus/ProfileStatus';
 import ProfileContacts from '../ProfileDiscription/ProfileContacts';
+import styles from './ProfileInfo.module.css';
 import { useHistory } from 'react-router-dom';
-import styles from './../Profile.module.css'
-import ButtonGroup from '../../common/ButtonGroup/ButtonGroup';
-
-
-const ProfileInfo = ({ owner, data, status, setNewUserStatus, uploadImageProfile }) => {
-
-
-  const history = useHistory();
 
 
 
-  const onPhotoSelected = (file) => {
 
+const ProfileInfo = ({ data, status, owner, setNewUserStatus }) => {
 
-    uploadImageProfile(file[0])
-
-  }
-
-
-
-  const toEditProfile = () => {
+  const history = useHistory()
+  const toEdit = () => {
     history.push('/settings')
   }
-
-
 
   return (
     <div className={styles.profileInfo__wrapper}>
@@ -36,27 +22,21 @@ const ProfileInfo = ({ owner, data, status, setNewUserStatus, uploadImageProfile
         <img className={styles.profileInfo__image} alt="фотография профиля" src={!data.photos.large
           ? userIMG
           : data.photos.large} />
-
-        {/* {owner ? null : <ButtonGroup />} */}
+        {owner ? null : <button onClick={toEdit} className={styles.profileInfo__button}>Редактировать профиль</button>}
       </div>
-
       <div className={styles.profileInfo__infoWrapper}>
         <h2 className={styles.profileInfo__name}>{data.fullName}</h2>
         <ProfileStatus
           status={status}
           data={data}
           setNewUserStatus={setNewUserStatus} />
-        <p className={styles.profileInfo__text}>В поиске работы: {data.lookingForAJob ? 'Да' : 'Нет'}</p>
-        {data.lookingForAJob && <p className={styles.profileInfo__text}>Навыки: {data.lookingForAJobDescription}</p>}
-        {data.aboutMe && <p className={styles.profileInfo__text}>Обо мне: {data.aboutMe}</p>}
+        <p className={styles.profileInfo__text}><b>В поиске работы:</b> {data.lookingForAJob ? 'Да' : 'Нет'}</p>
+        <p className={styles.profileInfo__text}><b>Навыки:</b> {data.lookingForAJobDescription}</p>
+        <p className={styles.profileInfo__text}><b>Обо мне:</b> {data.aboutMe}</p>
         <ProfileContacts data={data} />
       </div>
     </div >
-
-  )
-
+  );
 };
-
-
 
 export default ProfileInfo;

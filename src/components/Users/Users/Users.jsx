@@ -1,20 +1,20 @@
 import React from 'react';
 import UserCard from '../UserCard/UserCard';
-import PreLoader from '../../common/PreLoader/Preloader';
+import Preloader from '../../common/Preloader/Preloader';
 import Pagination from '../../common/paginator/pagination.jsx';
 import InputSearch from '../../common/InputSearch/InputSearch';
 import styles from './Users.module.css'
 
 
 const Users = ({
-   followingCreator,
-   outFollowingCreator,
+   subscribeUser,
+   unsubscribeUser,
    totalCount,
    pageSize,
    getCurrentPage,
    data,
-   currentState,
    followingProgress,
+   loader
 }) => {
 
    const [filteredUsers, setFilteredUsers] = React.useState([]);
@@ -23,8 +23,8 @@ const Users = ({
       <UserCard
          key={index}
          data={user}
-         followingCreator={followingCreator}
-         outFollowingCreator={outFollowingCreator}
+         subscribeUser={subscribeUser}
+         unsubscribeUser={unsubscribeUser}
          followingProgress={followingProgress}
       />);
 
@@ -39,12 +39,12 @@ const Users = ({
                pageSize={pageSize}
             />
          </div>
-         {currentState
-            ? <PreLoader />
-            : null}
-         <ul className={styles.users__list} >
-            {usersList}
-         </ul>
+
+         {loader ? <Preloader />
+            : <ul className={styles.users__list} >
+               {usersList}
+            </ul>}
+
       </div>
    );
 };

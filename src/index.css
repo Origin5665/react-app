@@ -9,19 +9,17 @@ code {
     monospace;
 }
 
-.container{
+.container {
   height: calc(100vh - 80px);
   overflow: auto;
   width: calc(100vw - 330px);
   position: relative;
   margin-left: 310px;
   margin-top: 10px;
-  /* margin-right: 20px; */
-  position: relative;
 
 }
 
-.preloader{
+.preloader {
 
   display: flex;
   height: 100vh;
@@ -29,17 +27,20 @@ code {
   align-items: center;
 }
 
+b {
+  color: rgb(43, 43, 43)
+}
 
-@media screen and (max-width:874px){
-  .container{
- 
-    width: calc(100vw - 65px);
+@media screen and (max-width:874px) {
+  .container {
+
+    width: calc(100vw - 75px);
     margin-left: 65px;
   }
 }
 
-@media screen and (max-width:574px){
-  .container{
+@media screen and (max-width:574px) {
+  .container {
     width: calc(100vw - 10px);
     margin-left: 5px;
   }

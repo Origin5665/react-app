@@ -18,6 +18,4 @@ export const followAPI = {
         return instance.post(`follow/${id}`)
             .then(res => res.data)
     }
-
-
-}
+};

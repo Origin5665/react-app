@@ -2,7 +2,7 @@ import { AuthAPI } from '../../API/AuthAPI';
 import { removeCaptcha, setUserAuth } from '../actions/actionAuth';
 
 
-export const logoutCreator = () => async (dispatch) => {
+export const logoutProfile = () => async (dispatch) => {
    const choice = window.confirm('Совершить выход?')
    if (choice) {
       const response = await AuthAPI.outApp()

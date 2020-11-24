@@ -20,8 +20,6 @@ export const userProfileAPI = {
          ${currentPage}&count=${pageSize}`)
          .then(res => res.data)
    }
-
-
 };
 
 

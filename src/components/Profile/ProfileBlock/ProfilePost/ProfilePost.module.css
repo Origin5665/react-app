@@ -1,11 +1,11 @@
-.post{
-
+.post {
    width: 100%;
-border-radius: 3px;
-   margin-bottom: 20px;;
+   border-radius: 3px;
+   margin-bottom: 20px;
    background-color: rgba(189, 189, 189, 0.644);
 }
-.post__header{
+
+.post__header {
    padding: 5px;
    background-color: rgba(53, 53, 53, 0.836);
    display: flex;
@@ -13,17 +13,15 @@ border-radius: 3px;
    border-top-left-radius: 3px;
    border-top-right-radius: 3px;
 }
-.post__authorImage{
-height: 60px;
-border-radius: 5px;
 
-
-}
-b{
-   color:rgb(209, 209, 209)
+.post__authorImage {
+   height: 60px;
+   border-radius: 5px;
 }
 
-.post__body{
+
+
+.post__body {
    padding: 10px;
    font-size: 18px;
 }
