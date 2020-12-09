@@ -3,10 +3,14 @@ import Users from '../Users/Users/Users';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { withAuthRedirect } from '../../HOC/withAuthRedirect';
+import {
+   setCurrentPage,
+   setFollowingState,
+   unsubscribeUser,
+   subscribeUser,
+   getUserProfilesCurrentPage
+} from '../../redux/reducers/users';
 
-import { getUsersProfile } from '../../redux/thunk/getUsersProfile';
-import { unsubscribeUser, subscribeUser } from '../../redux/thunk/followUser';
-import { setCurrentPage, setFollowingState } from '../../redux/actions/actionUsers';
 import {
    getUsersSuperSelector,
    getPageSize,
@@ -20,10 +24,11 @@ const UsersContainer = (props) => {
    const [loader, setLoader] = React.useState(false);
 
    React.useEffect(() => {
+
       const fetchData = async () => {
          setLoader(true);
          const { currentPage, pageSize } = props;
-         await props.getUsersProfile(currentPage, pageSize);
+         await props.getUserProfilesCurrentPage(currentPage, pageSize);
          setLoader(false);
       };
       fetchData();
@@ -33,11 +38,10 @@ const UsersContainer = (props) => {
    const getCurrentPage = (page) => {
       const { pageSize } = props;
       props.setCurrentPage(page)
-      props.getUsersProfile(page, pageSize)
+      props.getUserProfilesCurrentPage(page, pageSize)
    };
 
    return <Users
-      followingCreator={props.followingCreator}
       totalCount={props.totalCount}
       pageSize={props.pageSize}
       currentPage={props.currentPage}
@@ -57,17 +61,18 @@ const mapState = (state) => {
       pageSize: getPageSize(state),
       currentPage: getCurrentPage(state),
       followingProgress: getFollowingProgress(state),
-      portionSize: state.users.portionSize
+
    };
 };
 
 const mapDispatch = {
 
    subscribeUser,
+   unsubscribeUser,
    setCurrentPage,
    setFollowingState,
-   getUsersProfile,
-   unsubscribeUser,
+   getUserProfilesCurrentPage,//
+
 };
 
 const usersContainerCompose = compose(connect(mapState, mapDispatch), withAuthRedirect)(UsersContainer);

@@ -8,17 +8,15 @@ const afterSubmit = (result, dispatch) =>
 
 const MessagerFormReduxContainer = reduxForm({ form: 'messager-form', onSubmitSuccess: afterSubmit })(MessagerForm)
 
-const MessagerFormBlock = ({ actionCreatorPost }) => {
+const MessagerFormBlock = ({ addUserMassage }) => {
 
    const sendNewMessage = React.useCallback(
       (formData) => {
-         actionCreatorPost(formData.message)
+         addUserMassage(formData.message)
       },
-      [actionCreatorPost],
-   )
-   // const sendNewMessage = formData => {
-   //    actionCreatorPost(formData.message)
-   // }
+      [addUserMassage],
+   );
+
 
    return <MessagerFormReduxContainer onSubmit={sendNewMessage} />
 };

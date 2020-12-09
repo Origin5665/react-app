@@ -5,7 +5,7 @@ import styles from './MessagerSidebar.module.css';
 
 const MessagerSidebar = () => {
 
-   const roomsState = useSelector(state => state.user.dialog);
+   const roomsState = useSelector(state => state.messager.dialogs);
 
    const rooms = roomsState.map(room =>
       <MessagerRoom key={room.name} roomName={room.name} roomID={room.id} />)

@@ -1,5 +1,4 @@
 import React from 'react';
-
 import styles from './MessagerForm.module.css';
 import { Field } from 'redux-form';
 import { ComponentInput } from '../../common/FormControls/FormControls';
@@ -19,7 +18,7 @@ const MessagerForm = ({ handleSubmit }) => {
             validate={requaredField} />
          <button className={styles.form__button}>Отправить</button>
       </form>
-   )
+   );
 };
 export default React.memo(MessagerForm);
 

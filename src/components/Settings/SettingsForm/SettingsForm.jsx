@@ -86,7 +86,7 @@ const EditForm = (props) => {
    const onSubmitEditProfile = async (formData) => {
 
       try {
-         await props.updateProfile(formData)
+         await props.userProfileUpdate(formData)
          history.push('/profile')
       } catch (error) {
          console.log(error)
@@ -95,7 +95,7 @@ const EditForm = (props) => {
    }
    if (!props.profileData) return <Redirect to='/profile' />
    return <SettingReduxForm
-      updateProfile={props.updateProfile}
+      userProfileUpdate={props.userProfileUpdate}
       initialValues={props.profileData}
       profileData={props.profileData}
       onSubmit={onSubmitEditProfile} />

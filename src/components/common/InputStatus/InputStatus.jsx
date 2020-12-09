@@ -3,14 +3,14 @@ import styles from './InputStatus.module.css';
 import classnames from 'classnames'
 
 
-const InputStatus = ({ status, setNewUserStatus, statusEditToggle }) => {
+const InputStatus = ({ status, userStatusUpdate, statusEditToggle }) => {
    React.useEffect(() => { setValue(status) }, [status]);
 
    const [value, setValue] = React.useState(status);
 
    const submitStatement = (e) => {
       e.preventDefault()
-      setNewUserStatus(value)
+      userStatusUpdate(value)
       statusEditToggle()
    };
 

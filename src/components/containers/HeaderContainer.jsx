@@ -2,9 +2,8 @@ import React from 'react';
 import Header from "../Header/Header";
 import { compose } from 'redux';
 import { connect } from "react-redux";
-import { logoutProfile } from '../../redux/thunk/logoutProfile';
+import { userLogout } from '../../redux/reducers/auth';
 import { withRouter } from 'react-router-dom';
-
 class HeaderContainer extends React.Component {
 
   render = () => <Header {...this.props} />
@@ -13,9 +12,7 @@ class HeaderContainer extends React.Component {
 const mapState = (state) => ({
   isAuth: state.auth.isAuth,
   loginId: state.auth.userId,
-
-
 });
 
 export default compose(connect(mapState,
-  { logoutProfile }), withRouter)(HeaderContainer);
+  { userLogout }), withRouter)(HeaderContainer);

@@ -1,17 +1,20 @@
 import React from 'react';
 import Profile from '../Profile/Profile';
+
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { withRouter } from 'react-router-dom';
 import { withAuthRedirect } from '../../HOC/withAuthRedirect';
 
-import { getProfile } from '../../redux/thunk/getProfile';
-import { getCurrentUserStatus } from '../../redux/thunk/getCurrentUserStatus';
-import { setNewUserStatus } from '../../redux/thunk/setNewUserStatus';
-import { uploadImageProfile } from './../../redux/thunk/uploadImageProfile';
+/* thunk's*/
+import { getUserProfile } from '../../redux/reducers/profile';
+import { userStatusUpdate } from '../../redux/reducers/profile';
+import { getCurrentUserStatus } from '../../redux/reducers/profile';
+import { userPhotoUpdate } from '../../redux/reducers/profile';
+
 
 const mapState = (state) => ({
-  data: state.profile.profileUser,
+  data: state.profile.profile,
   status: state.profile.status,
   loginId: state.auth.userId,
   isAuth: state.auth.isAuth
@@ -23,7 +26,7 @@ class ProfileContainer extends React.Component {
     let userId = this.props.match.params.userId;
     if (!userId) userId = this.props.loginId;
     if (!userId) this.props.history.push('/login');
-    await this.props.getProfile(userId);
+    await this.props.getUserProfile(userId);
     await this.props.getCurrentUserStatus(userId);
   }
 
@@ -37,22 +40,21 @@ class ProfileContainer extends React.Component {
   };
 
   render = () => {
-
     return <Profile
+      userStatusUpdate={userStatusUpdate}
       owner={this.props.match.params.userId}
-      uploadImageProfile={this.props.uploadImageProfile}
+      userPhotoUpdate={this.props.userPhotoUpdate}
       {...this.props}
       data={this.props.data} />
   };
 };
 
 const profileCompose = compose(connect(mapState, {
-  getProfile,
-  getCurrentUserStatus,
-  setNewUserStatus,
-  uploadImageProfile
-}),
-  withRouter, withAuthRedirect)(ProfileContainer);
+  getUserProfile,
+  userStatusUpdate,
+  userPhotoUpdate,
+  getCurrentUserStatus
+}), withRouter, withAuthRedirect)(ProfileContainer);
 
 export default profileCompose;
 

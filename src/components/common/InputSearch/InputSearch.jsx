@@ -8,7 +8,7 @@ const InputSearch = ({ data, setFilteredUsers }) => {
    React.useEffect(() => {
       return setFilteredUsers(data.filter(user =>
          user.name.toLowerCase().includes(search.toLowerCase())))
-   }, [search, data])
+   }, [search, setFilteredUsers, data])
 
    return (
       <React.Fragment>

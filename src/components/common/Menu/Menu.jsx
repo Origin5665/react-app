@@ -9,7 +9,7 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 
 
 
-const MenuBar = ({ logoutProfile }) => {
+const MenuBar = ({ userLogout }) => {
 
    const [anchorEl, setAnchorEl] = React.useState(null);
    const handleClick = (event) => {
@@ -37,7 +37,7 @@ const MenuBar = ({ logoutProfile }) => {
             open={Boolean(anchorEl)}
             onClose={handleClose}
          >
-            <MenuItem onClick={logoutProfile}>Выход</MenuItem>
+            <MenuItem onClick={userLogout}>Выход</MenuItem>
 
          </Menu>
       </div>
