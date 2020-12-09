@@ -1,8 +1,10 @@
-# react-social network
+ react-social network
 
 Проект разработан в рамках изучения библиотеки React. Использованы классовые и функциональные компоненты. Для форм использован redux-form; 
 [Ссылка на проект](https://origin5665.github.io/react-social-network)
-## Использованные библиотеки:
+
+# Использованные библиотеки:
+- TypeScript
 - React, DOM
 - Redux
 - React-redux
@@ -21,7 +23,7 @@
 - Простая валидация форм
 - Доработать preloader
 
-- TypeScript
+# Планы на будущее:
 - Заменить Redux-form на Formik
 - Доработать валидацию
 - Добавить список друзей
@@ -29,6 +31,6 @@
 - Работающий messager (socket)
 
 ### Для запуска:
-
 -  npm install - установка модулей
 -  npm start - запуск локального сервера
+
