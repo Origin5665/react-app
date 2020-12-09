@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import { requaredField } from '../../utils/validation';
 import { ComponentInput } from '../common/FormControls/FormControls';
-import { loginProfile } from '../../redux/thunk/loginProfile';
+import { userAuthorization } from '../../redux/reducers/auth';
 import LoginForm from './EnterForm.module.css';
 import { Redirect } from 'react-router-dom';
 
@@ -11,7 +11,7 @@ const EnterForm = (props) => {
 
    return (
 
-      <form onSubmit={props.handleSubmit} className={LoginForm.formWrapper}>
+      <form className={LoginForm.formWrapper}>
          <Field
             component={ComponentInput}
             validate={[requaredField]}
@@ -52,7 +52,7 @@ const EnterForm = (props) => {
                : null
          }
 
-         <button className={LoginForm.button} >Войти</button>
+         <button onClick={props.handleSubmit} className={LoginForm.button} >Войти</button>
          <p className={LoginForm.error}>{props.error ? props.error : ''}</p>
       </form>
 
@@ -64,15 +64,14 @@ const EnterForm = (props) => {
 
 const EnterFormContainer = reduxForm({ form: 'enterForm' })(EnterForm);
 
-const Login = ({ loginProfile, isAuth, captcha }) => {
+const Login = ({ userAuthorization, isAuth, captcha }) => {
 
    const onSubmit = (formData) => {
-      loginProfile(
+      userAuthorization(
          formData.email,
          formData.password,
          formData.remeberMe,
          formData.captcha
-
       )
    }
 
@@ -96,4 +95,4 @@ const mapState = state => {
    }
 }
 
-export default connect(mapState, { loginProfile })(Login);
+export default connect(mapState, { userAuthorization })(Login);

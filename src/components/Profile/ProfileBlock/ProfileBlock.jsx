@@ -3,13 +3,13 @@ import { reduxForm, reset } from 'redux-form';
 import ProfileForm from './../ProfileForm/ProfileForm';
 import ProfilePost from './ProfilePost/ProfilePost';
 
-const ProfileBlock = ({ actionCreatorPost, post, user }) => {
+const ProfileBlock = ({ addUserPost, post, user }) => {
 
   const onSubmit = React.useCallback(
     (data) => {
-      actionCreatorPost(data.message)
+      addUserPost(data.message)
     },
-    [actionCreatorPost],
+    [addUserPost],
   );
 
   const postList = post.map((item, i) =>

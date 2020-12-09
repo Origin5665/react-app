@@ -5,6 +5,7 @@ import styles from './pagination.module.css';
 
 const PaginationUI = ({ totalCount, pageSize, getCurrentPage }) => {
 
+
    const numberPages = Math.ceil(totalCount / pageSize);
 
    const desctopScreen = useMediaQuery({ minWidth: 1024 });

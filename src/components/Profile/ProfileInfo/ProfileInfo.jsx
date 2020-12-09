@@ -9,10 +9,12 @@ import { useHistory } from 'react-router-dom';
 
 
 
-const ProfileInfo = ({ data, status, owner, setNewUserStatus }) => {
+const ProfileInfo = ({ data, status, owner, userStatusUpdate }) => {
 
-  const history = useHistory()
+  const history = useHistory();
+
   const toEdit = () => {
+    console.log('daw');
     history.push('/settings')
   }
 
@@ -29,7 +31,7 @@ const ProfileInfo = ({ data, status, owner, setNewUserStatus }) => {
         <ProfileStatus
           status={status}
           data={data}
-          setNewUserStatus={setNewUserStatus} />
+          userStatusUpdate={userStatusUpdate} />
         <p className={styles.profileInfo__text}><b>В поиске работы:</b> {data.lookingForAJob ? 'Да' : 'Нет'}</p>
         <p className={styles.profileInfo__text}><b>Навыки:</b> {data.lookingForAJobDescription}</p>
         <p className={styles.profileInfo__text}><b>Обо мне:</b> {data.aboutMe}</p>

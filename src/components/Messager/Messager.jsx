@@ -2,9 +2,9 @@ import React from 'react';
 import MessagerSidebar from './MessagerSidebar/MessagerSidebar';
 import MessagerFormContainer from '../containers/MessagerFormContainer';
 import MessagerChat from './MessagerChat/MessagerChat';
-import styles from './Messager.module.css'
-const Messager = () => {
+import styles from './Messager.module.css';
 
+const Messager = () => {
 
   return (
     <div className={"container " + styles.wrapper}>
@@ -13,8 +13,6 @@ const Messager = () => {
         <MessagerChat />
       </div>
       <MessagerFormContainer />
-
-
     </div>
   )
 };

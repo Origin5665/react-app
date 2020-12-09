@@ -48,7 +48,7 @@ const Navigate = () => {
       </ul>
     </nav>
   );
-}
+};
 
 
 

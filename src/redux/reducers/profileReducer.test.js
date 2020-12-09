@@ -1,4 +1,4 @@
-import profileReducer from './profileReducer';
+import profileReducer from './profile';
 import { actionCreatorPost } from '../actions/actionProfile';
 
 

@@ -8,10 +8,9 @@ import { ContextStore } from '../../ContextStore';
 import { navicon } from 'react-icons-kit/fa/navicon';
 
 
-const Navbar = ({ isAuth, loginId, logoutProfile }) => {
+const Navbar = ({ isAuth, loginId, userLogout }) => {
 
   const { setSideBarState, sideBarState } = React.useContext(ContextStore);
-
 
   const isTabletOrMobile = useMediaQuery({ query: '(max-width: 574px)' });
 
@@ -28,7 +27,7 @@ const Navbar = ({ isAuth, loginId, logoutProfile }) => {
           />
         </button>
         <h2 className={style.header__title}>React Social Club</h2>
-        {isAuth && <MenuBar loginId={loginId} logoutProfile={logoutProfile} />}
+        {isAuth && <MenuBar loginId={loginId} userLogout={userLogout} />}
       </div>
     </header >
 

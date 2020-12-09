@@ -20,7 +20,7 @@ export const AuthAPI = {
          .then(res => res)
    },
 
-   getCaptchaVerification() {
+   getCaptcha() {
       return instance.get('/security/get-captcha-url')
          .then(res => res)
    }

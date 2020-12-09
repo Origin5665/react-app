@@ -1,17 +1,14 @@
 import ProfileBlock from './ProfileBlock'
-import { actionCreatorPost } from '../../../redux/actions/actionProfile';
+import { addUserPost } from '../../../redux/reducers/profile';
 import { connect } from 'react-redux';
-
-
 
 const mapStateToProps = (state) => {
   return {
     post: state.profile.post,
-    user: state.profile.profileUser
+    user: state.profile.profile
+  };
+};
 
-  }
-}
-
-const FormContainer = connect(mapStateToProps, { actionCreatorPost })(ProfileBlock)
+const FormContainer = connect(mapStateToProps, { addUserPost })(ProfileBlock)
 
 export default FormContainer; 

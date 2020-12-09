@@ -2,7 +2,7 @@ import React from 'react';
 import InputStatus from '../../common/InputStatus/InputStatus';
 import styles from './ProfileStatus.module.css';
 
-const ProfileStatus = ({ status, setNewUserStatus }) => {
+const ProfileStatus = ({ status, userStatusUpdate }) => {
 
    const [edit, setEdit] = React.useState(false);
    const statusEditToggle = () => setEdit(!edit)
@@ -17,7 +17,7 @@ const ProfileStatus = ({ status, setNewUserStatus }) => {
             : <InputStatus
                statusEditToggle={statusEditToggle}
                status={status}
-               setNewUserStatus={setNewUserStatus} />}
+               userStatusUpdate={userStatusUpdate} />}
       </React.Fragment>
    );
 };
