@@ -21,7 +21,7 @@ export const ADD_MESSAGE_TEXT = 'ADD_MESSAGE_TEXT';
 
 //AuthReducer:
 export const SET_USER_AUTH = 'SET_USER_AUTH';
-export const GET_CAPTCHA_URL = 'GET_CAPTCHA_URL';
+export const SET_CAPTCHA_URL = 'SET_CAPTCHA_URL';
 export const REMOVE_CAPTCHA_URL = 'REMOVE_CAPTCHA_URL'
 
 // ProfileReducer:

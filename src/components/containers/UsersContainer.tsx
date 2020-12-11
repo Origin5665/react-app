@@ -1,42 +1,46 @@
 import React from 'react';
 import Users from '../Users/Users/Users';
-import { connect } from 'react-redux';
+import { connect, ConnectedProps } from 'react-redux';
 import { compose } from 'redux';
 import { withAuthRedirect } from '../../HOC/withAuthRedirect';
+import { rootStateType } from '../../redux/reducers';
 import {
    setCurrentPage,
-   setFollowingState,
    unsubscribeUser,
    subscribeUser,
-   getUserProfilesCurrentPage
+   getUserProfilesCurrentPage,
+
 } from '../../redux/reducers/users';
 
 import {
-   getUsersSuperSelector,
+   getUsersSelector,
    getPageSize,
    getTotalCount,
    getCurrentPage,
    getFollowingProgress
 } from '../../redux/selectors/users-selectors';
 
-const UsersContainer = (props) => {
+
+const UsersContainer: React.FC<connectorType> = (props) => {
 
    const [loader, setLoader] = React.useState(false);
+   const { currentPage, pageSize } = props;
+
 
    React.useEffect(() => {
 
       const fetchData = async () => {
          setLoader(true);
-         const { currentPage, pageSize } = props;
          await props.getUserProfilesCurrentPage(currentPage, pageSize);
          setLoader(false);
       };
+
       fetchData();
 
-   }, []);
+   }, [currentPage]);
 
-   const getCurrentPage = (page) => {
-      const { pageSize } = props;
+   const getCurrentPage = (page: number) => {
+
       props.setCurrentPage(page)
       props.getUserProfilesCurrentPage(page, pageSize)
    };
@@ -44,38 +48,36 @@ const UsersContainer = (props) => {
    return <Users
       totalCount={props.totalCount}
       pageSize={props.pageSize}
-      currentPage={props.currentPage}
-      getCurrentPage={getCurrentPage}
+      loader={loader}
       data={props.data}
       followingProgress={props.followingProgress}
+      getCurrentPage={getCurrentPage}
       subscribeUser={props.subscribeUser}
       unsubscribeUser={props.unsubscribeUser}
-      loader={loader}
    />
 };
 
-const mapState = (state) => {
+const mapState = (state: rootStateType) => {
    return {
-      data: getUsersSuperSelector(state),
+      data: getUsersSelector(state),
       totalCount: getTotalCount(state),
       pageSize: getPageSize(state),
       currentPage: getCurrentPage(state),
       followingProgress: getFollowingProgress(state),
-
    };
 };
 
 const mapDispatch = {
-
    subscribeUser,
    unsubscribeUser,
    setCurrentPage,
-   setFollowingState,
-   getUserProfilesCurrentPage,//
-
+   getUserProfilesCurrentPage
 };
 
-const usersContainerCompose = compose(connect(mapState, mapDispatch), withAuthRedirect)(UsersContainer);
+const connector = connect(mapState, mapDispatch)
+type connectorType = ConnectedProps<typeof connector>
+
+const usersContainerCompose = compose(connector, withAuthRedirect)(UsersContainer);
 
 export default usersContainerCompose;
 

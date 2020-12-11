@@ -18,7 +18,7 @@ import Music from './components/Music/Music';
 
 // Lazy Components:
 const MessagerContainer = React.lazy(() => import('./components/containers/MessagerContainer'));
-const UsersContainer = React.lazy(() => import('./components/containers/UsersContainer'));
+const UsersContainer = React.lazy(() => import('./components/containers/UsersContainer.tsx'));
 
 
 const App = () => {

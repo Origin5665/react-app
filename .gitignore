@@ -1,7 +1,7 @@
 
-# Created by https://www.toptal.com/developers/gitignore/api/react,node,windows,visualstudiocode
-# Edit at https://www.toptal.com/developers/gitignore?templates=react,node,windows,visualstudiocode
-build/
+# Created by https://www.toptal.com/developers/gitignore/api/vscode,windows,node,react
+# Edit at https://www.toptal.com/developers/gitignore?templates=vscode,windows,node,react
+
 ### Node ###
 # Logs
 logs
@@ -40,7 +40,7 @@ bower_components
 .lock-wscript
 
 # Compiled binary addons (https://nodejs.org/api/addons.html)
-build
+build/Release
 
 # Dependency directories
 node_modules/
@@ -76,9 +76,11 @@ typings/
 # dotenv environment variables file
 .env
 .env.test
+.env*.local
 
 # parcel-bundler cache (https://parceljs.org/)
 .cache
+.parcel-cache
 
 # Next.js build output
 .next
@@ -124,17 +126,14 @@ psd
 thumb
 sketch
 
-### VisualStudioCode ###
+### vscode ###
+.vs/
 .vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
 *.code-workspace
-
-### VisualStudioCode Patch ###
-# Ignore all local history of files
-.history
 
 ### Windows ###
 # Windows thumbnail cache files
@@ -162,4 +161,4 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-# End of https://www.toptal.com/developers/gitignore/api/react,node,windows,visualstudiocode
+# End of https://www.toptal.com/developers/gitignore/api/vscode,windows,node,react

@@ -1,8 +1,8 @@
 
-import Axios from 'axios';
+import axios from 'axios';
 import { BASE_URL } from '../constant';
 
-const instance = Axios.create({
+const instance = axios.create({
    withCredentials: true,
    baseURL: BASE_URL,
    headers: {
@@ -10,29 +10,29 @@ const instance = Axios.create({
    },
 })
 
-export const getProfileAPI = {
-   getUserProfile(userId) {
-      return instance.get(`profile/${userId}`)
+export const profile = {
+   getUserProfile(userID: number) {
+      return instance.get(`profile/${userID}`)
          .then(res => res.data)
    },
 
-   getСurrentUserStatus(userId) {
-      return instance.get(`profile/status/${userId}`)
+   getСurrentUserStatus(userID: number) {
+      return instance.get(`profile/status/${userID}`)
          .then(res => res.data)
    },
 
-   sendNewUserStatus(string) {
+   sendNewUserStatus(string: string) {
       return instance.put('profile/status', { status: string })
          .then(res => res)
    },
-   updateProfilePhoto(file) {
+   updateUserPhoto(file: any) {
       const formData = new FormData();
       formData.append('image', file)
       return instance.put('/profile/photo', formData)
          .then(res => res.data.data.photos)
    },
 
-   updateProfileData(body) {
+   updateUserProfile(body: any) {
 
       return instance.put('/profile', body)
          .then(res => res.data)

@@ -24,7 +24,7 @@ export const initialApp = () => (dispatch: any) => {
    })
 };
 
-const init = (state = initialState, action: any): setInitialType => {
+const init = (state = initialState, action: setInitializedType): setInitialType => {
    switch (action.type) {
       case SET_INIT:
          return {

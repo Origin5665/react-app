@@ -1,28 +1,30 @@
-import { SET_USER_AUTH, GET_CAPTCHA_URL, REMOVE_CAPTCHA_URL } from '../../constant';
-import { userProfileAPI } from '../../API/userProfileAPI';
-import { AuthAPI } from '../../API/AuthAPI';
+import { SET_USER_AUTH, SET_CAPTCHA_URL, REMOVE_CAPTCHA_URL } from '../../constant';
+import { auth, resultCode } from '../../api/auth';
 import { stopSubmit } from 'redux-form';
+import { ThunkAction } from 'redux-thunk';
+import { rootStateType } from './index';
+
+
 
 
 /* @type */
 type initialStateType = typeof initialState;
 
-type setUserAuthPayload = {
+type userDataPayload = {
    login: string | null
    userId: number | null
    email: string | null
    isAuth: boolean
-   captchaUrl?: string
+   captcha?: string
 };
+/* Action type */
+type setUserData = { type: typeof SET_USER_AUTH, payload: userDataPayload };
+type setCaptcha = { type: typeof SET_CAPTCHA_URL, payload: string };
+type removeCaptcha = { type: typeof REMOVE_CAPTCHA_URL };
 
-type setUserAuthType = {
-   type: typeof SET_USER_AUTH,
-   payload: setUserAuthPayload
-};
-type getCaptchaUrlType = {
-   type: typeof GET_CAPTCHA_URL
-   payload: string
-}
+type actionType = setUserData | setCaptcha | removeCaptcha
+type thunkType = ThunkAction<Promise<void>, rootStateType, unknown, actionType>;
+
 
 /* initial state */
 const initialState = {
@@ -30,62 +32,75 @@ const initialState = {
    userId: null as number | null,
    email: null as string | null,
    isAuth: false,
-   captchaUrl: null as string | null
+   captcha: null as string | null
 };
 
 /* Action */
-const setUserAuth = (login: string | null, userId: number | null, email: string | null, isAuth: boolean): setUserAuthType =>
-   ({ type: SET_USER_AUTH, payload: { login, userId, email, isAuth, } });
-const getCaptchaUrl = (captcha: string): getCaptchaUrlType => ({ type: GET_CAPTCHA_URL, payload: captcha })
-const removeCaptcha = () => ({ type: REMOVE_CAPTCHA_URL })
+
+/* Установить данные пользователя */
+const setUserData = (
+   login: string | null,
+   userId: number | null,
+   email: string | null,
+   isAuth: boolean): setUserData =>
+({
+   type: SET_USER_AUTH,
+   payload: { login, userId, email, isAuth, }
+});
+
+/* Установить капчу */
+const setCaptcha = (captcha: string): setCaptcha => ({ type: SET_CAPTCHA_URL, payload: captcha })
+
+/* Удалить капчу */
+const removeCaptcha = (): removeCaptcha => ({ type: REMOVE_CAPTCHA_URL })
 
 
 /* THUNK */
 
-/* получение данных авторизованного пользователя */
+/* авторизация пользователя, получение данных  */
 
-export const getAuthUser = () => async (dispatch: any) => {
-   const response = await userProfileAPI.getUserAuth();
-   if (response.resultCode === 0) {
+export const getAuthUser = (): thunkType => async (dispatch) => {
+   const response = await auth.getAccessUser();
+   if (response.resultCode === resultCode.successful) {
       const { login, id, email } = response.data;
-      dispatch(setUserAuth(login, id, email, true))
+      dispatch(setUserData(login, id, email, true))
    }
 };
 
-/* добавление капчи в случае блокировки пользователя */
+/* Полученить капчу, если пользователя заблокировал сервер */
 
-export const setCaptcha = () => async (dispatch: any) => {
-   const res = await AuthAPI.getCaptcha()
-   dispatch(getCaptchaUrl(res.data.url));
+export const getVerificationCaptcha = (): thunkType => async (dispatch) => {
+   const res = await auth.getCaptcha()
+   dispatch(setCaptcha(res.url));
 };
 
-/* авторизация пользователя: если успешно - допускаем, 
+/* аутентификация пользователя: если успешно - допускаем, 
    если блокировка - получаем капчу, в ином случае - выводим ошибку */
 
-export const userAuthorization = (email: string, password: number, rememberMe: boolean, captchaUrl?: string) =>
-   async (dispatch: any) => {
-      const res = await AuthAPI.enterApp(email, password, rememberMe, captchaUrl)
-      if (res.data.resultCode === 0) {
+export const userLogin = (email: string, password: string, rememberMe: boolean, captchaUrl?: string): thunkType =>
+   async (dispatch) => {
+      const res = await auth.login(email, password, rememberMe, captchaUrl)
+      if (res.resultCode === resultCode.successful) {
          dispatch(getAuthUser())
-      } else if (res.data.resultCode === 10) {
-         dispatch(setCaptcha())
-         const displayError = stopSubmit('enterForm', { _error: res.data.messages[0] })
+      } else if (res.resultCode === resultCode.captchaRequired) {
+         dispatch(getVerificationCaptcha())
+         const displayError = stopSubmit('enterForm', { _error: res.messages[0] })
          dispatch(displayError)
       } else {
-         const displayError = stopSubmit('enterForm', { _error: res.data.messages[0] })
+         const displayError = stopSubmit('enterForm', { _error: res.messages[0] })
          dispatch(displayError)
       }
    };
 
 /* выход пользователя, обнуляем все исходные параметры, удаляем полученную капчу(?) */
 
-export const userLogout = () => async (dispatch: any) => {
+export const userLogout = (): thunkType => async (dispatch) => {
 
    const choice = window.confirm('Совершить выход?')
    if (choice) {
-      const res = await AuthAPI.outApp();
-      if (res.data.resultCode === 0) {
-         dispatch(setUserAuth(null, null, null, false))
+      const res = await auth.logout();
+      if (res.resultCode === resultCode.successful) {
+         dispatch(setUserData(null, null, null, false))
          dispatch(removeCaptcha());
       };
    };
@@ -93,7 +108,7 @@ export const userLogout = () => async (dispatch: any) => {
 
 /* reducer */
 
-const authReducer = (state = initialState, action: any): initialStateType => {
+const authReducer = (state = initialState, action: actionType): initialStateType => {
 
    switch (action.type) {
       case SET_USER_AUTH:
@@ -102,17 +117,17 @@ const authReducer = (state = initialState, action: any): initialStateType => {
             ...action.payload,
          };
 
-      case GET_CAPTCHA_URL:
+      case SET_CAPTCHA_URL:
          return {
             ...state,
-            captchaUrl: action.payload
+            captcha: action.payload
          };
 
       case REMOVE_CAPTCHA_URL:
          return {
 
             ...state,
-            captchaUrl: null
+            captcha: null
          };
 
       default:
