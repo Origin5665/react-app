@@ -1,13 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Field, reduxForm } from 'redux-form';
+import { Field, InjectedFormProps, reduxForm } from 'redux-form';
 import { requaredField } from '../../utils/validation';
 import { ComponentInput } from '../common/FormControls/FormControls';
-import { userAuthorization } from '../../redux/reducers/auth';
+import { userLogin } from '../../redux/reducers/auth';
 import LoginForm from './EnterForm.module.css';
 import { Redirect } from 'react-router-dom';
+import { rootStateType } from '../../redux/reducers';
 
-const EnterForm = (props) => {
+const EnterForm: React.FC<InjectedFormProps<formDataType, formOwnProps> & formOwnProps> = ({ handleSubmit, error, captcha }) => {
 
    return (
 
@@ -37,9 +38,9 @@ const EnterForm = (props) => {
                htmlFor="remember">Запомнить</label>
          </div>
          {
-            props.captcha
+            captcha
                ? <div>
-                  <img src={props.captcha} alt="Искаженные символы на изображении" />
+                  <img src={captcha} alt="Искаженные символы на изображении" />
                   <Field
                      validate={[requaredField]}
                      typeField={'input'}
@@ -52,8 +53,8 @@ const EnterForm = (props) => {
                : null
          }
 
-         <button onClick={props.handleSubmit} className={LoginForm.button} >Войти</button>
-         <p className={LoginForm.error}>{props.error ? props.error : ''}</p>
+         <button onClick={handleSubmit} className={LoginForm.button}>Войти</button>
+         <p className={LoginForm.error}>{error ? error : ''}</p>
       </form>
 
    )
@@ -62,12 +63,24 @@ const EnterForm = (props) => {
 // Form вызывает из props handleSubmit (из EnterFormContainer, образованного Hoc'ом redux-form )
 // В контейнерную компоненту передаем собственный метод onSubmit
 
-const EnterFormContainer = reduxForm({ form: 'enterForm' })(EnterForm);
+const EnterFormContainer = reduxForm<formDataType, formOwnProps>({ form: 'enterForm' })(EnterForm);
 
-const Login = ({ userAuthorization, isAuth, captcha }) => {
+interface formDataType {
+   email: string,
+   password: string,
+   remeberMe: boolean,
+   captcha: string
+}
 
-   const onSubmit = (formData) => {
-      userAuthorization(
+interface formOwnProps {
+   captcha: string | null
+}
+
+
+const Login: React.FC<mapStateType & mapDispatch> = ({ userLogin, isAuth, captcha }) => {
+
+   const onSubmit = (formData: formDataType) => {
+      userLogin(
          formData.email,
          formData.password,
          formData.remeberMe,
@@ -88,11 +101,20 @@ const Login = ({ userAuthorization, isAuth, captcha }) => {
 
 
 };
-const mapState = state => {
+type mapStateType = {
+   isAuth: boolean
+   captcha: string | null
+}
+
+type mapDispatch = {
+   userLogin: (email: string, password: string, rememberMe: boolean, captchaUrl?: string) => void
+}
+
+const mapState = (state: rootStateType): mapStateType => {
    return {
       isAuth: state.auth.isAuth,
-      captcha: state.auth.captchaUrl
+      captcha: state.auth.captcha
    }
 }
 
-export default connect(mapState, { userAuthorization })(Login);
+export default connect(mapState, { userLogin })(Login);

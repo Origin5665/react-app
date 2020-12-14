@@ -1,24 +1,20 @@
 import React from 'react';
-import Profile from '../Profile/Profile';
+import Profile from './Profile';
 
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import { withRouter } from 'react-router-dom';
+import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { withAuthRedirect } from '../../HOC/withAuthRedirect';
 
 /* thunk's*/
 import { getUserProfile } from '../../redux/reducers/profile';
 import { userStatusUpdate } from '../../redux/reducers/profile';
 import { getCurrentUserStatus } from '../../redux/reducers/profile';
-import { userPhotoUpdate } from '../../redux/reducers/profile';
+
+// import { rootStateType } from '../../redux/reducers';
+// import { profileType } from '../../redux/reducers/profile'
 
 
-const mapState = (state) => ({
-  data: state.profile.profile,
-  status: state.profile.status,
-  loginId: state.auth.userId,
-  isAuth: state.auth.isAuth
-});
 
 class ProfileContainer extends React.Component {
 
@@ -40,21 +36,52 @@ class ProfileContainer extends React.Component {
   };
 
   render = () => {
+
     return <Profile
-      userStatusUpdate={userStatusUpdate}
+      data={this.props.data}
+      userStatusUpdate={this.props.userStatusUpdate}
       owner={this.props.match.params.userId}
-      userPhotoUpdate={this.props.userPhotoUpdate}
-      {...this.props}
-      data={this.props.data} />
-  };
+      status={this.props.status}
+    />
+
+  }
+
+
 };
 
-const profileCompose = compose(connect(mapState, {
+// type mapState = {
+//   data: profileType
+//   status: string
+//   loginId: number | null
+//   isAuth: boolean
+// }
+// type mapDispatch = {
+//   getUserProfile: (userID: number) => void,
+//   userStatusUpdate: (status: string) => void,
+//   getCurrentUserStatus: (userID: number) => void
+// }
+// type propsType = mapState & mapDispatch
+
+// type ownProps = {
+//   userId: number
+// }
+
+const mapState = (state) => ({
+  data: state.profile.profile,
+  status: state.profile.status,
+  loginId: state.auth.userId,
+  isAuth: state.auth.isAuth
+});
+
+const mapDispatch = {
   getUserProfile,
   userStatusUpdate,
-  userPhotoUpdate,
   getCurrentUserStatus
-}), withRouter, withAuthRedirect)(ProfileContainer);
+}
+
+
+
+const profileCompose = compose(connect(mapState, mapDispatch), withRouter, withAuthRedirect)(ProfileContainer);
 
 export default profileCompose;
 

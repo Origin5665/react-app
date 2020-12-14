@@ -1,12 +1,19 @@
 import React from 'react';
 import classnames from 'classnames';
 import FormBlockContainer from './ProfileBlock/ProfileBlockContainer';
-import ProfileInfo from '../Profile/ProfileInfo/ProfileInfo';
+import ProfileInfo from './ProfileInfo/ProfileInfo';
 import styles from './Profile.module.css';
 import Preloader from '../common/Preloader/Preloader';
+import { profileType } from '../../redux/reducers/profile';
 
 
-const Profile = (props) => {
+type ProfileType = {
+   userStatusUpdate: (status: string) => void
+   status: string
+   owner: number
+   data: Array<profileType>
+}
+const Profile: React.FC<ProfileType> = (props) => {
 
    if (!props.data) {
       return <Preloader />
@@ -14,13 +21,13 @@ const Profile = (props) => {
    return (
       <div className={classnames("container", styles.profile__wrapper)}>
          <ProfileInfo
+            data={props.data}
             userStatusUpdate={props.userStatusUpdate}
-            userPhotoUpdate={props.userPhotoUpdate}
             owner={props.owner}
             status={props.status}
-            data={props.data} />
-         <FormBlockContainer data={props.data} />
+         />
+         <FormBlockContainer />
       </div>
    )
 };
-export default Profile;
+export default Profile; 

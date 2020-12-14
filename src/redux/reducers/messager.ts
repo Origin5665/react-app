@@ -32,7 +32,7 @@ const initialState = {
 export const addUserMassage = (body: string): addUserMassageType => ({ type: ADD_MESSAGE, payload: body });
 
 /* REDUCER */
-const messager = (state = initialState, action: any): initialStateType => {
+const messager = (state = initialState, action: addUserMassageType): initialStateType => {
 
     switch (action.type) {
 

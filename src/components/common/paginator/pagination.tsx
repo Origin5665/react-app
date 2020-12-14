@@ -3,7 +3,14 @@ import Pagination from '@material-ui/lab/Pagination';
 import { useMediaQuery } from 'react-responsive';
 import styles from './pagination.module.css';
 
-const PaginationUI = ({ totalCount, pageSize, getCurrentPage }) => {
+
+type propsType = {
+   totalCount: number
+   pageSize: number
+   getCurrentPage: (page: number) => void
+}
+
+const PaginationUI: React.FC<propsType> = ({ totalCount, pageSize, getCurrentPage }) => {
 
 
    const numberPages = Math.ceil(totalCount / pageSize);
@@ -13,10 +20,11 @@ const PaginationUI = ({ totalCount, pageSize, getCurrentPage }) => {
    const mobileScreen = useMediaQuery({ minWidth: 320, maxWidth: 414 });
 
    const reSize = () => {
-      let size = null;
+      let size: string | undefined = undefined;
       if (desctopScreen) return size = 'large'
       if (tableScreen) return size = 'medium'
       if (mobileScreen) return size = 'small'
+
    };
 
    return (
@@ -26,6 +34,7 @@ const PaginationUI = ({ totalCount, pageSize, getCurrentPage }) => {
          size={reSize()}
          count={numberPages}
          onChange={(event, page) => getCurrentPage(page)} />
+
    );
 
 };

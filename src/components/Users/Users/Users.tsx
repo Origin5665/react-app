@@ -1,12 +1,24 @@
 import React from 'react';
 import UserCard from '../UserCard/UserCard';
 import Preloader from '../../common/Preloader/Preloader';
-import Pagination from '../../common/paginator/pagination.jsx';
+import Pagination from '../../common/paginator/pagination';
 import InputSearch from '../../common/InputSearch/InputSearch';
 import styles from './Users.module.css'
 
+import { usersType } from '../../../redux/reducers/users'
 
-const Users = ({
+
+type UsersType = {
+   totalCount: number
+   pageSize: number
+   loader: boolean
+   data: Array<usersType>
+   followingProgress: Array<number>
+   subscribeUser: (id: number) => void
+   unsubscribeUser: (id: number) => void
+   getCurrentPage: (page: number) => void
+}
+const Users: React.FC<UsersType> = ({
    subscribeUser,
    unsubscribeUser,
    totalCount,
@@ -39,7 +51,6 @@ const Users = ({
                pageSize={pageSize}
             />
          </div>
-
          {loader ? <Preloader />
             : <ul className={styles.users__list} >
                {usersList}

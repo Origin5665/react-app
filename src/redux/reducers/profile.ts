@@ -1,8 +1,10 @@
 
 import { ADD_POST, SET_NEW_PHOTO, SET_USER_PROFILE, GET_CURRENT_STATUS } from '../../constant';
-import { getProfileAPI } from '../../API/profileAPI';
-import { stopSubmit } from 'redux-form';
-
+import { profile } from '../../api/profile';
+import { FormAction, stopSubmit } from 'redux-form';
+import { ThunkAction } from 'redux-thunk';
+import { rootStateType } from './index';
+import { resultCode } from '../../api/auth'
 
 /* @TYPES */
 
@@ -16,13 +18,13 @@ type postType = {
 };
 
 /* @Profile */
-type profileType = {
+export type profileType = {
    userId: number
    lookingForAJob: boolean
    lookingForAJobDescription: string | null
    fullName: string | null
-   contacts: contactsType
-   photos: photoType
+   contacts: contactsType | null
+   photos: photoType | null
 };
 /* => Photo */
 export type photoType = {
@@ -30,7 +32,7 @@ export type photoType = {
    large: string | null
 };
 /* => Contacts */
-type contactsType = {
+export type contactsType = {
    github: string | null
    vk: string | null
    facebook: string | null
@@ -60,6 +62,9 @@ type setUserProfileType = {
    type: typeof SET_USER_PROFILE,
    profile: profileType
 }
+
+type actionType = addUserPostType | newPhotoSuccesType | getCurrentStatusType | setUserProfileType
+type thunkType = ThunkAction<Promise<void>, rootStateType, unknown, actionType | FormAction>;
 
 /* INITIAL STATE */
 
@@ -91,25 +96,25 @@ export const newPhotoSucces = (image: photoType): newPhotoSuccesType => ({ type:
 
 /* Получает данные профиля по id */
 
-export const getUserProfile = (userId: number) => async (dispatch: any) => {
-   const res = await getProfileAPI.getUserProfile(userId)
+export const getUserProfile = (userID: number): thunkType => async (dispatch) => {
+   const res = await profile.getUserProfile(userID)
    dispatch(setUserProfile(res))
 };
 
 /* Обновляет статус пользователя */
 
-export const userStatusUpdate = (status: string) => async (dispatch: any) => {
+export const userStatusUpdate = (status: string): thunkType => async (dispatch) => {
    try {
-      const res = await getProfileAPI.sendNewUserStatus(status);
-      if (res.data.resultCode === 0) dispatch(setUserStatus(status));
+      const res = await profile.sendNewUserStatus(status);
+      if (res.data.resultCode === resultCode.successful) dispatch(setUserStatus(status));
    } catch (error) {
       console.log('Ошибка: ' + error);
    }
 };
 
-export const getCurrentUserStatus = (id: number) => async (dispatch: any) => {
+export const getCurrentUserStatus = (id: number): thunkType => async (dispatch) => {
    try {
-      const response = await getProfileAPI.getСurrentUserStatus(id)
+      const response = await profile.getСurrentUserStatus(id)
       dispatch(getUserStatus(response))
    } catch (error) {
       console.log('Ошибка: ' + error)
@@ -118,27 +123,26 @@ export const getCurrentUserStatus = (id: number) => async (dispatch: any) => {
 
 /*  Обновляет данные пользователя */
 
-export const userProfileUpdate = (body: any) => async (dispatch: any, getState: any) => {
-   const userId = getState().auth.userId
-   const response = await getProfileAPI.updateProfileData(body)
-   if (response.resultCode === 0) {
-      dispatch(getUserProfile(userId))
-   } else if (response.resultCode === 1) {
-      let key = response.messages[0].match(/Contacts->(\w+)/)[1].toLowerCase();
-      const displayError = stopSubmit('edit-profile', { "contacts": { [key]: response.messages[0] } })
+export const userProfileUpdate = (body: profileType): thunkType => async (dispatch, getState: any) => {
+   const userID = getState().auth.userId
+   const res = await profile.updateUserProfile(body)
+   if (res.resultCode === 0) {
+      dispatch(getUserProfile(userID))
+   } else if (res.resultCode === resultCode.unsuccessful) {
+      const displayError = stopSubmit('enterForm', { _error: res.messages[0] })
       dispatch(displayError)
-      return Promise.reject(response.messages[0])
+      return Promise.reject(res.messages)
    }
 };
 
 /* Обновляет фотографию пользователя */
 
-export const userPhotoUpdate = (file: any) => async (dispatch: any) => {
-   const res = await getProfileAPI.updateProfilePhoto(file);
+export const userPhotoUpdate = (file: any): thunkType => async (dispatch) => {
+   const res = await profile.updateUserPhoto(file);
    dispatch(newPhotoSucces(res))
 };
 
-const profileReducer = (state = initialState, action: any): initialStateType => {
+const profileReducer = (state = initialState, action: actionType): initialStateType => {
 
    switch (action.type) {
       case ADD_POST:

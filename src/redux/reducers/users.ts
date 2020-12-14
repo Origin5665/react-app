@@ -1,7 +1,7 @@
 import { updateObject } from '../../utils/objects-helper';
 import { photoType } from '../reducers/profile';
-import { followAPI } from '../../API/followAPI';
-import { userProfileAPI } from '../../API/userProfileAPI';
+import { follow } from '../../api/follow';
+import { allUsers } from '../../api/users';
 import {
 
    UNSUBSCRIBE,
@@ -12,12 +12,15 @@ import {
    FOLLOWING_PROGRESS
 
 } from '../../constant';
-
+import { Dispatch } from 'redux';
+import { ThunkAction } from 'redux-thunk';
+import { rootStateType } from '.';
+import { resultCode } from '../../api/auth'
 /* @types */
 
 type initialStateType = typeof initalState;
 
-type usersType = {
+export type usersType = {
    id: number
    name: string
    status: string
@@ -32,7 +35,9 @@ type setTotalCountType = { type: typeof SET_TOTAL_COUNT, totalCount: number }
 type setCurrentPageType = { type: typeof SET_CURRENT_PAGE, currentPage: number }
 type setFollowingStateType = { type: typeof FOLLOWING_PROGRESS, state: boolean, userID: number }
 
-
+type actionType = subscribeType | unsubscribeType | setUsersType | setTotalCountType | setCurrentPageType | setFollowingStateType;
+type thunkType = ThunkAction<Promise<void>, rootStateType, unknown, actionType>;
+type dispatchType = Dispatch<actionType>
 /* inital state */
 const initalState = {
    users: [] as Array<usersType>,
@@ -55,36 +60,41 @@ export const setFollowingState = (state: boolean, userID: number): setFollowingS
 /* THUNK */
 
 /* Подписка на пользователя */
-export const subscribeUser = (id: number) => async (dispatch: any) => {
-   followToggle(dispatch, id, followAPI.getFollow.bind(id), subscribe)
+export const subscribeUser = (id: number): thunkType => async (dispatch) => {
+   _followToggle(dispatch, id, follow.userSub.bind(id), subscribe)
 };
 
 /* Отписка от пользователя */
-export const unsubscribeUser = (id: number) => async (dispatch: any) => {
-   followToggle(dispatch, id, followAPI.outFollow.bind(id), unsubscribe)
+export const unsubscribeUser = (id: number): thunkType => async (dispatch) => {
+   _followToggle(dispatch, id, follow.userUnsub.bind(id), unsubscribe)
 };
 
 /* Распределитель */
-const followToggle = async (dispatch: any, userID: number, apiMethod: any, actionCreator: any) => {
+const _followToggle = async (dispatch: dispatchType, userID: number, apiMethod: any, actionCreator: (userID: number) => subscribeType | unsubscribeType) => {
    dispatch(setFollowingState(true, userID));
    const res = await apiMethod(userID);
-   if (res.resultCode === 0) {
+   if (res.resultCode === resultCode.successful) {
       dispatch(actionCreator(userID));
    }
    dispatch(setFollowingState(false, userID));
 }
 
 /* Получение пользователей текущей страницы */
-export const getUserProfilesCurrentPage = (currentPage: number, pageSize: number) => {
-   return async (dispatch: any) => {
-      const res = await userProfileAPI.getUsers(currentPage, pageSize);
-      dispatch(setUsers(res.items));
-      dispatch(setTotalCount(res.totalCount));
+export const getUserProfilesCurrentPage = (currentPage: number, pageSize: number): thunkType => {
+   return async (dispatch) => {
+      try {
+         const res = await allUsers.getAllUsers(currentPage, pageSize);
+         dispatch(setUsers(res.items));
+         dispatch(setTotalCount(res.totalCount));
+      }
+      catch (er) {
+         console.log(er)
+      }
    };
 };
 
 /* Reducer */
-const users = (state = initalState, action: any): initialStateType => {
+const users = (state = initalState, action: actionType): initialStateType => {
 
    switch (action.type) {
 
@@ -124,7 +134,7 @@ const users = (state = initalState, action: any): initialStateType => {
             ...state,
             followingProgress: action.state
                ? [...state.followingProgress, action.userID]
-               : state.followingProgress.filter((id => id !== action.userId))
+               : state.followingProgress.filter((id => id !== action.userID))
          };
 
       default:

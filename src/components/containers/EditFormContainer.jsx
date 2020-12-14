@@ -8,7 +8,7 @@ import EditForm from '../Settings/SettingsForm/SettingsForm';
 const mapState = (state) => {
    return {
       profileData: state.profile.profile
-   }
-}
+   };
+};
 
 export default compose(connect(mapState, { userProfileUpdate }), withAuthRedirect)(EditForm)
