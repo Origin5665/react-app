@@ -1,5 +1,12 @@
 import axios from 'axios';
 import { BASE_URL } from '../constant';
+import { usersType } from '../redux/reducers/users'
+
+type users = {
+   items: Array<usersType>
+   totalCount: number
+   error: string | null
+}
 
 const instance = axios.create({
    withCredentials: true,
@@ -9,10 +16,10 @@ const instance = axios.create({
    },
 });
 
-export const user = {
+export const allUsers = {
    /* Получение всех пользователей */
-   getAllUsers(currentPage = 1, pageSize = 10) {
-      return instance.get(`users?page=
+   getAllUsers(currentPage: number = 1, pageSize: number = 10) {
+      return instance.get<users>(`users?page=
          ${currentPage}&count=${pageSize}`)
          .then(res => res.data)
    }

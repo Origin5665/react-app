@@ -7,15 +7,15 @@ import styles from './ProfileInfo.module.css';
 import { useHistory } from 'react-router-dom';
 import { profileType } from '../../../redux/reducers/profile';
 
-type ProfileInfoType = {
-  data: Array<profileType>
-  status: string
-  owner: number
-  userStatusUpdate: (status: string) => void
-}
+// type ProfileInfoType = {
+//   data: profileType
+//   status: string
+//   owner: number
+//   userStatusUpdate: (status: string) => void
+// }
 
 
-const ProfileInfo: React.FC<ProfileInfoType> = ({ data, status, owner, userStatusUpdate }) => {
+const ProfileInfo = ({ data, status, owner, userStatusUpdate }) => {
   console.log(data);
 
   const history = useHistory();

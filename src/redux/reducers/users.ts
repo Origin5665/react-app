@@ -1,7 +1,7 @@
 import { updateObject } from '../../utils/objects-helper';
 import { photoType } from '../reducers/profile';
-import { followAPI } from '../../api/follow';
-import { userProfileAPI } from '../../api/userProfile';
+import { follow } from '../../api/follow';
+import { allUsers } from '../../api/users';
 import {
 
    UNSUBSCRIBE,
@@ -15,7 +15,7 @@ import {
 import { Dispatch } from 'redux';
 import { ThunkAction } from 'redux-thunk';
 import { rootStateType } from '.';
-
+import { resultCode } from '../../api/auth'
 /* @types */
 
 type initialStateType = typeof initalState;
@@ -61,19 +61,19 @@ export const setFollowingState = (state: boolean, userID: number): setFollowingS
 
 /* Подписка на пользователя */
 export const subscribeUser = (id: number): thunkType => async (dispatch) => {
-   _followToggle(dispatch, id, followAPI.getFollow.bind(id), subscribe)
+   _followToggle(dispatch, id, follow.userSub.bind(id), subscribe)
 };
 
 /* Отписка от пользователя */
 export const unsubscribeUser = (id: number): thunkType => async (dispatch) => {
-   _followToggle(dispatch, id, followAPI.outFollow.bind(id), unsubscribe)
+   _followToggle(dispatch, id, follow.userUnsub.bind(id), unsubscribe)
 };
 
 /* Распределитель */
 const _followToggle = async (dispatch: dispatchType, userID: number, apiMethod: any, actionCreator: (userID: number) => subscribeType | unsubscribeType) => {
    dispatch(setFollowingState(true, userID));
    const res = await apiMethod(userID);
-   if (res.resultCode === 0) {
+   if (res.resultCode === resultCode.successful) {
       dispatch(actionCreator(userID));
    }
    dispatch(setFollowingState(false, userID));
@@ -83,7 +83,7 @@ const _followToggle = async (dispatch: dispatchType, userID: number, apiMethod: 
 export const getUserProfilesCurrentPage = (currentPage: number, pageSize: number): thunkType => {
    return async (dispatch) => {
       try {
-         const res = await userProfileAPI.getUsers(currentPage, pageSize);
+         const res = await allUsers.getAllUsers(currentPage, pageSize);
          dispatch(setUsers(res.items));
          dispatch(setTotalCount(res.totalCount));
       }

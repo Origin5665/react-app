@@ -1,6 +1,6 @@
 import { SET_USER_AUTH, SET_CAPTCHA_URL, REMOVE_CAPTCHA_URL } from '../../constant';
 import { auth, resultCode } from '../../api/auth';
-import { stopSubmit } from 'redux-form';
+import { FormAction, stopSubmit } from 'redux-form';
 import { ThunkAction } from 'redux-thunk';
 import { rootStateType } from './index';
 
@@ -23,7 +23,7 @@ type setCaptcha = { type: typeof SET_CAPTCHA_URL, payload: string };
 type removeCaptcha = { type: typeof REMOVE_CAPTCHA_URL };
 
 type actionType = setUserData | setCaptcha | removeCaptcha
-type thunkType = ThunkAction<Promise<void>, rootStateType, unknown, actionType>;
+type thunkType = ThunkAction<Promise<void>, rootStateType, unknown, actionType | FormAction>;
 
 
 /* initial state */

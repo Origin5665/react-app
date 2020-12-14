@@ -1,10 +1,10 @@
 
 import { ADD_POST, SET_NEW_PHOTO, SET_USER_PROFILE, GET_CURRENT_STATUS } from '../../constant';
 import { profile } from '../../api/profile';
-import { stopSubmit } from 'redux-form';
+import { FormAction, stopSubmit } from 'redux-form';
 import { ThunkAction } from 'redux-thunk';
-import { rootStateType } from '.';
-
+import { rootStateType } from './index';
+import { resultCode } from '../../api/auth'
 
 /* @TYPES */
 
@@ -23,8 +23,8 @@ export type profileType = {
    lookingForAJob: boolean
    lookingForAJobDescription: string | null
    fullName: string | null
-   contacts: contactsType
-   photos: photoType
+   contacts: contactsType | null
+   photos: photoType | null
 };
 /* => Photo */
 export type photoType = {
@@ -64,7 +64,7 @@ type setUserProfileType = {
 }
 
 type actionType = addUserPostType | newPhotoSuccesType | getCurrentStatusType | setUserProfileType
-type thunkType = ThunkAction<Promise<void>, rootStateType, unknown, actionType>;
+type thunkType = ThunkAction<Promise<void>, rootStateType, unknown, actionType | FormAction>;
 
 /* INITIAL STATE */
 
@@ -96,8 +96,8 @@ export const newPhotoSucces = (image: photoType): newPhotoSuccesType => ({ type:
 
 /* Получает данные профиля по id */
 
-export const getUserProfile = (userId: number): thunkType => async (dispatch) => {
-   const res = await profile.getUserProfile(userId)
+export const getUserProfile = (userID: number): thunkType => async (dispatch) => {
+   const res = await profile.getUserProfile(userID)
    dispatch(setUserProfile(res))
 };
 
@@ -106,7 +106,7 @@ export const getUserProfile = (userId: number): thunkType => async (dispatch) =>
 export const userStatusUpdate = (status: string): thunkType => async (dispatch) => {
    try {
       const res = await profile.sendNewUserStatus(status);
-      if (res.data.resultCode === 0) dispatch(setUserStatus(status));
+      if (res.data.resultCode === resultCode.successful) dispatch(setUserStatus(status));
    } catch (error) {
       console.log('Ошибка: ' + error);
    }
@@ -123,16 +123,15 @@ export const getCurrentUserStatus = (id: number): thunkType => async (dispatch) 
 
 /*  Обновляет данные пользователя */
 
-export const userProfileUpdate = (body: any): thunkType => async (dispatch, getState: any) => {
-   const userId = getState().auth.userId
+export const userProfileUpdate = (body: profileType): thunkType => async (dispatch, getState: any) => {
+   const userID = getState().auth.userId
    const res = await profile.updateUserProfile(body)
    if (res.resultCode === 0) {
-      dispatch(getUserProfile(userId))
-   } else if (res.resultCode === 1) {
-      let key = res.messages[0].match(/Contacts->(\w+)/)[1].toLowerCase();
-      const displayError = stopSubmit('edit-profile', { "contacts": { [key]: res.messages[0] } })
+      dispatch(getUserProfile(userID))
+   } else if (res.resultCode === resultCode.unsuccessful) {
+      const displayError = stopSubmit('enterForm', { _error: res.messages[0] })
       dispatch(displayError)
-      return Promise.reject(res.messages[0])
+      return Promise.reject(res.messages)
    }
 };
 

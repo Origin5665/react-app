@@ -34,7 +34,9 @@ export enum resultCode {
    unsuccessful = 1,
    successful = 0,
    captchaRequired = 10
-
+}
+export enum resultCodeCaptcha {
+   captchaRequired = 10
 }
 
 

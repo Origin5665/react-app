@@ -23,7 +23,7 @@
 .profileInfo__infoWrapper {
 
    display: grid;
-   grid-template-rows: repeat(5, 1fr);
+   grid-template-rows: repeat(5, auto);
    gap: 4px;
 
 }
